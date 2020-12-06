@@ -28,8 +28,8 @@ const Write = (props) => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const validate = (e) => {
-    if (stateVal.message.length === 0) {
-      setErrorMessage("Message can't be empty!");
+    if (stateVal.message.length === 0 && audioFile === null) {
+      setErrorMessage("Please type or record a message!");
     } else {
       props.history.push("/done");
     }
