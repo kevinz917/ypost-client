@@ -4,11 +4,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Pages
 import Landing from "./pages/landing";
 import Write from "./pages/write";
+import Done from "./pages/done";
 
 function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/done" component={Done} />
         <Route path="/write" component={Write} />
         <Route path="/" component={Landing} />
       </Switch>

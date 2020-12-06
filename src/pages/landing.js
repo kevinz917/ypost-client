@@ -30,9 +30,8 @@ const Landing = () => {
         <br />
         <input className="inputMain" placeholder="Enter email" />
         <br />
-        <br />
         <Link to="/write" className="link">
-          <button className="buttonMain buttonPrimary">Continue</button>
+          <button className="buttonMain buttonPrimary">Continue →</button>
         </Link>
       </div>
       <Footer />

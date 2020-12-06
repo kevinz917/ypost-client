@@ -18,6 +18,7 @@ const recorder = new MicRecorder({
 const Write = () => {
   const [isActive, setIsActive] = useState(false);
   const [audioFile, setAudioFile] = useState(null);
+  const [audioUrl, setAudioUrl] = useState(null);
 
   const startRecording = async () => {
     await recorder
@@ -40,7 +41,9 @@ const Write = () => {
           type: "audio/mp3",
           lastModified: Date.now(),
         });
-        console.log(blob);
+        const player = URL.createObjectURL(blob);
+        console.log(player);
+        setAudioUrl(player);
         setAudioFile(file);
       })
       .catch((e) => {
@@ -92,12 +95,11 @@ const Write = () => {
           {isActive ? "Click to stop" : "Click to start"}
         </button>
         {audioFile === null ? null : (
-          <ReactAudioPlayer src={audioFile} controls />
+          <ReactAudioPlayer src={audioUrl} controls />
         )}
         <br />
-        <br />
         <hr />
-        <Link to="/complete" className="link">
+        <Link to="/done" className="link">
           <button className="buttonMain buttonPrimary">
             <div>Send letter →</div>
           </button>

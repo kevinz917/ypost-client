@@ -31,7 +31,7 @@
 }
 
 .buttonMain {
-  margin: 8px 0 8px 0;
+  margin: 12px 0 12px 0;
   width: 100%;
   display: inline-block;
   border-radius: 12px;
@@ -67,7 +67,7 @@
 }
 
 .buttonPrimary:hover {
-  background-color: #ffb9b9;
+  background-color: rgb(250, 126, 126);
 }
 
 .buttonRecord {
@@ -79,6 +79,17 @@
   background-color: #588fcf;
 }
 
+.buttonShare {
+  background-color: #f9edc9;
+  color: #b7a87c;
+}
+
+.buttonShare:hover {
+  background: #b7a87c;
+  color: white;
+}
+
+/* others */
 .navigation {
   color: var(--gray100);
 }
