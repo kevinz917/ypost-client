@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Snowfall from "react-snowfall";
 
 import "../styles/color.css";
 import "../styles/layout.css";
@@ -7,7 +6,7 @@ import "../styles/typography.css";
 import "../styles/animation.css";
 import Lottie from "react-lottie";
 import ReactAudioPlayer from "react-audio-player";
-import Mail from "../assets/mail.json";
+import Mail from "../assets/mail2.json";
 import { Link } from "react-router-dom";
 import PaperCard from "../components/papercard";
 
@@ -38,7 +37,9 @@ const Demo = () => {
   };
 
   return pageState === "Opening" ? (
-    <Lottie options={defaultOptions} height={500} width={500} />
+    <div style={{ height: 300, width: 300, margin: "auto" }}>
+      <Lottie options={defaultOptions} />
+    </div>
   ) : pageState === "Opened" ? (
     <PaperCard>
       <div className="body textMain">Hey Kevin!</div>
