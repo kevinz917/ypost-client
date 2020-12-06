@@ -20,6 +20,8 @@ const Landing = (props) => {
   const validate = (e) => {
     if (email.length === 0) {
       setErrorMessage("Email can't be empty!");
+    } else if (!email.includes("@")) {
+      setErrorMessage("Please enter a valid email address!");
     } else {
       props.history.push("/write");
     }
@@ -48,7 +50,8 @@ const Landing = (props) => {
         <br />
         <input
           className="inputMain"
-          placeholder="Enter email"
+          placeholder="Enter recipient's email"
+          type="email"
           value={email}
           onChange={(e) => dispatch(SET_VAL("email", e.target.value))}
         />
