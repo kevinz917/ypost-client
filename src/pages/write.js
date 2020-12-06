@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
@@ -8,17 +9,32 @@ import Mic from "../assets/mic.svg";
 import ReactAudioPlayer from "react-audio-player";
 import Footer from "../components/footer";
 
-import { Link } from "react-router-dom";
+// Redux
+import { SET_VAL } from "../redux/masterReducer";
+import { useSelector, useDispatch } from "react-redux";
 
 const MicRecorder = require("mic-recorder-to-mp3");
 const recorder = new MicRecorder({
   bitRate: 320,
 });
 
-const Write = () => {
+const Write = (props) => {
+  const dispatch = useDispatch();
+
+  const stateVal = useSelector((state) => state.inputReducer);
+
   const [isActive, setIsActive] = useState(false);
   const [audioFile, setAudioFile] = useState(null);
   const [audioUrl, setAudioUrl] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const validate = (e) => {
+    if (stateVal.message.length === 0) {
+      setErrorMessage("Message can't be empty!");
+    } else {
+      props.history.push("/done");
+    }
+  };
 
   const startRecording = async () => {
     await recorder
@@ -72,14 +88,18 @@ const Write = () => {
         <input
           className="inputMain"
           placeholder="Your name, or leave it blank :)"
+          value={stateVal.author}
+          onChange={(e) => dispatch(SET_VAL("author", e.target.value))}
         />
         <br />
         <br />
         <div className="h2">Write a message</div>
         <textarea
           className="inputMain textareaMain"
-          placeholder="Your name, or leave it blank :)"
+          placeholder="Write here"
           rows="7"
+          value={stateVal.message}
+          onChange={(e) => dispatch(SET_VAL("message", e.target.value))}
         />
         <br />
         <br />
@@ -99,11 +119,12 @@ const Write = () => {
         )}
         <br />
         <hr />
-        <Link to="/done" className="link">
-          <button className="buttonMain buttonPrimary">
-            <div>Send letter →</div>
-          </button>
-        </Link>
+        <button className="buttonMain buttonPrimary" onClick={validate}>
+          <div>Send letter →</div>
+        </button>
+        {errorMessage ? (
+          <div className="body textMain italic">{errorMessage}</div>
+        ) : null}
       </div>
       <Footer />
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
@@ -6,8 +6,23 @@ import "../styles/animation.css";
 import { Link } from "react-router-dom";
 import Yalelogo from "../assets/yalelogo.svg";
 import Footer from "../components/footer";
+import { useSelector, useDispatch } from "react-redux";
+import { SET_VAL } from "../redux/masterReducer";
 
-const Landing = () => {
+const Landing = (props) => {
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.inputReducer.email);
+
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const validate = (e) => {
+    if (email.length === 0) {
+      setErrorMessage("Email can't be empty!");
+    } else {
+      props.history.push("/write");
+    }
+  };
+
   return (
     <div className="backgroundColor backgroundLayout">
       <div className="paperCard fade-in">
@@ -28,11 +43,19 @@ const Landing = () => {
         </div>
         <br />
         <br />
-        <input className="inputMain" placeholder="Enter email" />
+        <input
+          className="inputMain"
+          placeholder="Enter email"
+          value={email}
+          onChange={(e) => dispatch(SET_VAL("email", e.target.value))}
+        />
         <br />
-        <Link to="/write" className="link">
-          <button className="buttonMain buttonPrimary">Continue →</button>
-        </Link>
+        <button className="buttonMain buttonPrimary" onClick={validate}>
+          Continue →
+        </button>
+        {errorMessage ? (
+          <div className="body textMain italic">{errorMessage}</div>
+        ) : null}
       </div>
       <Footer />
     </div>

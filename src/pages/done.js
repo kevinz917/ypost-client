@@ -6,7 +6,7 @@ import "../styles/typography.css";
 import "../styles/animation.css";
 import Yalelogo from "../assets/yalelogo.svg";
 
-const Done = () => {
+const Done = (props) => {
   return (
     <div className="backgroundColor backgroundLayout">
       <div className="paperCard fade-in">
