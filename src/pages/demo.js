@@ -9,7 +9,6 @@ import Lottie from "react-lottie";
 import ReactAudioPlayer from "react-audio-player";
 import Mail from "../assets/mail.json";
 import { Link } from "react-router-dom";
-import Footer from "../components/footer";
 import PaperCard from "../components/papercard";
 
 function timeout(delay) {

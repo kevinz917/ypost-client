@@ -2,6 +2,7 @@
   width: 100vw;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
 }
 
 .paperCardContainer {
@@ -25,12 +26,11 @@
 }
 
 .footer {
-  position: fixed;
-  bottom: 0;
   width: 100%;
   color: rgb(219, 173, 143);
   text-align: center;
   font-size: 14px;
   font-style: italic;
-  padding: 40px;
+  flex-shrink: 0;
+  margin-bottom: 20px;
 }
