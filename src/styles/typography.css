@@ -1,0 +1,21 @@
+.h1 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.h2 {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.body {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 140%;
+}
+
+.italic {
+  font-style: italic;
+}

@@ -1,0 +1,92 @@
+:root {
+  --pageBackground: #fffcf3;
+  --brown100: #3a3628;
+  --brown200: #76624a;
+  --gray100: #a0a0a0;
+}
+
+.backgroundColor {
+  background-color: var(--pageBackground);
+}
+
+.textMain {
+  color: var(--brown100);
+}
+
+.inputMain {
+  font-size: 16px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  box-sizing: border-box;
+  background: #fff7ed;
+  border-radius: 6px;
+  border: 2px solid;
+  border-color: #f1e3d0;
+}
+
+.inputMain:focus {
+  outline: none;
+}
+
+.buttonMain {
+  margin: 8px 0 8px 0;
+  width: 100%;
+  display: inline-block;
+  border-radius: 12px;
+  padding: 12px 0 12px 0;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.textareaMain {
+  font-size: 16px;
+}
+
+/* buttons */
+.buttonMain:hover {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.buttonMain:focus {
+  outline: none;
+}
+
+/* button variants */
+.buttonPrimary {
+  color: white;
+  background-color: #ff8d8d;
+}
+
+.buttonPrimary:hover {
+  background-color: #ffb9b9;
+}
+
+.buttonRecord {
+  color: white;
+  background-color: #82bafc;
+}
+
+.buttonRecord:hover {
+  background-color: #588fcf;
+}
+
+.navigation {
+  color: var(--gray100);
+}
+
+hr {
+  opacity: 0.2;
+}
+
+.link {
+  text-decoration: none;
+}
