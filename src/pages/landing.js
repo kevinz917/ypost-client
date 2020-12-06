@@ -29,7 +29,6 @@ const Landing = (props) => {
 
   return (
     <>
-      <Snowfall snowflakeCount={100} />
       <PaperCard>
         <div className="horizontalInbetween">
           <div className="h1 textMain">Hey Yalies —</div>
@@ -68,6 +67,7 @@ const Landing = (props) => {
           <div className="body textMain italic">{errorMessage}</div>
         ) : null}
       </PaperCard>
+      <Snowfall snowflakeCount={100} />
     </>
   );
 };

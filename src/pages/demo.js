@@ -39,7 +39,6 @@ const Demo = () => {
 
   return (
     <>
-      <Snowfall snowflakeCount={100} />
       {pageState === "Opening" ? (
         <Lottie options={defaultOptions} height={500} width={500} />
       ) : pageState === "Opened" ? (
@@ -68,6 +67,7 @@ const Demo = () => {
           </Link>
         </PaperCard>
       ) : null}
+      <Snowfall snowflakeCount={100} />
     </>
   );
 };
