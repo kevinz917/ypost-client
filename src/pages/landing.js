@@ -32,25 +32,30 @@ const Landing = (props) => {
       <Snowfall snowflakeCount={100} />
       <PaperCard>
         <div className="horizontalInbetween">
-          <div className="h1 textMain">Dear Yalies ...</div>
+          <div className="h1 textMain">Hey Yalies —</div>
           <img
             src={Yalelogo}
             style={{ transform: "rotate(20deg)", width: "30px" }}
           />
         </div>
         <br />
-        <div className="body textMain italic">We all miss our friends ...</div>
+        <div className="body textMain italic">
+          Who do you miss most? Let’s bring some light to their day.
+        </div>
         <br />
         <div className="body textMain">
-          That’s why 3 Yalies built this website, an easy way to send a virtual
-          holiday card to the people you miss the most, with stickers and a
-          voice message. Happy holidays everyone :){" "}
+          This holiday season, let’s bridge the physical gap between us—whether
+          six feet or twelve time zones apart—with a virtual message of
+          kindness, in writing or voice. Because, in our disconnected times, our
+          campus community is more interconnected than it may seem.
         </div>
+        <br />
+        <div className="body textMain">Happy holidays :)</div>
         <br />
         <br />
         <input
           className="inputMain"
-          placeholder="Enter recipient's email"
+          placeholder="Enter recipient's yale.edu email"
           type="email"
           value={email}
           onChange={(e) => dispatch(SET_VAL("email", e.target.value))}
