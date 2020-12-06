@@ -56,8 +56,6 @@ const Demo = () => {
         Voice mail ↓
       </div>
       <ReactAudioPlayer src={null} controls />
-      <br />
-      <br />
       <hr />
       <Link to="/" className="link">
         <button className="buttonMain buttonPrimary">

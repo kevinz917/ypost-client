@@ -78,7 +78,7 @@ const Write = (props) => {
   return (
     <PaperCard>
       <Link to="/" className="link">
-        <div className="navigation body">← Back</div>
+        <span className="navigation body">← Back</span>
       </Link>
       <hr />
       <br />
@@ -95,7 +95,7 @@ const Write = (props) => {
       <textarea
         className="inputMain textareaMain"
         placeholder="Write here"
-        rows="7"
+        rows="4"
         value={stateVal.message}
         style={{ maxWidth: "100%" }}
         onChange={(e) => dispatch(SET_VAL("message", e.target.value))}
@@ -114,7 +114,6 @@ const Write = (props) => {
         {isActive ? "Click to stop" : "Click to start"}
       </button>
       {audioFile === null ? null : <ReactAudioPlayer src={audioUrl} controls />}
-      <br />
       <hr />
       <button className="buttonMain buttonPrimary" onClick={validate}>
         <div>Send letter →</div>

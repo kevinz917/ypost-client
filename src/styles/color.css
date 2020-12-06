@@ -3,6 +3,7 @@
   --brown100: #3a3628;
   --brown200: #76624a;
   --gray100: #a0a0a0;
+  --gray200: #6e6e6e;
 }
 
 .backgroundColor {
@@ -93,6 +94,11 @@
 /* others */
 .navigation {
   color: var(--gray100);
+  transition: 0.2s;
+}
+
+.navigation:hover {
+  color: var(--gray200);
 }
 
 hr {
