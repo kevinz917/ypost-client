@@ -42,8 +42,8 @@ const Landing = (props) => {
       <br />
       <div className="body textMain">
         This holiday season, let’s bridge the physical gap between us—whether
-        six feet or twelve time zones apart—with a virtual message of kindness,
-        in writing or voice. Because, in our disconnected times, our campus
+        six feet or six time zones apart—with a virtual message of kindness, in
+        writing or voice. Because, in our disconnected times, our campus
         community is more interconnected than it may seem.
       </div>
       <br />
