@@ -47,7 +47,12 @@ const Demo = () => {
             good one :)
           </div>
           <br />
-          <div className="body textMain italic">Voice mail</div>
+          <div
+            className="body textMain italic"
+            style={{ opacity: 0.4, marginBottom: "5px" }}
+          >
+            Voice mail ↓
+          </div>
           <ReactAudioPlayer src={null} controls />
           <br />
           <br />
@@ -64,5 +69,4 @@ const Demo = () => {
   );
 };
 
-// <div className="paperCard fade-in"></div>
 export default Demo;
