@@ -6,6 +6,7 @@ import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 import Yalelogo from "../assets/yalelogo.svg";
+import Cat from "../assets/cat.gif";
 import Footer from "../components/footer";
 import { useSelector, useDispatch } from "react-redux";
 import { SET_VAL } from "../redux/masterReducer";
