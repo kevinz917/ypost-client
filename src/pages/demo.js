@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Snowfall from "react-snowfall";
+
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
@@ -16,9 +18,10 @@ function timeout(delay) {
 const Demo = () => {
   const [pageState, setPageState] = useState("");
 
+  // On mount
   useEffect(() => {
     const onMount = async () => {
-      setPageState("Opened");
+      setPageState("Opening");
       await timeout(2000);
       setPageState("Opened");
     };
@@ -26,7 +29,7 @@ const Demo = () => {
     onMount();
   }, []);
   const defaultOptions = {
-    loop: true,
+    loop: false,
     autoplay: true,
     animationData: Mail,
     rendererSettings: {
@@ -36,6 +39,7 @@ const Demo = () => {
 
   return (
     <div className="backgroundColor backgroundLayout">
+      <Snowfall snowflakeCount={100} />
       {pageState === "Opening" ? (
         <Lottie options={defaultOptions} height={500} width={500} />
       ) : pageState === "Opened" ? (

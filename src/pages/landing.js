@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Snowfall from "react-snowfall";
+
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
@@ -24,6 +26,7 @@ const Landing = (props) => {
 
   return (
     <div className="backgroundColor backgroundLayout">
+      <Snowfall snowflakeCount={100} />
       <div className="paperCard fade-in">
         <div className="horizontalInbetween">
           <div className="h1 textMain">Dear Yalies ...</div>
