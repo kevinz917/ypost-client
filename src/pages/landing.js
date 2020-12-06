@@ -3,7 +3,6 @@ import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
-import { Link } from "react-router-dom";
 import Yalelogo from "../assets/yalelogo.svg";
 import Footer from "../components/footer";
 import { useSelector, useDispatch } from "react-redux";

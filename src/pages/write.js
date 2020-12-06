@@ -4,7 +4,6 @@ import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
-import Yalelogo from "../assets/yalelogo.svg";
 import Mic from "../assets/mic.svg";
 import ReactAudioPlayer from "react-audio-player";
 import Footer from "../components/footer";

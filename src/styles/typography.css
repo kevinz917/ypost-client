@@ -19,3 +19,7 @@
 .italic {
   font-style: italic;
 }
+
+.textarea {
+  font-size: 22px;
+}

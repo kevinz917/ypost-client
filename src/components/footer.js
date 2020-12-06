@@ -3,7 +3,9 @@ import "../styles/layout.css";
 
 const Footer = () => {
   return (
-    <div className="footer">Made with love by Julia, Max, Kevin. 2020.</div>
+    <div className="footer">
+      Made with love by Julia, Max, Kevin. Boola boola!
+    </div>
   );
 };
 
