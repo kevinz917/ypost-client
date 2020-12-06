@@ -37,38 +37,35 @@ const Demo = () => {
     },
   };
 
-  return (
-    <>
-      {pageState === "Opening" ? (
-        <Lottie options={defaultOptions} height={500} width={500} />
-      ) : pageState === "Opened" ? (
-        <PaperCard>
-          <div className="body textMain">Hey Kevin!</div>
-          <br />
-          <div className="body textMain">
-            Hope everything is going well! Happy holidays and I hope you have a
-            good one :)
-          </div>
-          <br />
-          <div
-            className="body textMain italic"
-            style={{ opacity: 0.4, marginBottom: "5px" }}
-          >
-            Voice mail ↓
-          </div>
-          <ReactAudioPlayer src={null} controls />
-          <br />
-          <br />
-          <hr />
-          <Link to="/" className="link">
-            <button className="buttonMain buttonPrimary">
-              <div>Send a letter</div>
-            </button>
-          </Link>
-        </PaperCard>
-      ) : null}
-      <Snowfall snowflakeCount={100} />
-    </>
+  return pageState === "Opening" ? (
+    <Lottie options={defaultOptions} height={500} width={500} />
+  ) : pageState === "Opened" ? (
+    <PaperCard>
+      <div className="body textMain">Hey Kevin!</div>
+      <br />
+      <div className="body textMain">
+        Hope everything is going well! Happy holidays and I hope you have a good
+        one :)
+      </div>
+      <br />
+      <div
+        className="body textMain italic"
+        style={{ opacity: 0.4, marginBottom: "5px" }}
+      >
+        Voice mail ↓
+      </div>
+      <ReactAudioPlayer src={null} controls />
+      <br />
+      <br />
+      <hr />
+      <Link to="/" className="link">
+        <button className="buttonMain buttonPrimary">
+          <div>Send a letter</div>
+        </button>
+      </Link>
+    </PaperCard>
+  ) : (
+    <div />
   );
 };
 

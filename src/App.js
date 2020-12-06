@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Snowfall from "react-snowfall";
 
 // Footer
 import Footer from "./components/footer";
@@ -20,6 +21,16 @@ function App() {
           <Route path="/write" component={Write} />
           <Route path="/" component={Landing} />
         </Switch>
+        <Route
+          render={({ location }) => {
+            // Render snowflakes if on landing or demo page
+            return (
+              ["/", "/demo"].includes(location.pathname) && (
+                <Snowfall snowflakeCount={100} />
+              )
+            );
+          }}
+        />
       </Router>
       <Footer />
     </div>
