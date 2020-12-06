@@ -7,7 +7,7 @@ import "../styles/typography.css";
 import "../styles/animation.css";
 import Yalelogo from "../assets/yalelogo.svg";
 import Cat from "../assets/cat.gif";
-import Footer from "../components/footer";
+import PaperCard from "../components/papercard";
 import { useSelector, useDispatch } from "react-redux";
 import { SET_VAL } from "../redux/masterReducer";
 
@@ -26,9 +26,9 @@ const Landing = (props) => {
   };
 
   return (
-    <div className="backgroundColor backgroundLayout">
+    <>
       <Snowfall snowflakeCount={100} />
-      <div className="paperCard fade-in">
+      <PaperCard>
         <div className="horizontalInbetween">
           <div className="h1 textMain">Dear Yalies ...</div>
           <img
@@ -59,9 +59,8 @@ const Landing = (props) => {
         {errorMessage ? (
           <div className="body textMain italic">{errorMessage}</div>
         ) : null}
-      </div>
-      <Footer />
-    </div>
+      </PaperCard>
+    </>
   );
 };
 

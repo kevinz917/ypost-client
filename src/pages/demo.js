@@ -10,6 +10,7 @@ import ReactAudioPlayer from "react-audio-player";
 import Mail from "../assets/mail.json";
 import { Link } from "react-router-dom";
 import Footer from "../components/footer";
+import PaperCard from "../components/papercard";
 
 function timeout(delay) {
   return new Promise((res) => setTimeout(res, delay));
@@ -38,12 +39,12 @@ const Demo = () => {
   };
 
   return (
-    <div className="backgroundColor backgroundLayout">
+    <>
       <Snowfall snowflakeCount={100} />
       {pageState === "Opening" ? (
         <Lottie options={defaultOptions} height={500} width={500} />
       ) : pageState === "Opened" ? (
-        <div className="paperCard fade-in">
+        <PaperCard>
           <div className="body textMain">Hey Kevin!</div>
           <br />
           <div className="body textMain">
@@ -66,10 +67,9 @@ const Demo = () => {
               <div>Send a letter</div>
             </button>
           </Link>
-        </div>
+        </PaperCard>
       ) : null}
-      <Footer />
-    </div>
+    </>
   );
 };
 
