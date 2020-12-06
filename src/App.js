@@ -23,9 +23,9 @@ function App() {
         </Switch>
         <Route
           render={({ location }) => {
-            // Render snowflakes if on landing or demo page
+            // Render snowflakes if not on write or done page
             return (
-              ["/", "/demo"].includes(location.pathname) && (
+              !["/write", "/done"].includes(location.pathname) && (
                 <Snowfall snowflakeCount={100} />
               )
             );
