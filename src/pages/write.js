@@ -130,6 +130,7 @@ const Write = (props) => {
           onSelect={handleSelect}
           disableTabindex={true}
           alignOnResize={false}
+          translate={-1}
         />
       </div>
       <br />
