@@ -8,6 +8,8 @@ import Mic from "../assets/mic.svg";
 import ReactAudioPlayer from "react-audio-player";
 import PaperCard from "../components/papercard";
 
+import { createCard } from "../util/api";
+
 // Redux
 import { SET_VAL } from "../redux/masterReducer";
 import { useSelector, useDispatch } from "react-redux";
@@ -27,11 +29,20 @@ const Write = (props) => {
   const [audioUrl, setAudioUrl] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const validate = (e) => {
+  const validate = async (e) => {
     if (stateVal.message.length === 0 && audioFile === null) {
       setErrorMessage("Please type or record a message!");
     } else {
-      props.history.push("/done");
+      console.log(audioFile);
+      let createdCard = await createCard(
+        stateVal.author,
+        stateVal.email,
+        stateVal.message,
+        audioFile,
+        null
+      );
+
+      // props.history.push("/done");
     }
   };
 
@@ -73,6 +84,16 @@ const Write = (props) => {
       startRecording();
     }
     setIsActive(!isActive);
+  };
+
+  const sendLetter = async (e) => {
+    let createdCard = await createCard(
+      stateVal.author,
+      stateVal.email,
+      stateVal.message,
+      audioFile,
+      null
+    );
   };
 
   return (
