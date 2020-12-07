@@ -49,6 +49,7 @@
 
 .textareaMain {
   font-size: 16px;
+  font-family: inherit;
   resize: vertical;
 }
 
