@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import styles from "./write.module.css";
 import { Link } from "react-router-dom";
+import ScrollMenu from "react-horizontal-scrolling-menu";
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 import Mic from "../assets/mic.svg";
+import Cat from "../assets/cat.gif";
 import ReactAudioPlayer from "react-audio-player";
 import PaperCard from "../components/papercard";
+import Sticker from "../components/sticker";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 // Redux
 import { SET_VAL } from "../redux/masterReducer";
@@ -75,6 +80,19 @@ const Write = (props) => {
     setIsActive(!isActive);
   };
 
+  const [selected, setSelected] = useState({});
+  const sources = [Cat, Cat, Cat, Cat, Cat, Cat];
+  const stickers = sources.map((src, index) => (
+    <Sticker src={src} key={index} isSelected={selected[index]} />
+  ));
+
+  const handleSelect = (key) => {
+    let temp = Object.assign({}, selected);
+    if (!temp[key]) temp[key] = true;
+    else temp[key] = false;
+    setSelected(temp);
+  };
+
   return (
     <PaperCard>
       <Link to="/" className="link">
@@ -102,6 +120,20 @@ const Write = (props) => {
       />
       <br />
       <br />
+      <div className="h2">Choose some stickers</div>
+      <div style={{ width: "100%" }}>
+        <ScrollMenu
+          data={stickers}
+          wheel={false}
+          arrowLeft={<FaChevronLeft className={styles.arrow_btn} />}
+          arrowRight={<FaChevronRight className={styles.arrow_btn} />}
+          onSelect={handleSelect}
+          disableTabindex={true}
+          alignOnResize={false}
+        />
+      </div>
+      <br />
+      <br />
       <div className="h2">Add a voice message!</div>
       <button
         className="buttonMain buttonRecord"
@@ -109,7 +141,11 @@ const Write = (props) => {
         style={{ height: "40px" }}
       >
         {isActive ? null : (
-          <img src={Mic} style={{ marginRight: "5px", width: "15px" }} />
+          <img
+            src={Mic}
+            style={{ marginRight: "5px", width: "15px" }}
+            alt="mic"
+          />
         )}
         {isActive ? "Click to stop" : "Click to start"}
       </button>
