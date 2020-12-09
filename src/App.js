@@ -10,6 +10,7 @@ import Landing from "./pages/landing";
 import Write from "./pages/write";
 import Done from "./pages/done";
 import Demo from "./pages/demo";
+import Letter from "./pages/letter";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/demo" component={Demo} />
           <Route path="/done" component={Done} />
           <Route path="/write" component={Write} />
+          <Route path="/letter/:id" component={Letter} />
           <Route path="/" component={Landing} />
         </Switch>
         <Route

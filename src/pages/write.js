@@ -33,16 +33,17 @@ const Write = (props) => {
     if (stateVal.message.length === 0 && audioFile === null) {
       setErrorMessage("Please type or record a message!");
     } else {
-      console.log(audioFile);
-      let createdCard = await createCard(
-        stateVal.author,
-        stateVal.email,
-        stateVal.message,
-        audioFile,
-        null
-      );
+      // console.log(audioFile);
+      // let createdCard = await createCard(
+      //   stateVal.author,
+      //   stateVal.email,
+      //   stateVal.message,
+      //   audioFile,
+      //   null
+      // );
 
-      // props.history.push("/done");
+      localStorage.setItem("sent", true);
+      props.history.push("/done");
     }
   };
 

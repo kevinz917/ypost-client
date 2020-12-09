@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Base } from "./base";
 
+// POST -> create new card
 const createCard = async (author, recipient, message, audioFile, sticker) => {
   console.log("Creating new card");
 
@@ -9,7 +10,9 @@ const createCard = async (author, recipient, message, audioFile, sticker) => {
   data.append("recipient", recipient);
   data.append("message", message);
   data.append("sticker", sticker);
-  data.append("file", audioFile, "sample");
+  if (audioFile) {
+    data.append("file", audioFile, "sample");
+  }
 
   let newCard = await axios.post(`${Base}/card/new`, data);
 
@@ -19,4 +22,15 @@ const createCard = async (author, recipient, message, audioFile, sticker) => {
   return null;
 };
 
-export { createCard };
+// GET -> Fetch single card
+
+const fetchCard = async (id) => {
+  let fetchedCard = await axios.get(`${Base}/card/${id}`);
+
+  if (fetchedCard) {
+    return fetchedCard.data.data;
+  }
+  return null;
+};
+
+export { createCard, fetchCard };
