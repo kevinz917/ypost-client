@@ -33,14 +33,13 @@ const Write = (props) => {
     if (stateVal.message.length === 0 && audioFile === null) {
       setErrorMessage("Please type or record a message!");
     } else {
-      // console.log(audioFile);
-      // let createdCard = await createCard(
-      //   stateVal.author,
-      //   stateVal.email,
-      //   stateVal.message,
-      //   audioFile,
-      //   null
-      // );
+      let createdCard = await createCard(
+        stateVal.author,
+        stateVal.email,
+        stateVal.message,
+        audioFile,
+        null
+      );
 
       localStorage.setItem("sent", true);
       props.history.push("/done");
@@ -50,9 +49,7 @@ const Write = (props) => {
   const startRecording = async () => {
     await recorder
       .start()
-      .then(() => {
-        console.log("Record starting");
-      })
+      .then(() => {})
       .catch((e) => {
         console.error(e);
       });
@@ -63,13 +60,11 @@ const Write = (props) => {
       .stop()
       .getMp3()
       .then(([buffer, blob]) => {
-        console.log("Stop recording");
         const file = new File(buffer, "temp.mp3", {
           type: "audio/mp3",
           lastModified: Date.now(),
         });
         const player = URL.createObjectURL(blob);
-        console.log(player);
         setAudioUrl(player);
         setAudioFile(file);
       })
