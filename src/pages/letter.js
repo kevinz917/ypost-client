@@ -78,8 +78,9 @@ const Letter = (props) => {
             </React.Fragment>
           ) : null}
           <br />
+
           <button className="buttonMain buttonPrimary" onClick={navigate}>
-            Send a letter to unlock :)
+            {sent ? "Send letter to friend" : "Send a letter to unlock :)"}
           </button>
         </PaperCard>
       )}

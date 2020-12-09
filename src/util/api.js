@@ -14,12 +14,13 @@ const createCard = async (author, recipient, message, audioFile, sticker) => {
     data.append("file", audioFile, "sample");
   }
 
-  let newCard = await axios.post(`${Base}/card/new`, data);
+  axios.post(`${Base}/card/new`, data);
+  // let newCard = await axios.post(`${Base}/card/new`, data);
 
-  if (newCard) {
-    return newCard;
-  }
-  return null;
+  // if (newCard) {
+  //   return newCard;
+  // }
+  // return null;
 };
 
 // GET -> Fetch single card
