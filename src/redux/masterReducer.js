@@ -10,7 +10,12 @@ const SET_VAL = (field, val) => {
 };
 
 const inputReducer = (
-  state = { email: "", message: "", author: "", audioFile: null },
+  state = {
+    email: "kevin.zhang@yale.edu",
+    message: "Sample message",
+    author: "kevin.zhang@yale.edu",
+    audioFile: null,
+  },
   action
 ) => {
   switch (action.type) {

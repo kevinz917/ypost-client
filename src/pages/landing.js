@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "../styles/color.css";
 import "../styles/layout.css";
@@ -11,6 +11,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { SET_VAL } from "../redux/masterReducer";
 
 const Landing = (props) => {
+  // On mount
+  useEffect(() => {
+    if (localStorage.getItem("sent") === null) {
+      localStorage.setItem("sent", false);
+    }
+    if (localStorage.getItem("letters") === null) {
+      localStorage.setItem("letters", JSON.stringify([]));
+    }
+  }, []);
+
   const dispatch = useDispatch();
   const email = useSelector((state) => state.inputReducer.email);
 
