@@ -13,6 +13,8 @@ import PaperCard from "../components/papercard";
 import Sticker from "../components/sticker";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
+import { createCard } from "../util/api";
+
 // Redux
 import { SET_VAL } from "../redux/masterReducer";
 import { useSelector, useDispatch } from "react-redux";
@@ -32,10 +34,19 @@ const Write = (props) => {
   const [audioUrl, setAudioUrl] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const validate = (e) => {
+  const validate = async (e) => {
     if (stateVal.message.length === 0 && audioFile === null) {
       setErrorMessage("Please type or record a message!");
     } else {
+      let createdCard = await createCard(
+        stateVal.author,
+        stateVal.email,
+        stateVal.message,
+        audioFile,
+        null
+      );
+
+      localStorage.setItem("sent", true);
       props.history.push("/done");
     }
   };
@@ -43,9 +54,7 @@ const Write = (props) => {
   const startRecording = async () => {
     await recorder
       .start()
-      .then(() => {
-        console.log("Record starting");
-      })
+      .then(() => {})
       .catch((e) => {
         console.error(e);
       });
@@ -56,13 +65,11 @@ const Write = (props) => {
       .stop()
       .getMp3()
       .then(([buffer, blob]) => {
-        console.log("Stop recording");
         const file = new File(buffer, "temp.mp3", {
           type: "audio/mp3",
           lastModified: Date.now(),
         });
         const player = URL.createObjectURL(blob);
-        console.log(player);
         setAudioUrl(player);
         setAudioFile(file);
       })
@@ -91,6 +98,15 @@ const Write = (props) => {
     if (!temp[key]) temp[key] = true;
     else temp[key] = false;
     setSelected(temp);
+  };
+  const sendLetter = async (e) => {
+    let createdCard = await createCard(
+      stateVal.author,
+      stateVal.email,
+      stateVal.message,
+      audioFile,
+      null
+    );
   };
 
   return (

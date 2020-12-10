@@ -10,6 +10,8 @@ import Landing from "./pages/landing";
 import Write from "./pages/write";
 import Done from "./pages/done";
 import Demo from "./pages/demo";
+import Letter from "./pages/letter";
+import About from "./pages/about";
 
 function App() {
   return (
@@ -19,13 +21,15 @@ function App() {
           <Route path="/demo" component={Demo} />
           <Route path="/done" component={Done} />
           <Route path="/write" component={Write} />
+          <Route path="/letter/:id" component={Letter} />
+          <Route path="/about" component={About} />
           <Route path="/" component={Landing} />
         </Switch>
         <Route
           render={({ location }) => {
             // Render snowflakes if not on write or done page
             return (
-              !["/write", "/done"].includes(location.pathname) && (
+              !["/write", "/done", "/letter"].includes(location.pathname) && (
                 <Snowfall snowflakeCount={100} />
               )
             );
