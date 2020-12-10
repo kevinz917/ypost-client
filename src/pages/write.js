@@ -7,7 +7,6 @@ import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 import Mic from "../assets/mic.svg";
-import Cat from "../assets/cat.gif";
 import ReactAudioPlayer from "react-audio-player";
 import PaperCard from "../components/papercard";
 import Sticker from "../components/sticker";
@@ -87,16 +86,26 @@ const Write = (props) => {
     setIsActive(!isActive);
   };
 
-  const [selected, setSelected] = useState({});
-  const sources = [Cat, Cat, Cat, Cat, Cat, Cat];
-  const stickers = sources.map((src, index) => (
-    <Sticker src={src} key={index} isSelected={selected[index]} />
+  const [selected, setSelected] = useState([]);
+  const cat_src = "/stickers/cat.gif";
+  const gingerbread_src = "/stickers/gingerbread.gif";
+  const sources = [
+    cat_src,
+    gingerbread_src,
+    cat_src,
+    gingerbread_src,
+    cat_src,
+    gingerbread_src,
+  ];
+  const stickers = sources.map((src) => (
+    <Sticker src={src} key={src} isSelected={selected.includes(src)} />
   ));
 
   const handleSelect = (key) => {
-    let temp = Object.assign({}, selected);
-    if (!temp[key]) temp[key] = true;
-    else temp[key] = false;
+    let temp = [...selected];
+    const index = temp.indexOf(key);
+    if (index > -1) temp.splice(index, 1);
+    else temp.push(key);
     setSelected(temp);
   };
   const sendLetter = async (e) => {
