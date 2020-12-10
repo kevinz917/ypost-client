@@ -27,7 +27,7 @@ function App() {
           render={({ location }) => {
             // Render snowflakes if not on write or done page
             return (
-              !["/write", "/done"].includes(location.pathname) && (
+              !["/write", "/done", "/letter"].includes(location.pathname) && (
                 <Snowfall snowflakeCount={100} />
               )
             );
