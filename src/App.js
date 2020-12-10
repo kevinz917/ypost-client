@@ -11,6 +11,7 @@ import Write from "./pages/write";
 import Done from "./pages/done";
 import Demo from "./pages/demo";
 import Letter from "./pages/letter";
+import About from "./pages/about";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/done" component={Done} />
           <Route path="/write" component={Write} />
           <Route path="/letter/:id" component={Letter} />
+          <Route path="/about" component={About} />
           <Route path="/" component={Landing} />
         </Switch>
         <Route

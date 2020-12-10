@@ -9,6 +9,8 @@ import Cat from "../assets/cat.gif";
 import PaperCard from "../components/papercard";
 import { useSelector, useDispatch } from "react-redux";
 import { SET_VAL } from "../redux/masterReducer";
+import { Link } from "react-router-dom";
+import Stamp from "../assets/stamp.svg";
 
 const Landing = (props) => {
   // On mount
@@ -41,8 +43,8 @@ const Landing = (props) => {
       <div className="horizontalInbetween">
         <div className="h1 textMain">Hey Yalies —</div>
         <img
-          src={Yalelogo}
-          style={{ transform: "rotate(20deg)", width: "30px" }}
+          src={Stamp}
+          style={{ transform: "rotate(20deg)", width: "75px" }}
         />
       </div>
       <br />
@@ -57,7 +59,9 @@ const Landing = (props) => {
         community is more interconnected than it may seem.
       </div>
       <br />
-      <div className="body textMain">Happy holidays :)</div>
+      <div className="body textMain italic hyperlink">
+        <Link to="/about">About this project</Link>
+      </div>
       <br />
       <br />
       <input

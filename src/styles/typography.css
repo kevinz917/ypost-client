@@ -33,3 +33,12 @@
   -ms-user-select: none;
   -o-user-select: none;
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hyperlink {
+  color: #4b74fd;
+}
