@@ -10,7 +10,7 @@ import Landing from "./pages/landing";
 import Write from "./pages/write";
 import Done from "./pages/done";
 import Demo from "./pages/demo";
-import Letter from "./pages/letter";
+import Open from "./pages/open";
 import About from "./pages/about";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
           <Route path="/demo" component={Demo} />
           <Route path="/done" component={Done} />
           <Route path="/write" component={Write} />
-          <Route path="/letter/:id" component={Letter} />
+          <Route path="/letter/:id" component={Open} />
           <Route path="/about" component={About} />
           <Route path="/" component={Landing} />
         </Switch>

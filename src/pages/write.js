@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styles from "./write.module.css";
 import { Link } from "react-router-dom";
 import ScrollMenu from "react-horizontal-scrolling-menu";
@@ -12,11 +12,10 @@ import PaperCard from "../components/papercard";
 import Sticker from "../components/sticker";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-import { createCard } from "../util/api";
-
 // Redux
 import { SET_VAL } from "../redux/masterReducer";
 import { useSelector, useDispatch } from "react-redux";
+import Letter from "../components/letter";
 
 const MicRecorder = require("mic-recorder-to-mp3");
 const recorder = new MicRecorder({
@@ -32,21 +31,24 @@ const Write = (props) => {
   const [audioFile, setAudioFile] = useState(null);
   const [audioUrl, setAudioUrl] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [selected_stickers, setSelected] = useState([]);
+  const [isPreview, setIsPreview] = useState(false);
+  const cat_src = "/stickers/cat.gif";
+  const gingerbread_src = "/stickers/gingerbread.gif";
+  const sources = [
+    cat_src,
+    gingerbread_src,
+    // cat_src,
+    // gingerbread_src,
+    // cat_src,
+    // gingerbread_src,
+  ];
 
   const validate = async (e) => {
     if (stateVal.message.length === 0 && audioFile === null) {
       setErrorMessage("Please type or record a message!");
     } else {
-      let createdCard = await createCard(
-        stateVal.author,
-        stateVal.email,
-        stateVal.message,
-        audioFile,
-        null
-      );
-
-      localStorage.setItem("sent", true);
-      props.history.push("/done");
+      setIsPreview(true);
     }
   };
 
@@ -86,39 +88,32 @@ const Write = (props) => {
     setIsActive(!isActive);
   };
 
-  const [selected, setSelected] = useState([]);
-  const cat_src = "/stickers/cat.gif";
-  const gingerbread_src = "/stickers/gingerbread.gif";
-  const sources = [
-    cat_src,
-    gingerbread_src,
-    cat_src,
-    gingerbread_src,
-    cat_src,
-    gingerbread_src,
-  ];
   const stickers = sources.map((src) => (
-    <Sticker src={src} key={src} isSelected={selected.includes(src)} />
+    <Sticker src={src} key={src} isSelected={selected_stickers.includes(src)} />
   ));
 
   const handleSelect = (key) => {
-    let temp = [...selected];
+    let temp = [...selected_stickers];
     const index = temp.indexOf(key);
     if (index > -1) temp.splice(index, 1);
     else temp.push(key);
     setSelected(temp);
   };
-  const sendLetter = async (e) => {
-    let createdCard = await createCard(
-      stateVal.author,
-      stateVal.email,
-      stateVal.message,
-      audioFile,
-      null
-    );
-  };
 
-  return (
+  const letterContent = useMemo(() => {
+    if (!isPreview) return {};
+    return {
+      author: stateVal.author,
+      recipient: stateVal.recipient,
+      message: stateVal.message,
+      stickers: selected_stickers,
+      audioUrl: audioUrl,
+    };
+  }, [isPreview, audioFile, selected_stickers, stateVal]);
+
+  return isPreview ? (
+    <Letter letterContent={letterContent} setIsPreview={setIsPreview} />
+  ) : (
     <PaperCard>
       <Link to="/" className="link">
         <span className="navigation body">← Back</span>
@@ -178,7 +173,7 @@ const Write = (props) => {
       {audioFile === null ? null : <ReactAudioPlayer src={audioUrl} controls />}
       <hr />
       <button className="buttonMain buttonPrimary" onClick={validate}>
-        <div>Send letter →</div>
+        <div>Preview letter →</div>
       </button>
       {errorMessage ? (
         <div className="body textMain italic">{errorMessage}</div>
