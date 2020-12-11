@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Letter from "../components/letter";
 
 import "../styles/color.css";
 import "../styles/layout.css";
@@ -7,16 +8,13 @@ import "../styles/animation.css";
 import Mail from "../assets/mail2.json";
 
 import { fetchCard } from "../util/api";
-import PaperCard from "../components/papercard";
-import ReactAudioPlayer from "react-audio-player";
-import BlurredObject from "../assets/blurredObject.png";
 import Lottie from "react-lottie";
 
 function timeout(delay) {
   return new Promise((res) => setTimeout(res, delay));
 }
 
-const Letter = (props) => {
+const Open = (props) => {
   const letterId = props.match.params.id;
   const [isLoading, setIsLoading] = useState(true);
   const [sent, setSent] = useState(false);
@@ -65,7 +63,7 @@ const Letter = (props) => {
       setPageState("Opened");
     };
     onMount();
-  }, []);
+  }, [letterId]);
 
   const navigate = (e) => {
     props.history.push("/");
@@ -74,42 +72,9 @@ const Letter = (props) => {
     <div style={{ height: 300, width: 300, margin: "auto" }}>
       <Lottie options={defaultOptions} />
     </div>
-  ) : (
-    <React.Fragment>
-      {isLoading ? null : (
-        <PaperCard>
-          <div className="body textMain">Dear Kevin</div>
-          <br />
-          {sent ? (
-            <div className="body textMain">{letterContent.message}</div>
-          ) : (
-            <img src={BlurredObject} style={{ width: "100%" }} />
-          )}
-          <br />
-          {letterContent.audioUrl ? (
-            <React.Fragment>
-              <div
-                className="body textMain italic"
-                style={{ opacity: 0.4, marginBottom: "5px" }}
-              >
-                Voice mail ↓
-              </div>
-              {sent ? (
-                <ReactAudioPlayer src={letterContent.audioUrl} controls />
-              ) : (
-                <div className="body textMain blurred">[ Hidden for now ]</div>
-              )}
-            </React.Fragment>
-          ) : null}
-          <br />
-
-          <button className="buttonMain buttonPrimary" onClick={navigate}>
-            {sent ? "Send letter to friend" : "Send a letter to unlock →"}
-          </button>
-        </PaperCard>
-      )}
-    </React.Fragment>
+  ) : isLoading ? null : (
+    <Letter letterContent={letterContent} sent={sent} />
   );
 };
 
-export default Letter;
+export default Open;

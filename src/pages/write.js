@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useMemo, useState } from "react";
+import styles from "./write.module.css";
 import { Link } from "react-router-dom";
+import ScrollMenu from "react-horizontal-scrolling-menu";
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
@@ -7,12 +9,13 @@ import "../styles/animation.css";
 import Mic from "../assets/mic.svg";
 import ReactAudioPlayer from "react-audio-player";
 import PaperCard from "../components/papercard";
-
-import { createCard } from "../util/api";
+import Sticker from "../components/sticker";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 // Redux
 import { SET_VAL } from "../redux/masterReducer";
 import { useSelector, useDispatch } from "react-redux";
+import Letter from "../components/letter";
 
 const MicRecorder = require("mic-recorder-to-mp3");
 const recorder = new MicRecorder({
@@ -28,21 +31,24 @@ const Write = (props) => {
   const [audioFile, setAudioFile] = useState(null);
   const [audioUrl, setAudioUrl] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [selected_stickers, setSelected] = useState([]);
+  const [isPreview, setIsPreview] = useState(false);
+  const cat_src = "/stickers/cat.gif";
+  const gingerbread_src = "/stickers/gingerbread.gif";
+  const sources = [
+    cat_src,
+    gingerbread_src,
+    // cat_src,
+    // gingerbread_src,
+    // cat_src,
+    // gingerbread_src,
+  ];
 
   const validate = async (e) => {
     if (stateVal.message.length === 0 && audioFile === null) {
       setErrorMessage("Please type or record a message!");
     } else {
-      let createdCard = await createCard(
-        stateVal.author,
-        stateVal.email,
-        stateVal.message,
-        audioFile,
-        null
-      );
-
-      localStorage.setItem("sent", true);
-      props.history.push("/done");
+      setIsPreview(true);
     }
   };
 
@@ -82,17 +88,32 @@ const Write = (props) => {
     setIsActive(!isActive);
   };
 
-  const sendLetter = async (e) => {
-    let createdCard = await createCard(
-      stateVal.author,
-      stateVal.email,
-      stateVal.message,
-      audioFile,
-      null
-    );
+  const stickers = sources.map((src) => (
+    <Sticker src={src} key={src} isSelected={selected_stickers.includes(src)} />
+  ));
+
+  const handleSelect = (key) => {
+    let temp = [...selected_stickers];
+    const index = temp.indexOf(key);
+    if (index > -1) temp.splice(index, 1);
+    else temp.push(key);
+    setSelected(temp);
   };
 
-  return (
+  const letterContent = useMemo(() => {
+    if (!isPreview) return {};
+    return {
+      author: stateVal.author,
+      recipient: stateVal.recipient,
+      message: stateVal.message,
+      stickers: selected_stickers,
+      audioUrl: audioUrl,
+    };
+  }, [isPreview, audioFile, selected_stickers, stateVal]);
+
+  return isPreview ? (
+    <Letter letterContent={letterContent} setIsPreview={setIsPreview} />
+  ) : (
     <PaperCard>
       <Link to="/" className="link">
         <span className="navigation body">← Back</span>
@@ -119,6 +140,21 @@ const Write = (props) => {
       />
       <br />
       <br />
+      <div className="h2">Choose some stickers</div>
+      <div style={{ width: "100%" }}>
+        <ScrollMenu
+          data={stickers}
+          wheel={false}
+          arrowLeft={<FaChevronLeft className={styles.arrow_btn} />}
+          arrowRight={<FaChevronRight className={styles.arrow_btn} />}
+          onSelect={handleSelect}
+          disableTabindex={true}
+          alignOnResize={false}
+          translate={-1}
+        />
+      </div>
+      <br />
+      <br />
       <div className="h2">Add a voice message!</div>
       <button
         className="buttonMain buttonRecord"
@@ -126,14 +162,18 @@ const Write = (props) => {
         style={{ height: "40px" }}
       >
         {isActive ? null : (
-          <img src={Mic} style={{ marginRight: "5px", width: "15px" }} />
+          <img
+            src={Mic}
+            style={{ marginRight: "5px", width: "15px" }}
+            alt="mic"
+          />
         )}
         {isActive ? "Click to stop" : "Click to start"}
       </button>
       {audioFile === null ? null : <ReactAudioPlayer src={audioUrl} controls />}
       <hr />
       <button className="buttonMain buttonPrimary" onClick={validate}>
-        <div>Send letter →</div>
+        <div>Preview letter →</div>
       </button>
       {errorMessage ? (
         <div className="body textMain italic">{errorMessage}</div>
