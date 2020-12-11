@@ -17,6 +17,7 @@
   margin: 40px 0px; /* TODO: fix this when i can start testing received letters*/
   width: 80vw;
   max-width: 450px;
+  position: relative;
 }
 
 .horizontalInbetween {

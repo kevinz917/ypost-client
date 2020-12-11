@@ -5,6 +5,7 @@ import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
+import styles from "./letter.module.css";
 
 import PaperCard from "../components/papercard";
 import ReactAudioPlayer from "react-audio-player";
@@ -48,7 +49,7 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
       {sent ? (
         <div className="body textMain">{letterContent.message}</div>
       ) : (
-        <img src={BlurredObject} style={{ width: "100%" }} />
+        <img src={BlurredObject} alt="blurred" style={{ width: "100%" }} />
       )}
       <br />
       {letterContent.audioUrl ? (
@@ -78,6 +79,11 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
           </button>
         </Link>
       )}
+      <div className={styles.sticker}>
+        {letterContent.stickers.map((sticker_url) => (
+          <img src={sticker_url} alt="sticker" width={75} />
+        ))}
+      </div>
     </PaperCard>
   );
 };
