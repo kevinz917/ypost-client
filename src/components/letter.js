@@ -20,7 +20,7 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
       letterContent.email,
       letterContent.message,
       letterContent.audioFile,
-      letterContent.stickers
+      letterContent.sticker
     );
     localStorage.setItem("sent", true);
     history.push("/done");
@@ -29,7 +29,7 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
   return (
     <PaperCard>
       {setIsPreview && (
-        <>
+        <React.Fragment>
           <div className="link">
             <span
               className="navigation body"
@@ -42,7 +42,7 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
           </div>
           <hr />
           <br />
-        </>
+        </React.Fragment>
       )}
       <div className="body textMain">Dear Kevin</div>
       <br />
@@ -80,9 +80,7 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
         </Link>
       )}
       <div className={styles.sticker}>
-        {letterContent.stickers.map((sticker_url) => (
-          <img src={sticker_url} alt="sticker" width={75} />
-        ))}
+        <img src={letterContent.sticker} alt="sticker" width={75} />
       </div>
     </PaperCard>
   );

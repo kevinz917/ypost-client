@@ -31,17 +31,15 @@ const Write = (props) => {
   const [audioFile, setAudioFile] = useState(null);
   const [audioUrl, setAudioUrl] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [selected_stickers, setSelected] = useState([]);
+  const [selected_stickers, setSelected] = useState(0);
   const [isPreview, setIsPreview] = useState(false);
-  const cat_src = "/stickers/cat.gif";
-  const gingerbread_src = "/stickers/gingerbread.gif";
+
+  // sticker array
   const sources = [
-    cat_src,
-    gingerbread_src,
-    // cat_src,
-    // gingerbread_src,
-    // cat_src,
-    // gingerbread_src,
+    "https://media.giphy.com/media/VKwspRV2pafJu/giphy.gif",
+    "https://media.giphy.com/media/R7AW255ijTdV6/giphy.gif",
+    "https://media.giphy.com/media/PuKSVqbw0hEpq/giphy.gif",
+    "https://media.giphy.com/media/6eEWybJorTCvK/giphy.gif",
   ];
 
   const validate = async (e) => {
@@ -89,15 +87,16 @@ const Write = (props) => {
   };
 
   const stickers = sources.map((src) => (
-    <Sticker src={src} key={src} isSelected={selected_stickers.includes(src)} />
+    <Sticker src={src} key={src} isSelected={selected_stickers === src} />
   ));
 
   const handleSelect = (key) => {
-    let temp = [...selected_stickers];
-    const index = temp.indexOf(key);
-    if (index > -1) temp.splice(index, 1);
-    else temp.push(key);
-    setSelected(temp);
+    setSelected(key);
+    // let temp = [...selected_stickers];
+    // const index = temp.indexOf(key);
+    // if (index > -1) temp.splice(index, 1);
+    // else temp.push(key);
+    // setSelected(temp);
   };
 
   const letterContent = useMemo(() => {
@@ -106,7 +105,7 @@ const Write = (props) => {
       author: stateVal.author,
       recipient: stateVal.recipient,
       message: stateVal.message,
-      stickers: selected_stickers,
+      sticker: selected_stickers,
       audioUrl: audioUrl,
     };
   }, [isPreview, audioFile, selected_stickers, stateVal]);
@@ -140,7 +139,7 @@ const Write = (props) => {
       />
       <br />
       <br />
-      <div className="h2">Choose some stickers</div>
+      <div className="h2">Pick a sticker</div>
       <div style={{ width: "100%" }}>
         <ScrollMenu
           data={stickers}

@@ -5,7 +5,6 @@ import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 import Yalelogo from "../assets/yalelogo.svg";
-import PaperCard from "../components/papercard";
 
 const Done = (props) => {
   const [lastLetterId, setLastLetterId] = useState(null);
@@ -37,6 +36,7 @@ const Done = (props) => {
           <img
             src={Yalelogo}
             style={{ transform: "rotate(20deg)", width: "30px" }}
+            alt="YaleLogo"
           />
         </div>
         <br />
