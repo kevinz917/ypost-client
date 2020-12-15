@@ -54,12 +54,6 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
       <br />
       {letterContent.audioUrl ? (
         <React.Fragment>
-          <div
-            className="body textMain italic"
-            style={{ opacity: 0.4, marginBottom: "5px" }}
-          >
-            Voice mail ↓
-          </div>
           {sent ? (
             <ReactAudioPlayer src={letterContent.audioUrl} controls />
           ) : (
@@ -80,7 +74,12 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
         </Link>
       )}
       <div className={styles.sticker}>
-        <img src={letterContent.sticker} alt="sticker" width={75} />
+        <img
+          src={letterContent.sticker}
+          alt="sticker"
+          width={75}
+          className="placed-sticker"
+        />
       </div>
     </PaperCard>
   );

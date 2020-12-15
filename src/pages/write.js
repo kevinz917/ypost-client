@@ -31,7 +31,9 @@ const Write = (props) => {
   const [audioFile, setAudioFile] = useState(null);
   const [audioUrl, setAudioUrl] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [selected_stickers, setSelected] = useState(0);
+  const [selected_stickers, setSelected] = useState(
+    "https://media.giphy.com/media/VKwspRV2pafJu/giphy.gif"
+  );
   const [isPreview, setIsPreview] = useState(false);
 
   // sticker array
@@ -87,7 +89,7 @@ const Write = (props) => {
   };
 
   const stickers = sources.map((src) => (
-    <Sticker src={src} key={src} isSelected={selected_stickers === src} />
+    <Sticker src={src} key={src} selected_sticker={selected_stickers} />
   ));
 
   const handleSelect = (key) => {

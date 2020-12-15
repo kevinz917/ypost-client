@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-
-import "../styles/color.css";
-import "../styles/layout.css";
-import "../styles/typography.css";
-import "../styles/animation.css";
-import Yalelogo from "../assets/yalelogo.svg";
-import Cat from "../assets/cat.gif";
 import PaperCard from "../components/papercard";
 import { useSelector, useDispatch } from "react-redux";
 import { SET_VAL } from "../redux/masterReducer";
 import { Link } from "react-router-dom";
 import Stamp from "../assets/stamp.svg";
+// import Select from "react-select";
+import AsyncSelect from "react-select/async";
+import "../styles/color.css";
+import "../styles/layout.css";
+import "../styles/typography.css";
+import "../styles/animation.css";
+
+const StudentList = require("../assets/studentlist.json");
 
 const Landing = (props) => {
   // On mount
@@ -24,18 +25,36 @@ const Landing = (props) => {
   }, []);
 
   const dispatch = useDispatch();
-  const email = useSelector((state) => state.inputReducer.email);
+  const stateVal = useSelector((state) => state.inputReducer);
 
   const [errorMessage, setErrorMessage] = useState(null);
+  const [input, setInput] = useState("");
 
   const validate = (e) => {
-    if (email.length === 0) {
+    if (stateVal.email.length === 0) {
       setErrorMessage("Email can't be empty!");
-    } else if (!email.includes("@")) {
+    } else if (!stateVal.email.includes("@")) {
       setErrorMessage("Please enter a valid email address!");
     } else {
       props.history.push("/write");
     }
+  };
+
+  const filterStudents = (inputValue) => {
+    return StudentList.filter((i) =>
+      i.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  };
+
+  const loadOptions = (inputValue, callback) => {
+    setTimeout(() => {
+      callback(filterStudents(inputValue));
+    }, 1000);
+  };
+
+  const onInputChange = (e) => {
+    dispatch(SET_VAL("email", e.value));
+    dispatch(SET_VAL("selectedStudent", e.label));
   };
 
   return (
@@ -64,14 +83,16 @@ const Landing = (props) => {
       </div>
       <br />
       <br />
-      <input
-        className="inputMain"
-        placeholder="Enter recipient's yale.edu email"
-        type="email"
-        value={email}
-        onChange={(e) => dispatch(SET_VAL("email", e.target.value))}
+      <AsyncSelect
+        loadOptions={loadOptions}
+        placeholder="Type in name"
+        autoFocus
+        onChange={onInputChange}
+        defaultValue={{
+          value: stateVal.email,
+          label: stateVal.selectedStudent,
+        }}
       />
-      <br />
       <button className="buttonMain buttonPrimary" onClick={validate}>
         Continue →
       </button>

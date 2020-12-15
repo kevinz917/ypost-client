@@ -11,7 +11,8 @@ const SET_VAL = (field, val) => {
 
 const inputReducer = (
   state = {
-    email: "kevin.zhang@yale.edu",
+    selectedStudent: null,
+    email: "",
     message: "Sample message",
     author: "kevin.zhang@yale.edu",
     audioFile: null,
