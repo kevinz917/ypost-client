@@ -27,6 +27,7 @@ const fetchCard = async (id) => {
   return null;
 };
 
+// Fetch all students
 const fetchStudents = async () => {
   let fetchedStudentList = await axios.get(`${Base}/card/allstudents`);
 
@@ -35,4 +36,9 @@ const fetchStudents = async () => {
   }
 };
 
-export { createCard, fetchCard, fetchStudents };
+// Set letter to "sent" status
+const setOpened = async (id) => {
+  await axios.post(`${Base}/card/opened`, { _id: id });
+};
+
+export { createCard, fetchCard, fetchStudents, setOpened };

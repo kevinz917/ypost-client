@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Letter from "../components/letter";
-
+import Mail from "../assets/mail2.json";
+import { fetchCard, setOpened } from "../util/api";
+import Lottie from "react-lottie";
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
-import Mail from "../assets/mail2.json";
 
-import { fetchCard } from "../util/api";
-import Lottie from "react-lottie";
-
-function timeout(delay) {
+const timeout = (delay) => {
   return new Promise((res) => setTimeout(res, delay));
-}
+};
 
 const Open = (props) => {
   const letterId = props.match.params.id;
@@ -51,6 +49,9 @@ const Open = (props) => {
       if (fetchedCard) {
         setLetterContent(fetchedCard);
       }
+      if (!fetchedCard.opened) {
+        setOpened(fetchedCard._id);
+      }
 
       // Add card to localStorage
       let temp = JSON.parse(localStorage.getItem("letters"));
@@ -65,9 +66,6 @@ const Open = (props) => {
     onMount();
   }, [letterId]);
 
-  const navigate = (e) => {
-    props.history.push("/");
-  };
   return pageState === "Opening" ? (
     <div style={{ height: 300, width: 300, margin: "auto" }}>
       <Lottie options={defaultOptions} />

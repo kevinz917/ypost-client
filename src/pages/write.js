@@ -94,11 +94,6 @@ const Write = (props) => {
 
   const handleSelect = (key) => {
     setSelected(key);
-    // let temp = [...selected_stickers];
-    // const index = temp.indexOf(key);
-    // if (index > -1) temp.splice(index, 1);
-    // else temp.push(key);
-    // setSelected(temp);
   };
 
   const letterContent = useMemo(() => {

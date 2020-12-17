@@ -37,7 +37,6 @@ const Landing = (props) => {
 
   const stateVal = useSelector((state) => state.state);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [input, setInput] = useState("");
 
   const validate = (e) => {
     if (stateVal.email.length === 0) {
@@ -66,7 +65,7 @@ const Landing = (props) => {
     dispatch(SET_VAL("selectedStudent", e.label));
   };
 
-  return !stateVal.isLoading ? (
+  return stateVal.isLoading ? (
     <img src={Flake} className="rotate snowflake paperCardContainer" />
   ) : (
     <PaperCard>

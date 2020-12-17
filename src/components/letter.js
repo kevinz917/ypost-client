@@ -5,7 +5,7 @@ import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
-import styles from "./letter.module.css";
+import styles from "./sticker.module.css";
 
 import PaperCard from "../components/papercard";
 import ReactAudioPlayer from "react-audio-player";
@@ -14,6 +14,7 @@ import { createCard } from "../util/api";
 
 const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
   let history = useHistory();
+
   const sendLetter = async (e) => {
     let createdCard = await createCard(
       letterContent.author,
@@ -44,7 +45,7 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
           <br />
         </React.Fragment>
       )}
-      <div className="body textMain">Dear Kevin</div>
+      <div className="body textMain">Dear x</div>
       <br />
       {sent ? (
         <div className="body textMain">{letterContent.message}</div>
@@ -62,6 +63,16 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
         </React.Fragment>
       ) : null}
       <br />
+      {letterContent.sticker && (
+        <div>
+          <img
+            src={letterContent.sticker}
+            alt="sticker"
+            width={100}
+            className={styles.placedSticker}
+          />
+        </div>
+      )}
       {setIsPreview ? (
         <button className="buttonMain buttonPrimary" onClick={sendLetter}>
           <div>Send letter →</div>
@@ -73,14 +84,6 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
           </button>
         </Link>
       )}
-      <div className={styles.sticker}>
-        <img
-          src={letterContent.sticker}
-          alt="sticker"
-          width={75}
-          className="placed-sticker"
-        />
-      </div>
     </PaperCard>
   );
 };
