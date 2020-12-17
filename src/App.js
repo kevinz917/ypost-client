@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Snowfall from "react-snowfall";
+import { useSelector } from "react-redux";
 
 // Footer
 import Footer from "./components/footer";
@@ -14,6 +15,7 @@ import Open from "./pages/open";
 import About from "./pages/about";
 
 function App() {
+  const isLoading = useSelector((state) => state.state.isLoading);
   return (
     <div className="backgroundColor backgroundLayout">
       <Router>
@@ -36,7 +38,7 @@ function App() {
           }}
         />
       </Router>
-      <Footer />
+      {isLoading ? null : <Footer />}
     </div>
   );
 }

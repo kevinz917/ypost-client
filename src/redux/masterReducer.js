@@ -9,8 +9,10 @@ const SET_VAL = (field, val) => {
   };
 };
 
-const inputReducer = (
+const state = (
   state = {
+    isLoading: false,
+    studentList: [],
     selectedStudent: null,
     email: "",
     message: "Sample message",
@@ -27,6 +29,6 @@ const inputReducer = (
   }
 };
 
-const MasterReducer = combineReducers({ inputReducer });
+const MasterReducer = combineReducers({ state });
 
 export { SET_VAL, MasterReducer };

@@ -25,7 +25,7 @@ const recorder = new MicRecorder({
 const Write = (props) => {
   const dispatch = useDispatch();
 
-  const stateVal = useSelector((state) => state.inputReducer);
+  const stateVal = useSelector((state) => state.state);
 
   const [isActive, setIsActive] = useState(false);
   const [audioFile, setAudioFile] = useState(null);

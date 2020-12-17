@@ -1,32 +1,41 @@
 import React, { useState, useEffect } from "react";
 import PaperCard from "../components/papercard";
 import { useSelector, useDispatch } from "react-redux";
+import { fetchStudents } from "../util/api";
 import { SET_VAL } from "../redux/masterReducer";
 import { Link } from "react-router-dom";
 import Stamp from "../assets/stamp.svg";
-// import Select from "react-select";
 import AsyncSelect from "react-select/async";
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
-
-const StudentList = require("../assets/studentlist.json");
+import Flake from "../assets/flake.svg";
 
 const Landing = (props) => {
+  const dispatch = useDispatch();
+
   // On mount
   useEffect(() => {
-    if (localStorage.getItem("sent") === null) {
-      localStorage.setItem("sent", false);
-    }
-    if (localStorage.getItem("letters") === null) {
-      localStorage.setItem("letters", JSON.stringify([]));
-    }
+    const onMount = async () => {
+      dispatch(SET_VAL("isLoading", true));
+
+      let studentList = await fetchStudents();
+      dispatch(SET_VAL("studentList", studentList));
+
+      if (localStorage.getItem("sent") === null) {
+        localStorage.setItem("sent", false);
+      }
+      if (localStorage.getItem("letters") === null) {
+        localStorage.setItem("letters", JSON.stringify([]));
+      }
+      dispatch(SET_VAL("isLoading", false));
+    };
+
+    onMount();
   }, []);
 
-  const dispatch = useDispatch();
-  const stateVal = useSelector((state) => state.inputReducer);
-
+  const stateVal = useSelector((state) => state.state);
   const [errorMessage, setErrorMessage] = useState(null);
   const [input, setInput] = useState("");
 
@@ -41,7 +50,7 @@ const Landing = (props) => {
   };
 
   const filterStudents = (inputValue) => {
-    return StudentList.filter((i) =>
+    return stateVal.studentList.filter((i) =>
       i.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
@@ -57,7 +66,9 @@ const Landing = (props) => {
     dispatch(SET_VAL("selectedStudent", e.label));
   };
 
-  return (
+  return !stateVal.isLoading ? (
+    <img src={Flake} className="rotate snowflake paperCardContainer" />
+  ) : (
     <PaperCard>
       <div className="horizontalInbetween">
         <div className="h1 textMain">Hey Yalies —</div>

@@ -32,31 +32,20 @@
   }
 }
 
-/* Snowflake falling */
-.Snowflake {
-  dispalay: inline-block;
-  width: 0.1%;
-  color: #fffafa;
-  opacity: 0;
-  font-size: 120px;
-  margin: 0;
-  padding: 0;
-  animation: fall 16s linear infinite;
+.rotate {
+  animation: rotation 4s infinite linear;
 }
 
-@keyframes fall {
-  0% {
-    opacity: 0;
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
   }
-  3% {
-    opacity: 0.9;
+  to {
+    transform: rotate(359deg);
   }
+}
 
-  90% {
-    opacity: 0.9;
-  }
-  100% {
-    transform: translate(0, 97vh);
-    opacity: 0;
-  }
+.snowflake {
+  height: 100px;
+  width: auto;
 }
