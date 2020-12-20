@@ -4,6 +4,9 @@
   --brown200: #76624a;
   --gray100: #a0a0a0;
   --gray200: #6e6e6e;
+  --blue100: #0a3474;
+  --blue200: #052657;
+  --coral: #fc777b;
 }
 
 .backgroundColor {
@@ -66,7 +69,7 @@
 /* button variants */
 .buttonPrimary {
   color: white;
-  background-color: #ff8d8d;
+  background-color: var(--coral);
 }
 
 .buttonPrimary:hover {

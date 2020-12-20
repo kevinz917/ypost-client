@@ -47,3 +47,40 @@ a {
 .hyperlink:hover {
   color: #4aa3f7;
 }
+
+.about-title {
+  font-size: 20px;
+  font-weight: 500;
+  font-style: italic;
+  text-align: center;
+  color: var(--gray100);
+  margin-bottom: 10px;
+}
+
+.about-header {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--blue100);
+  margin-bottom: 10px;
+}
+
+.about-quote {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray200);
+  margin-bottom: 10px;
+}
+
+.about-citation {
+  font-size: 8px;
+  font-style: italic;
+  text-align: center;
+  color: var(--gray100);
+  margin-bottom: 10px;
+}
+
+.about-text {
+  font-size: 10px;
+  margin-bottom: 10px;
+}

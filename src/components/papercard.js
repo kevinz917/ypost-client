@@ -1,10 +1,12 @@
 import React from "react";
 import "../styles/layout.css";
 
-const PaperCard = ({ children }) => {
+const PaperCard = ({ children, maxWidth = 450 }) => {
   return (
     <div className="paperCardContainer fade-in">
-      <div className="paperCard">{children}</div>
+      <div className="paperCard" style={{ maxWidth: maxWidth }}>
+        {children}
+      </div>
     </div>
   );
 };
