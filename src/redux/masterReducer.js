@@ -15,8 +15,8 @@ const state = (
     studentList: [],
     selectedStudent: null,
     email: "",
-    message: "Sample message",
-    author: "kevin.zhang@yale.edu",
+    message: "",
+    author: "",
     audioFile: null,
   },
   action

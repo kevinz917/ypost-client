@@ -26,6 +26,9 @@ const Write = (props) => {
   const dispatch = useDispatch();
 
   const stateVal = useSelector((state) => state.state);
+  if (!stateVal.selectedStudent) {
+    props.history.push("/");
+  }
 
   const [isActive, setIsActive] = useState(false);
   const [audioFile, setAudioFile] = useState(null);
@@ -113,7 +116,7 @@ const Write = (props) => {
       sticker: selected_stickers,
       audioUrl: audioUrl,
     };
-  }, [isPreview, audioFile, selected_stickers, stateVal]);
+  }, [isPreview, selected_stickers, stateVal, audioUrl]);
 
   return isPreview ? (
     <Letter letterContent={letterContent} setIsPreview={setIsPreview} />
