@@ -108,7 +108,7 @@ const Write = (props) => {
     if (!isPreview) return {};
     return {
       author: stateVal.author,
-      recipient: stateVal.recipient,
+      recipient: stateVal.selectedStudent,
       message: stateVal.message,
       sticker: selected_stickers,
       audioUrl: audioUrl,

@@ -45,16 +45,18 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
           <br />
         </React.Fragment>
       )}
-      <div className="body textMain">Dear x</div>
+      <div className="body textMain">
+        Dear {letterContent.recipient.split(" ")[0]},
+      </div>
       <br />
       {sent ? (
         <div className="body textMain">{letterContent.message}</div>
       ) : (
         <img src={BlurredObject} alt="blurred" style={{ width: "100%" }} />
       )}
-      <br />
       {letterContent.audioUrl ? (
         <React.Fragment>
+          <br />
           {sent ? (
             <ReactAudioPlayer src={letterContent.audioUrl} controls />
           ) : (
@@ -62,6 +64,11 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
           )}
         </React.Fragment>
       ) : null}
+      <br />
+      <div className="body textMain">
+        Sincerely, <br />{" "}
+        {letterContent.author ? letterContent.author : "Anonymous :)"}
+      </div>
       <br />
       {letterContent.sticker && (
         <div style={{ display: "flex" }}>
