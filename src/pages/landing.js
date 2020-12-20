@@ -88,8 +88,10 @@ const Landing = (props) => {
         community is more interconnected than it may seem.
       </div>
       <br />
-      <div className="body textMain italic hyperlink">
-        <Link to="/about">About this project</Link>
+      <div className="body textMain italic">
+        <Link to="/about" className="hyperlink">
+          About this project
+        </Link>
       </div>
       <br />
       <br />

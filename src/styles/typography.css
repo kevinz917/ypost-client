@@ -43,3 +43,7 @@ a {
   color: #6eb4f5;
   font-weight: bold;
 }
+
+.hyperlink:hover {
+  color: #4aa3f7;
+}
