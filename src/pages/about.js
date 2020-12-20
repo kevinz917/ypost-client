@@ -28,7 +28,15 @@ const About = (props) => {
       </div>
       <div className="about-citation">
         Loneliness and Social Isolation in the United States, the United
-        Kingdom, and Japan: An International Survey (2018) LINK
+        Kingdom, and Japan: An International Survey (2018){" "}
+        <a
+          className="hyperlink"
+          target="_blank"
+          rel="noreferrer noopener"
+          href="http://files.kff.org/attachment/Report-Loneliness-and-Social-Isolation-in-the-United-States-the-United-Kingdom-and-Japan-An-International-Survey"
+        >
+          LINK
+        </a>
       </div>
       <div className="about-text">
         A 2019 study by CIGNA finds an even more dire situation—that 3 in 5
@@ -56,7 +64,15 @@ const About = (props) => {
       </div>
       <div className="about-citation">
         Johann Hari on the Your Undivided Attention, Episode 8: The Opposite of
-        Addition LINK
+        Addition{" "}
+        <a
+          className="hyperlink"
+          target="_blank"
+          rel="noreferrer noopener"
+          href="https://assets-global.website-files.com/5f0e1294f002b1bb26e1f304/5f0e1294f002b12e30e1f418_CHT-Undivided-Attention-Podcast-Ep.8-The-Opposite-of-Addiction.pdf"
+        >
+          LINK
+        </a>
       </div>
       <div className="about-text">
         Our project, YPost, is an exploration of how we can use technology to
@@ -86,6 +102,15 @@ const About = (props) => {
         same time, let’s consider why we post—why we choose to share the moments
         and memories that we do with the audiences that we choose.
       </div>
+      <Link
+        to="/"
+        className="link"
+        style={{ display: "flex", justifyContent: "center" }}
+      >
+        <button className="buttonMain buttonPrimary" style={{ width: "200px" }}>
+          Send a Letter
+        </button>
+      </Link>
     </PaperCard>
   );
 };
