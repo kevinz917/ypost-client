@@ -62,10 +62,12 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
           ) : (
             <div className="body textMain blurred">[ Hidden for now ]</div>
           )}
+          <br />
         </React.Fragment>
       ) : null}
+
       <br />
-      <div className="body textMain">
+      <div className="body textMain" style={{ textAlign: "right" }}>
         Sincerely, <br />{" "}
         {letterContent.author ? letterContent.author : "Anonymous :)"}
       </div>
