@@ -61,8 +61,8 @@ const Landing = (props) => {
   };
 
   const onInputChange = (e) => {
-    dispatch(SET_VAL("email", e.value));
-    dispatch(SET_VAL("selectedStudent", e.label));
+    dispatch(SET_VAL("email", e ? e.value : ""));
+    dispatch(SET_VAL("selectedStudent", e ? e.label : ""));
   };
 
   return stateVal.isLoading ? (
@@ -95,13 +95,18 @@ const Landing = (props) => {
       <br />
       <AsyncSelect
         loadOptions={loadOptions}
-        placeholder="Type in name"
+        placeholder="Type in a name..."
         autoFocus
         onChange={onInputChange}
-        defaultValue={{
-          value: stateVal.email,
-          label: stateVal.selectedStudent,
-        }}
+        isClearable={true}
+        value={
+          stateVal.email
+            ? {
+                value: stateVal.email,
+                label: stateVal.selectedStudent,
+              }
+            : null
+        }
       />
       <button className="buttonMain buttonPrimary" onClick={validate}>
         Continue →
