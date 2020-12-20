@@ -31,9 +31,7 @@ const Write = (props) => {
   const [audioFile, setAudioFile] = useState(null);
   const [audioUrl, setAudioUrl] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [selected_stickers, setSelected] = useState(
-    "https://media.giphy.com/media/VKwspRV2pafJu/giphy.gif"
-  );
+  const [selected_stickers, setSelected] = useState([]);
   const [isPreview, setIsPreview] = useState(false);
 
   // sticker array
@@ -93,7 +91,17 @@ const Write = (props) => {
   ));
 
   const handleSelect = (key) => {
-    setSelected(key);
+    let new_stickers = [...selected_stickers];
+    const index = new_stickers.indexOf(key);
+    if (index > -1) {
+      new_stickers.splice(index, 1);
+    } else {
+      new_stickers.push(key);
+      if (new_stickers.length === 4) {
+        new_stickers.splice(0, 1);
+      }
+    }
+    setSelected(new_stickers);
   };
 
   const letterContent = useMemo(() => {

@@ -6,7 +6,7 @@ const Sticker = ({ src, selected_sticker }) => {
     <div className={styles.sticker_container}>
       <img
         src={src}
-        className={`${selected_sticker === src ? styles.selected : ""} ${
+        className={`${selected_sticker.includes(src) ? styles.selected : ""} ${
           styles.sticker
         }`}
         width={75}

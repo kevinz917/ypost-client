@@ -5,7 +5,7 @@ import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
-import styles from "./sticker.module.css";
+import styles from "./letter.module.css";
 
 import PaperCard from "../components/papercard";
 import ReactAudioPlayer from "react-audio-player";
@@ -64,13 +64,17 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
       ) : null}
       <br />
       {letterContent.sticker && (
-        <div>
-          <img
-            src={letterContent.sticker}
-            alt="sticker"
-            width={100}
-            className={styles.placedSticker}
-          />
+        <div style={{ display: "flex" }}>
+          {letterContent.sticker.map((sticker) => (
+            <span style={{ margin: "auto" }}>
+              <img
+                src={sticker}
+                alt="sticker"
+                width={100}
+                className={styles.placedSticker}
+              />
+            </span>
+          ))}
         </div>
       )}
       {setIsPreview ? (
