@@ -33,7 +33,7 @@ const Landing = (props) => {
     };
 
     onMount();
-  }, []);
+  }, [dispatch]);
 
   const stateVal = useSelector((state) => state.state);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -66,13 +66,18 @@ const Landing = (props) => {
   };
 
   return stateVal.isLoading ? (
-    <img src={Flake} className="rotate snowflake paperCardContainer" />
+    <img
+      src={Flake}
+      className="rotate snowflake paperCardContainer"
+      alt="snow"
+    />
   ) : (
     <PaperCard>
       <div className="horizontalInbetween">
-        <div className="h1 textMain">Hey Yalies —</div>
+        <div className="h1 textMain">Hey Yalies!</div>
         <img
           src={Stamp}
+          alt="logo"
           style={{ transform: "rotate(20deg)", width: "75px" }}
         />
       </div>
