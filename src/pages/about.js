@@ -57,6 +57,7 @@ const About = (props) => {
         stimulation, our sense of community with tribalism, and our sense of
         self with likes and comments and hollow validation.
       </div>
+      <br />
       <div className="about-header">let's pay kindness forward</div>
       <div className="about-quote">
         “[L]oneliness is not about how many people you interact with. … It's
@@ -80,7 +81,7 @@ const About = (props) => {
         times, our team hopes to provide a simple, unique, meaningful method of
         communication—so we can find connection in separation.
       </div>
-      <div className="about-text" style={{ fontWeight: 700 }}>
+      <div className="about-text" style={{ fontWeight: 600 }}>
         YPost is a simple interface where Yale users can send and receive
         messages—audio recordings and/or text-based messages—to and from their
         friends and classmates. But there’s one catch: when you receive a
@@ -90,10 +91,11 @@ const About = (props) => {
       <div className="about-text">
         The holiday season is naturally a time for reflection—about the people
         that you love, the memories that you have made. Who has supported you
-        this semester? Who has made you laugh? Who has made our turbulent crazy
+        this semester? Made you laugh? Made our turbulent crazy
         uncertain year feel just a bit less chaotic, a bit more grounded?
       </div>
       <div className="about-text">Let’s bring some light to their day.</div>
+      <br />
       <div className="about-header">a different kind of post</div>
       <div className="about-quote">Why post?</div>
       <div className="about-text">
@@ -102,6 +104,7 @@ const About = (props) => {
         same time, let’s consider why we post—why we choose to share the moments
         and memories that we do with the audiences that we choose.
       </div>
+      <br />
       <Link
         to="/"
         className="link"
