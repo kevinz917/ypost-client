@@ -90,14 +90,14 @@ const Landing = (props) => {
       <br />
       <div className="body textMain italic">
         <Link to="/about" className="hyperlink">
-          About this project
+          Read about this project
         </Link>
       </div>
       <br />
       <br />
       <AsyncSelect
         loadOptions={loadOptions}
-        placeholder="Type in a name..."
+        placeholder="Type in a recipient's name..."
         autoFocus
         onChange={onInputChange}
         isClearable={true}
