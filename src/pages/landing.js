@@ -95,7 +95,7 @@ const Landing = (props) => {
       <br />
       <div className="body textMain italic">
         <Link to="/about" className="hyperlink">
-          Read about this project
+          Read about this project.
         </Link>
       </div>
       <br />
