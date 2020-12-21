@@ -14,7 +14,7 @@ import { createCard } from "../util/api";
 
 const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
   let history = useHistory();
-
+  console.log(letterContent);
   const sendLetter = async (e) => {
     let createdCard = await createCard(
       letterContent.author,
@@ -76,7 +76,7 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
       {letterContent.sticker && (
         <div style={{ display: "flex" }}>
           {letterContent.sticker.map((sticker) => (
-            <span style={{ margin: "auto" }}>
+            <span style={{ margin: "auto" }} key={sticker}>
               <img
                 src={sticker}
                 alt="sticker"
