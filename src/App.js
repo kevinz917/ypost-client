@@ -17,7 +17,7 @@ import About from "./pages/about";
 function App() {
   const isLoading = useSelector((state) => state.state.isLoading);
   return (
-    <div className="backgroundColor backgroundLayout">
+    <div className="backgroundLayout">
       <Router>
         <Switch>
           <Route path="/demo" component={Demo} />
