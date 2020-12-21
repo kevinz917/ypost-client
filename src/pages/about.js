@@ -39,15 +39,30 @@ const About = (props) => {
         </a>
       </div>
       <div className="about-text">
-        A 2019 study by CIGNA finds an even more dire situation—that 3 in 5
+        A 2019 study by&nbsp;
+        <a
+          className="hyperlink"
+          target="_blank"
+          rel="noreferrer noopener"
+          href="https://www.cigna.com/about-us/newsroom/news-and-views/press-releases/2020/cigna-takes-action-to-combat-the-rise-of-loneliness-and-improve-mental-wellness-in-america"
+        >
+          CIGNA
+        </a> finds an even more dire situation—that 3 in 5
         Americans (61%) classify as lonely, with the Gen Z population being most
         vulnerable: nearly three quarters of Gen Z respondents (73%) answered
         that they sometimes or always feels alone.
       </div>
       <div className="about-text">
         Our loneliness pandemic has only persisted in light of a viral pandemic
-        that has necessitated our physical isolation, our social distance—in a
-        SocialPro survey of 1,200 adults conducted in April, nearly one third of
+        that has necessitated our physical isolation, our social distance—in a&nbsp;
+        <a
+          className="hyperlink"
+          target="_blank"
+          rel="noreferrer noopener"
+          href="https://socialpronow.com/loneliness-corona/"
+        >
+          SocialPro
+        </a> survey of 1,200 adults conducted in April, nearly one third of
         respondents (30.8%) reported that they felt more lonely because of the
         COVID-19 pandemic.
       </div>
