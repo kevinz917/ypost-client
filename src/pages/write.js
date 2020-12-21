@@ -112,6 +112,7 @@ const Write = (props) => {
     return {
       author: stateVal.author,
       recipient: stateVal.selectedStudent,
+      email: stateVal.email,
       message: stateVal.message,
       sticker: selected_stickers,
       audioUrl: audioUrl,

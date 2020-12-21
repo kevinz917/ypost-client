@@ -2,17 +2,27 @@ import axios from "axios";
 import { Base } from "./base";
 
 // Create card
-const createCard = async (author, recipient, message, audioFile, sticker) => {
+const createCard = async (
+  author,
+  recipient,
+  email,
+  message,
+  audioFile,
+  sticker
+) => {
   console.log("Creating new card");
 
   const data = new FormData();
   data.append("author", author);
   data.append("recipient", recipient);
+  data.append("email", email);
   data.append("message", message);
-  data.append("sticker", sticker);
   if (audioFile) {
     data.append("file", audioFile, "sample");
   }
+  sticker.forEach((x) => {
+    data.append("sticker", x);
+  });
 
   axios.post(`${Base}/card/new`, data);
 };

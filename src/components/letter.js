@@ -18,6 +18,7 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
   const sendLetter = async (e) => {
     let createdCard = await createCard(
       letterContent.author,
+      letterContent.recipient,
       letterContent.email,
       letterContent.message,
       letterContent.audioFile,
