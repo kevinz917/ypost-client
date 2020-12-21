@@ -115,9 +115,10 @@ const Write = (props) => {
       email: stateVal.email,
       message: stateVal.message,
       sticker: selected_stickers,
+      audioFile: audioFile,
       audioUrl: audioUrl,
     };
-  }, [isPreview, selected_stickers, stateVal, audioUrl]);
+  }, [isPreview, selected_stickers, stateVal, audioFile, audioUrl]);
 
   return isPreview ? (
     <Letter letterContent={letterContent} setIsPreview={setIsPreview} />
