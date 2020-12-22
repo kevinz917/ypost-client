@@ -58,10 +58,12 @@ const Open = (props) => {
       if (temp.includes(fetchedCard._id) === false) {
         temp.push(fetchedCard._id);
         localStorage.setItem("letters", JSON.stringify(temp));
-        setSent(JSON.parse(localStorage.getItem("sent")) - 1);
-      } else {
-        setSent(JSON.parse(localStorage.getItem("sent")));
+        localStorage.setItem(
+          "sent",
+          JSON.parse(localStorage.getItem("sent")) - 1
+        );
       }
+      setSent(JSON.parse(localStorage.getItem("sent")));
       setIsLoading(false);
       await timeout(2000);
       setPageState("Opened");
