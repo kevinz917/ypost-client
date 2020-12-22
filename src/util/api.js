@@ -10,9 +10,9 @@ const createCard = async (
   audioFile,
   sticker
 ) => {
-  console.log("Creating new card");
+  // console.log("Creating new card");
 
-  console.log(author, recipient, email);
+  // console.log(author, recipient, email);
 
   const data = new FormData();
   if (author === "") {

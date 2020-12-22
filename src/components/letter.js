@@ -14,10 +14,6 @@ import { createCard } from "../util/api";
 import { sendAmplitudeData } from "../util/amplitude";
 
 const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
-  useEffect(() => {
-    console.log(sent);
-  }, []);
-
   let history = useHistory();
   const sendLetter = async (e) => {
     let createdCard = await createCard(
