@@ -14,10 +14,6 @@ import { createCard } from "../util/api";
 import { sendAmplitudeData } from "../util/amplitude";
 
 const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
-  useEffect(() => {
-    console.log(sent);
-  }, []);
-
   let history = useHistory();
   const sendLetter = async (e) => {
     let createdCard = await createCard(
@@ -28,6 +24,10 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       letterContent.audioFile,
       letterContent.sticker
     );
+
+    if (JSON.parse(localStorage.getItem("sent")) === 0) {
+      sendAmplitudeData("Unlocked");
+    }
     localStorage.setItem("sent", 1);
     sendAmplitudeData("Sent letter");
     history.push("/done");

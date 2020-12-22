@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Base } from "./base";
+import { sendAmplitudeData } from "../util/amplitude";
 
 // Create card
 const createCard = async (
@@ -10,10 +11,6 @@ const createCard = async (
   audioFile,
   sticker
 ) => {
-  console.log("Creating new card");
-
-  console.log(author, recipient, email);
-
   const data = new FormData();
   if (author === "") {
     data.append("author", "anonymous");
@@ -28,6 +25,7 @@ const createCard = async (
     data.append("file", audioFile, "sample");
   }
   sticker.forEach((x) => {
+    sendAmplitudeData(x);
     data.append("sticker", x);
   });
 

@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 import { Link } from "react-router-dom";
+import { sendAmplitudeData } from "../util/amplitude";
 
 import PaperCard from "../components/papercard";
 
 const About = () => {
+  useEffect(() => {
+    sendAmplitudeData("Opened about page");
+  }, []);
+
   return (
     <PaperCard maxWidth={550}>
       <Link to="/" className="link">
