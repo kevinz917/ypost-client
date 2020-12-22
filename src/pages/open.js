@@ -7,6 +7,7 @@ import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
+import { sendAmplitudeData } from "../util/amplitude";
 
 const timeout = (delay) => {
   return new Promise((res) => setTimeout(res, delay));
@@ -33,6 +34,7 @@ const Open = (props) => {
   useEffect(() => {
     const onMount = async () => {
       setPageState("Opening");
+      sendAmplitudeData("Opened letter");
       // Check if it's first time visiting website
       if (localStorage.getItem("sent") === null) {
         localStorage.setItem("sent", 0);
@@ -55,11 +57,10 @@ const Open = (props) => {
         temp.push(fetchedCard._id);
         localStorage.setItem("letters", JSON.stringify(temp));
       }
-
-      // Set local storage to "Sent"
       setSent(JSON.parse(localStorage.getItem("sent")));
       setIsLoading(false);
       await timeout(2000);
+
       setPageState("Opened");
     };
     onMount();

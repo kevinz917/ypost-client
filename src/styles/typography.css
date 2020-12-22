@@ -66,12 +66,13 @@ a {
 }
 
 .about-quote {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 500;
   font-style: italic;
   color: var(--gray100);
   margin: 12px 0 12px 0;
   line-height: 135%;
+  text-align: center;
 }
 
 .about-citation {
