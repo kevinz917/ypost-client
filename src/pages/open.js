@@ -15,7 +15,7 @@ const timeout = (delay) => {
 const Open = (props) => {
   const letterId = props.match.params.id;
   const [isLoading, setIsLoading] = useState(true);
-  const [sent, setSent] = useState(false);
+  const [sent, setSent] = useState(0);
   const [letterContent, setLetterContent] = useState({});
   const [pageState, setPageState] = useState("");
 
@@ -35,15 +35,15 @@ const Open = (props) => {
       setPageState("Opening");
       // Check if it's first time visiting website
       if (localStorage.getItem("sent") === null) {
-        localStorage.setItem("sent", false);
+        localStorage.setItem("sent", 0);
       }
       if (localStorage.getItem("letters") === null) {
         localStorage.setItem("letters", JSON.stringify([]));
       }
       // Check if user has sent letter before
-      if (JSON.parse(localStorage.getItem("sent")) === true) {
-        setSent(true);
-      }
+      // if (JSON.parse(localStorage.getItem("sent")) === 0) {
+      //   setSent(0);
+      // }
 
       let fetchedCard = await fetchCard(letterId);
       if (fetchedCard) {
@@ -58,6 +58,9 @@ const Open = (props) => {
       if (temp.includes(fetchedCard._id) === false) {
         temp.push(fetchedCard._id);
         localStorage.setItem("letters", JSON.stringify(temp));
+        setSent(JSON.parse(localStorage.getItem("sent")) - 1);
+      } else {
+        setSent(JSON.parse(localStorage.getItem("sent")));
       }
       setIsLoading(false);
       await timeout(2000);

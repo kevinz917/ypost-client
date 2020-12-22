@@ -24,7 +24,7 @@ const Landing = (props) => {
       dispatch(SET_VAL("studentList", studentList));
 
       if (localStorage.getItem("sent") === null) {
-        localStorage.setItem("sent", false);
+        localStorage.setItem("sent", 0);
       }
       if (localStorage.getItem("letters") === null) {
         localStorage.setItem("letters", JSON.stringify([]));

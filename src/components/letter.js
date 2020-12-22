@@ -12,7 +12,7 @@ import ReactAudioPlayer from "react-audio-player";
 import BlurredObject from "../assets/blurredObject.png";
 import { createCard } from "../util/api";
 
-const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
+const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
   let history = useHistory();
   const sendLetter = async (e) => {
     let createdCard = await createCard(
@@ -23,7 +23,7 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
       letterContent.audioFile,
       letterContent.sticker
     );
-    localStorage.setItem("sent", true);
+    localStorage.setItem("sent", Math.min(sent + 1, 0));
     history.push("/done");
   };
 
@@ -53,7 +53,7 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
         Dear {letterContent.recipient.split(" ")[0]},
       </div>
       <br />
-      {sent ? (
+      {sent === 0 ? (
         <div className="body textMain">{letterContent.message}</div>
       ) : (
         <img src={BlurredObject} alt="blurred" style={{ width: "100%" }} />
@@ -61,7 +61,7 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
       {letterContent.audioUrl ? (
         <React.Fragment>
           <br />
-          {sent ? (
+          {sent === 0 ? (
             <ReactAudioPlayer src={letterContent.audioUrl} controls />
           ) : (
             <div className="body textMain blurred">[ Hidden for now ]</div>
@@ -98,7 +98,7 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
       ) : (
         <Link to="/" className="link">
           <button className="buttonMain buttonPrimary">
-            {sent ? "Send letter to friend" : "Send a letter to unlock →"}
+            {sent === 0 ? "Send letter to friend" : "Send a letter to unlock →"}
           </button>
         </Link>
       )}
