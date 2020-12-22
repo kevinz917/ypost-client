@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import "../styles/color.css";
@@ -14,6 +14,9 @@ import { createCard } from "../util/api";
 import { sendAmplitudeData } from "../util/amplitude";
 
 const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
+  useEffect(() => {
+    console.log(sent);
+  }, []);
   let history = useHistory();
   const sendLetter = async (e) => {
     let createdCard = await createCard(
@@ -24,7 +27,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       letterContent.audioFile,
       letterContent.sticker
     );
-    localStorage.setItem("sent", Math.min(sent + 1, 0));
+    localStorage.setItem("sent", 1);
     sendAmplitudeData("Sent letter");
     history.push("/done");
   };
@@ -55,7 +58,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
         Dear {letterContent.recipient.split(" ")[0]},
       </div>
       <br />
-      {sent === 0 ? (
+      {sent === 1 || setIsPreview ? (
         <div className="body textMain">{letterContent.message}</div>
       ) : (
         <img src={BlurredObject} alt="blurred" style={{ width: "100%" }} />
@@ -63,7 +66,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       {letterContent.audioUrl ? (
         <React.Fragment>
           <br />
-          {sent === 0 ? (
+          {sent === 1 || setIsPreview ? (
             <ReactAudioPlayer src={letterContent.audioUrl} controls />
           ) : (
             <div className="body textMain blurred">[ Hidden for now ]</div>
@@ -100,7 +103,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       ) : (
         <Link to="/" className="link">
           <button className="buttonMain buttonPrimary">
-            {sent === 0 ? "Send letter to friend" : "Send a letter to unlock →"}
+            {sent === 1 ? "Send letter to friend" : "Send a letter to unlock →"}
           </button>
         </Link>
       )}

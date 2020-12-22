@@ -40,10 +40,6 @@ const Open = (props) => {
       if (localStorage.getItem("letters") === null) {
         localStorage.setItem("letters", JSON.stringify([]));
       }
-      // Check if user has sent letter before
-      // if (JSON.parse(localStorage.getItem("sent")) === 0) {
-      //   setSent(0);
-      // }
 
       let fetchedCard = await fetchCard(letterId);
       if (fetchedCard) {
@@ -58,10 +54,10 @@ const Open = (props) => {
       if (temp.includes(fetchedCard._id) === false) {
         temp.push(fetchedCard._id);
         localStorage.setItem("letters", JSON.stringify(temp));
-        localStorage.setItem(
-          "sent",
-          JSON.parse(localStorage.getItem("sent")) - 1
-        );
+        // localStorage.setItem(
+        //   "sent",
+        //   JSON.parse(localStorage.getItem("sent")) - 1
+        // );
       }
       setSent(JSON.parse(localStorage.getItem("sent")));
       setIsLoading(false);
