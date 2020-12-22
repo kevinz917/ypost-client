@@ -54,11 +54,9 @@ const Open = (props) => {
       if (temp.includes(fetchedCard._id) === false) {
         temp.push(fetchedCard._id);
         localStorage.setItem("letters", JSON.stringify(temp));
-        // localStorage.setItem(
-        //   "sent",
-        //   JSON.parse(localStorage.getItem("sent")) - 1
-        // );
       }
+
+      // Set local storage to "Sent"
       setSent(JSON.parse(localStorage.getItem("sent")));
       setIsLoading(false);
       await timeout(2000);
