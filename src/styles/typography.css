@@ -59,7 +59,7 @@ a {
 }
 
 .about-header {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
   color: var(--coral);
@@ -67,14 +67,15 @@ a {
 }
 
 .about-quote {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--gray100);
   margin-bottom: 12px;
+  line-height: 135%;
 }
 
 .about-citation {
-  font-size: 8px;
+  font-size: 10px;
   font-style: italic;
   text-align: center;
   color: var(--gray100);
@@ -82,7 +83,7 @@ a {
 }
 
 .about-text {
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 12px;
   line-height: 135%;
 }
