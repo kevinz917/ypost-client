@@ -26,6 +26,10 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
     localStorage.setItem("sent", true);
     history.push("/done");
   };
+
+  const randNum = (a, b) => {
+    return Math.random() * (b - a) + a;
+  };
   if (!letterContent) return <div />;
   return (
     <PaperCard>
@@ -81,6 +85,7 @@ const Letter = ({ letterContent, sent = true, setIsPreview = null }) => {
                 alt="sticker"
                 width={100}
                 className={styles.placedSticker}
+                style={{ transform: `rotate(${randNum(-5, 5)}deg)` }}
               />
             </span>
           ))}
