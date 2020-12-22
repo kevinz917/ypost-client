@@ -16,30 +16,27 @@ const About = (props) => {
       </Link>
       <hr />
       <div className="about-title">
-        YPost is an exploration of how we can use technology to facilitate
-        meaningful connection among people.
+        YPost is an exploration of how we can use technology <br />
+        to facilitate meaningful connection among people.
       </div>
-      <div className="about-header">a pandemic, the social kind</div>
+      <div className="about-header">a pandemic, not the viral kind</div>
       <div className="about-quote">
-        “More than a fifth of adults in the United States (22 percent) and the
-        United Kingdom (23 percent) . . . say they often or always feel lonely,
-        feel that they lack companionship, feel left out, or feel isolated from
-        others.”
+        “Today, three in five Americans (61%) classify as lonely.”
       </div>
       <div className="about-citation">
-        Loneliness and Social Isolation in the United States, the United
-        Kingdom, and Japan: An International Survey (2018){" "}
+        Loneliness and the Workplace, 2020 U.S. Report{" "}
         <a
           className="hyperlink"
           target="_blank"
           rel="noreferrer noopener"
-          href="http://files.kff.org/attachment/Report-Loneliness-and-Social-Isolation-in-the-United-States-the-United-Kingdom-and-Japan-An-International-Survey"
+          href="https://www.cigna.com/about-us/newsroom/news-and-views/press-releases/2020/cigna-takes-action-to-combat-the-rise-of-loneliness-and-improve-mental-wellness-in-america"
         >
           LINK
         </a>
       </div>
       <div className="about-text">
-        A 2019 study by&nbsp;
+        We are in the midst of a pandemic—a mental health pandemic—and young people are
+        particularly vulnerable. A recent survey by&nbsp;
         <a
           className="hyperlink"
           target="_blank"
@@ -47,30 +44,15 @@ const About = (props) => {
           href="https://www.cigna.com/about-us/newsroom/news-and-views/press-releases/2020/cigna-takes-action-to-combat-the-rise-of-loneliness-and-improve-mental-wellness-in-america"
         >
           CIGNA
-        </a> finds an even more dire situation—that 3 in 5
-        Americans (61%) classify as lonely, with the Gen Z population being most
-        vulnerable: nearly three quarters of Gen Z respondents (73%) answered
-        that they sometimes or always feels alone.
+        </a> finds that nearly three quarters of the Gen Z population
+        sometimes or always feels alone.
       </div>
       <div className="about-text">
-        Our loneliness pandemic has only persisted in light of a viral pandemic
-        that has necessitated our physical isolation, our social distance—in a&nbsp;
-        <a
-          className="hyperlink"
-          target="_blank"
-          rel="noreferrer noopener"
-          href="https://socialpronow.com/loneliness-corona/"
-        >
-          SocialPro
-        </a> survey of 1,200 adults conducted in April, nearly one third of
-        respondents (30.8%) reported that they felt more lonely because of the
-        COVID-19 pandemic.
-      </div>
-      <div className="about-text">
-        Further, technology—specifically feed-based social media—has reinforced
-        the spread of loneliness, often replacing true connection with
-        stimulation, our sense of community with tribalism, and our sense of
-        self with likes and comments and hollow validation.
+        Our loneliness pandemic has persisted in light of a viral pandemic
+        that has necessitated our social distance.
+        And feed-based social media has long reinforced
+        this spread of loneliness, overtaking connection with
+        stimulation and our sense of self with virtual validation.
       </div>
       <br />
       <div className="about-header">let's pay kindness forward</div>
@@ -91,34 +73,21 @@ const About = (props) => {
         </a>
       </div>
       <div className="about-text">
-        Our project, YPost, is an exploration of how we can use technology to
-        facilitate meaningful connection among people. In our current COVID-19
-        times, our team hopes to provide a simple, unique, meaningful method of
+        In our socially distant
+        times, our team hopes to provide a simple, unique method of
         communication—so we can find connection in separation.
       </div>
       <div className="about-text" style={{ fontWeight: 600 }}>
-        YPost is a simple interface where Yale users can send and receive
-        messages—audio recordings and/or text-based messages—to and from their
-        friends and classmates. But there’s one catch: when you receive a
-        message, you must unlock it by sending your own message to a recipient
-        of your choice.
+        YPost is an platform where Yalies can send and receive
+        messages—audio recordings and/or text-based notes—to and from friends and classmates.
+        But there’s a catch: when you receive a message, you must unlock it
+        by sending a message of your own to a recipient of your choice.
       </div>
       <div className="about-text">
-        The holiday season is naturally a time for reflection—about the people
-        that you love, the memories that you have made. Who has supported you
-        this semester? Made you laugh? Made our turbulent crazy
-        uncertain year feel just a bit less chaotic, a bit more grounded?
-      </div>
-      <div className="about-text">Let’s bring some light to their day.</div>
-      <br />
-      <div className="about-header">a different kind of post</div>
-      <div className="about-quote">Why post?</div>
-      <div className="about-text">
-        This holiday season, in addition to making a social media post, let’s
-        send a different kind of post—a virtual postcard, a YPost. And at the
-        same time, let’s consider why we post—why we choose to share the moments
-        and memories that we do with the audiences that we choose.
-      </div>
+        The holidays are a time for reflection—about the people
+        you love, the memories you have made. Who has supported you
+        this semester? Made you laugh? Made our uncertain year feel just a bit
+        less chaotic? Let’s bring some light to their day.</div>
       <br />
       <Link
         to="/"
