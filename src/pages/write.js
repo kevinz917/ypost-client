@@ -49,6 +49,7 @@ const Write = (props) => {
     "https://media.giphy.com/media/9JrvLb0fnrn7k1ZjhX/giphy.gif",
     "https://media.giphy.com/media/3oz8xALpV1X2BPo7cI/giphy.gif",
     "https://media.giphy.com/media/xTk9ZLRMhW9wrSUf4c/giphy.gif",
+    "https://media.giphy.com/media/l0HlNYLArnTIYvntm/giphy.gif",
     "https://media.giphy.com/media/RdzzVrtvfqnM4/giphy.gif",
     "https://media.giphy.com/media/hFIq9i5y2H10Q/giphy.gif",
     "https://media.giphy.com/media/13lIFCT4YxJSes/giphy.gif",
