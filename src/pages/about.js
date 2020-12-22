@@ -16,6 +16,12 @@ const About = () => {
       </Link>
       <hr />
       <br />
+      <div className="about-quote">
+        YPost is an exploration of how we can use technology to facilitate
+        meaningful connection among people.
+      </div>
+      <br />
+      <br />
       <div className="about-header">How does it work?</div>
       <div className="body">
         It's pretty simple! You can send and receive virtual holiday cards with
@@ -26,14 +32,23 @@ const About = () => {
       <br />
       <br />
       <div className="about-header">What is this for?</div>
-      <div className="about-quote">
-        “Today, three in five Americans classify as lonely.”
-      </div>
+
       <div className="body">
-        Our loneliness pandemic has persisted in light of a viral pandemic that
-        has necessitated our social distance. And feed-based social media has
-        long reinforced this spread of loneliness, overtaking connection with
-        stimulation and our sense of self with virtual validation.
+        Three in five Americans classify as lonely (
+        <span>
+          <a
+            className="hyperlink"
+            target="_blank"
+            rel="noreferrer noopener"
+            href="https://www.cigna.com/about-us/newsroom/news-and-views/press-releases/2020/cigna-takes-action-to-combat-the-rise-of-loneliness-and-improve-mental-wellness-in-america"
+          >
+            Cigna
+          </a>
+        </span>
+        ). Our loneliness pandemic has persisted in light of a viral pandemic
+        that has necessitated our social distance. And feed-based social media
+        has long reinforced this spread of loneliness, overtaking connection
+        with stimulation and our sense of self with virtual validation.
       </div>
       <br />
       <br />
@@ -62,8 +77,8 @@ const About = () => {
 export default About;
 
 // <div className="about-title">
-//   YPost is an exploration of how we can use technology <br />
-//   to facilitate meaningful connection among people.
+// YPost is an exploration of how we can use technology <br />
+// to facilitate meaningful connection among people.
 // </div>;
 
 // <div className="about-citation">
