@@ -21,7 +21,6 @@ const About = () => {
         meaningful connection among people.
       </div>
       <br />
-      <br />
       <div className="about-header">How does it work?</div>
       <div className="body">
         It's pretty simple! You can send and receive virtual holiday cards with
@@ -52,15 +51,8 @@ const About = () => {
       </div>
       <br />
       <br />
-      <div>
-        If you're interested in building more projects like these,{" "}
-        <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSenof0DZ6B5CCd_3mwOOyAzh5wxl7QCNe5vt1ZX4FadvRJ76g/viewform?fbzx=1924041856365897544"
-          target="_blank"
-          className="hyperlink italic"
-        >
-          join us
-        </a>
+      <div className="body">
+        This holiday season, bring light to someone’s day.
       </div>
       <br />
       <Link
@@ -68,8 +60,19 @@ const About = () => {
         className="link"
         style={{ display: "flex", justifyContent: "center" }}
       >
-        <button className="buttonMain buttonPrimary">Send a Letter</button>
+        <button className="buttonMain buttonPrimary">Send a Letter now</button>
       </Link>
+      <br />
+      <div className="body">
+        If you're interested in building more projects like these,{" "}
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSenof0DZ6B5CCd_3mwOOyAzh5wxl7QCNe5vt1ZX4FadvRJ76g/viewform?fbzx=1924041856365897544"
+          target="_blank"
+          className="hyperlink italic"
+        >
+          join us.
+        </a>
+      </div>
     </PaperCard>
   );
 };
