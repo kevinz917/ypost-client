@@ -25,7 +25,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       letterContent.sticker
     );
 
-    if (localStorage.getItem("sent") === 0) {
+    if (JSON.parse(localStorage.getItem("sent")) === 0) {
       sendAmplitudeData("Unlocked");
     }
     localStorage.setItem("sent", 1);
