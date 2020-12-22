@@ -103,6 +103,9 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
         </button>
       ) : (
         <Link to="/" className="link">
+          {sent !== 1 ? (
+            <div>You must send a letter to unlock. Pay it forward!</div>
+          ) : null}
           <button className="buttonMain buttonPrimary">
             {sent === 1 ? "Send letter to friend" : "Send a letter to unlock →"}
           </button>

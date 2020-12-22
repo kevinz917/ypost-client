@@ -134,7 +134,7 @@ const Write = (props) => {
       <div className="h2">Who is this from?</div>
       <input
         className="inputMain"
-        placeholder="Your name, or leave it blank :)"
+        placeholder="Your name, or leave it blank"
         value={stateVal.author}
         onChange={(e) => dispatch(SET_VAL("author", e.target.value))}
       />

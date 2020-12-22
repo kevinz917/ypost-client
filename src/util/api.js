@@ -12,6 +12,8 @@ const createCard = async (
 ) => {
   console.log("Creating new card");
 
+  console.log(author, recipient, email);
+
   const data = new FormData();
   if (author === "") {
     data.append("author", "anonymous");

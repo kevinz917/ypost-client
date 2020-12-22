@@ -52,7 +52,7 @@ const Done = (props) => {
         <br />
         <br />
         <div className="body textMain italic">Send another letter</div>
-        <button className="buttonMain buttonPrimary">
+        <button className="buttonMain buttonPrimary" onClick={navigate}>
           <div>Send another letter</div>
         </button>
       </div>
