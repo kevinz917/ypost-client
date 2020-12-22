@@ -44,6 +44,13 @@ const Write = (props) => {
     "https://media.giphy.com/media/R7AW255ijTdV6/giphy.gif",
     "https://media.giphy.com/media/PuKSVqbw0hEpq/giphy.gif",
     "https://media.giphy.com/media/6eEWybJorTCvK/giphy.gif",
+    "https://media.giphy.com/media/3oz8xALpV1X2BPo7cI/giphy.gif",
+    "https://media.giphy.com/media/xTk9ZLRMhW9wrSUf4c/giphy.gif",
+    "https://media.giphy.com/media/RdzzVrtvfqnM4/giphy.gif",
+    "https://media.giphy.com/media/hFIq9i5y2H10Q/giphy.gif",
+    "https://media.giphy.com/media/13lIFCT4YxJSes/giphy.gif",
+    "https://media.giphy.com/media/xz9j6yOIO2as0/giphy.gif",
+    "https://media.giphy.com/media/xUOxf7dQFhQ1NWnRBK/giphy.gif",
   ];
 
   const validate = async (e) => {
