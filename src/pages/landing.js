@@ -85,20 +85,17 @@ const Landing = (props) => {
         />
       </div>
       <br />
-      <div className="body textMain italic">
-        Who do you miss most? Let’s bring some light to their day.
-      </div>
+      <div className="body textMain italic">Who do you miss the most?</div>
       <br />
       <div className="body textMain">
-        This holiday season, let’s bridge the physical gap between us—whether
-        six feet or six time zones apart—with a virtual message of kindness, in
-        writing or voice. Because, in our disconnected times, our campus
-        community is more interconnected than it may seem.
+        3 Yalies built YPost so you can send virtual postcards to friends with{" "}
+        <span style={{ fontWeight: "bold" }}>gifs and audio messages</span>!
+        Check it out below, and Happy holidays :)
       </div>
       <br />
       <div className="body textMain italic">
         <Link to="/about" className="hyperlink">
-          Read about this project.
+          About this project.
         </Link>
       </div>
       <br />

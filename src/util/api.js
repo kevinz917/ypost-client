@@ -13,7 +13,12 @@ const createCard = async (
   console.log("Creating new card");
 
   const data = new FormData();
-  data.append("author", author);
+  if (author === "") {
+    data.append("author", "anonymous");
+  } else {
+    data.append("author", author);
+  }
+
   data.append("recipient", recipient);
   data.append("email", email);
   data.append("message", message);
