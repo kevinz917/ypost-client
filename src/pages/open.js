@@ -7,6 +7,7 @@ import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
+import { sendAmplitudeData } from "../util/amplitude";
 
 const timeout = (delay) => {
   return new Promise((res) => setTimeout(res, delay));
@@ -60,6 +61,7 @@ const Open = (props) => {
       setSent(JSON.parse(localStorage.getItem("sent")));
       setIsLoading(false);
       await timeout(2000);
+      sendAmplitudeData("Opened letter");
       setPageState("Opened");
     };
     onMount();
