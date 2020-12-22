@@ -52,9 +52,11 @@ const Done = (props) => {
         <br />
         <br />
         <div className="body textMain italic">Send another letter</div>
-        <button className="buttonMain buttonPrimary">
-          <div>Send another letter</div>
-        </button>
+        <Link to="/" className="link">
+          <button className="buttonMain buttonPrimary">
+            <div>Send another letter</div>
+          </button>
+        </Link>
       </div>
     </div>
   );
