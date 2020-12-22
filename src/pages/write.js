@@ -11,6 +11,7 @@ import ReactAudioPlayer from "react-audio-player";
 import PaperCard from "../components/papercard";
 import Sticker from "../components/sticker";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { sendAmplitudeData } from "../util/amplitude";
 
 // Redux
 import { SET_VAL } from "../redux/masterReducer";
@@ -50,6 +51,7 @@ const Write = (props) => {
       setErrorMessage("Please type or record a message!");
     } else {
       setIsPreview(true);
+      sendAmplitudeData("Previewed letter");
     }
   };
 

@@ -11,6 +11,7 @@ import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 import Flake from "../assets/flake.svg";
+import { sendAmplitudeData } from "../util/amplitude";
 
 const Landing = (props) => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Landing = (props) => {
   // On mount
   useEffect(() => {
     const onMount = async () => {
+      sendAmplitudeData("Visited home page");
       dispatch(SET_VAL("isLoading", true));
 
       let studentList = await fetchStudents();
@@ -44,6 +46,7 @@ const Landing = (props) => {
     } else if (!stateVal.email.includes("@")) {
       setErrorMessage("Please enter a valid email address!");
     } else {
+      sendAmplitudeData("Selected contact");
       props.history.push("/write");
     }
   };

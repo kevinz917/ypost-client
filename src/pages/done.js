@@ -5,6 +5,7 @@ import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 import Yalelogo from "../assets/yalelogo.svg";
+import { sendAmplitudeData } from "../util/amplitude";
 
 const Done = (props) => {
   const [lastLetterId, setLastLetterId] = useState(null);
@@ -16,6 +17,10 @@ const Done = (props) => {
       setLastLetterId(letters[letters.length - 1]);
     }
   }, []);
+
+  const navigate = (e) => {
+    props.history.push("/");
+  };
   return (
     <div className="paperCardContainer">
       {lastLetterId ? (
@@ -47,11 +52,9 @@ const Done = (props) => {
         <br />
         <br />
         <div className="body textMain italic">Send another letter</div>
-        <Link to="/" className="link">
-          <button className="buttonMain buttonPrimary">
-            <div>Send another letter</div>
-          </button>
-        </Link>
+        <button className="buttonMain buttonPrimary">
+          <div>Send another letter</div>
+        </button>
       </div>
     </div>
   );

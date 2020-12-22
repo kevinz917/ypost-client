@@ -11,6 +11,7 @@ import PaperCard from "../components/papercard";
 import ReactAudioPlayer from "react-audio-player";
 import BlurredObject from "../assets/blurredObject.png";
 import { createCard } from "../util/api";
+import { sendAmplitudeData } from "../util/amplitude";
 
 const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
   let history = useHistory();
@@ -24,6 +25,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       letterContent.sticker
     );
     localStorage.setItem("sent", Math.min(sent + 1, 0));
+    sendAmplitudeData("Sent letter");
     history.push("/done");
   };
 
