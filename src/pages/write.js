@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./write.module.css";
 import { Link } from "react-router-dom";
 import ScrollMenu from "react-horizontal-scrolling-menu";
@@ -29,7 +29,7 @@ const Write = (props) => {
   const drawing_ref = useRef(null);
   const stateVal = useSelector((state) => state.state);
   const [brush_color, setBrushcolor] = useState(0);
-  console.log(brush_color);
+  const [letterContent, setLetterContent] = useState({});
   if (!stateVal.selectedStudent) {
     props.history.push("/");
   }
@@ -65,6 +65,16 @@ const Write = (props) => {
       setErrorMessage("Please type or record a message!");
     } else {
       setIsPreview(true);
+      setLetterContent({
+        author: stateVal.author,
+        recipient: stateVal.selectedStudent,
+        email: stateVal.email,
+        message: stateVal.message,
+        sticker: selected_stickers,
+        audioFile: audioFile,
+        audioUrl: audioUrl,
+        drawing: drawing_ref.current.getSaveData(),
+      });
       sendAmplitudeData("Previewed letter");
     }
   };
@@ -123,21 +133,13 @@ const Write = (props) => {
     setSelected(new_stickers);
   };
 
-  const letterContent = useMemo(() => {
-    if (!isPreview) return {};
-    return {
-      author: stateVal.author,
-      recipient: stateVal.selectedStudent,
-      email: stateVal.email,
-      message: stateVal.message,
-      sticker: selected_stickers,
-      audioFile: audioFile,
-      audioUrl: audioUrl,
-      drawing: drawing_ref.current.getSaveData(),
-    };
-  }, [isPreview, selected_stickers, stateVal, audioFile, audioUrl]);
-
   const colors = ["#444", "#70e690", "#FC777B", "#0A3474"];
+
+  useEffect(() => {
+    if (!isPreview && letterContent.drawing) {
+      drawing_ref.current.loadSaveData(letterContent.drawing);
+    }
+  }, [isPreview, letterContent]);
 
   return isPreview ? (
     <Letter letterContent={letterContent} setIsPreview={setIsPreview} />

@@ -80,6 +80,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
               canvasWidth={"100%"}
               canvasHeight={200}
               className={canvas_styles.canvas}
+              disabled={true}
             />
           )}
         </>
