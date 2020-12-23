@@ -28,6 +28,8 @@ const Write = (props) => {
   const dispatch = useDispatch();
   const drawing_ref = useRef(null);
   const stateVal = useSelector((state) => state.state);
+  const [brush_color, setBrushcolor] = useState(0);
+  console.log(brush_color);
   if (!stateVal.selectedStudent) {
     props.history.push("/");
   }
@@ -135,6 +137,8 @@ const Write = (props) => {
     };
   }, [isPreview, selected_stickers, stateVal, audioFile, audioUrl]);
 
+  const colors = ["#444", "#70e690", "#FC777B", "#0A3474"];
+
   return isPreview ? (
     <Letter letterContent={letterContent} setIsPreview={setIsPreview} />
   ) : (
@@ -166,22 +170,48 @@ const Write = (props) => {
       <br />
       <div className="h2">Draw something</div>
 
-      <div
-        onClick={() => {
-          drawing_ref.current.clear();
-        }}
-      >
-        clear
-      </div>
       <CanvasDraw
         ref={drawing_ref}
         lazyRadius={0}
         brushRadius={5}
+        brushColor={colors[brush_color]}
+        catenaryColor={colors[brush_color]}
         hideGrid={true}
         canvasWidth={"100%"}
         canvasHeight={200}
         className={styles.canvas}
       />
+
+      <div className={styles.toolbar}>
+        {colors.map((color, index) => (
+          <div
+            className={
+              styles.color_square +
+              (index !== brush_color ? "" : " " + styles.selected)
+            }
+            style={{ backgroundColor: color }}
+            onClick={() => {
+              setBrushcolor(index);
+            }}
+          ></div>
+        ))}
+        <div
+          onClick={() => {
+            drawing_ref.current.undo();
+          }}
+          className={styles.undo}
+        >
+          undo
+        </div>
+        <div
+          onClick={() => {
+            drawing_ref.current.clear();
+          }}
+          className={styles.clear}
+        >
+          clear
+        </div>
+      </div>
 
       <br />
       <br />
