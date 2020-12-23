@@ -37,7 +37,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
     history.push("/done");
   };
   useEffect(() => {
-    if (drawing_ref && drawing_ref.current) {
+    if (drawing_ref && drawing_ref.current && letterContent.drawing) {
       drawing_ref.current.loadSaveData(letterContent.drawing);
     }
   }, [letterContent]);
@@ -71,18 +71,19 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       {sent === 1 || setIsPreview ? (
         <>
           <div className="body textMain">{letterContent.message}</div>
-          {JSON.parse(letterContent.drawing).lines.length > 0 && (
-            <CanvasDraw
-              ref={drawing_ref}
-              lazyRadius={0}
-              brushRadius={5}
-              hideGrid={true}
-              canvasWidth={"100%"}
-              canvasHeight={200}
-              className={canvas_styles.canvas}
-              disabled={true}
-            />
-          )}
+          {letterContent.drawing &&
+            JSON.parse(letterContent.drawing).lines.length > 0 && (
+              <CanvasDraw
+                ref={drawing_ref}
+                lazyRadius={0}
+                brushRadius={5}
+                hideGrid={true}
+                canvasWidth={"100%"}
+                canvasHeight={200}
+                className={canvas_styles.canvas}
+                disabled={true}
+              />
+            )}
         </>
       ) : (
         <img src={BlurredObject} alt="blurred" style={{ width: "100%" }} />
