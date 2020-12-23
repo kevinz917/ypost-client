@@ -131,6 +131,7 @@ const Write = (props) => {
       sticker: selected_stickers,
       audioFile: audioFile,
       audioUrl: audioUrl,
+      drawing: drawing_ref.current.getSaveData(),
     };
   }, [isPreview, selected_stickers, stateVal, audioFile, audioUrl]);
 
