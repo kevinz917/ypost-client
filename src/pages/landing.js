@@ -95,8 +95,10 @@ const Landing = (props) => {
       <br />
       <div className="body textMain">
         3 Yalies built YPost so you can send virtual postcards to friends with{" "}
-        <span style={{ fontWeight: "bold" }}>gifs and audio messages</span>!
-        Check it out below, and Happy holidays :)
+        <span style={{ fontWeight: "bold" }}>
+          drawings, gifs, and audio messages
+        </span>
+        ! Check it out below and Happy Holidays :)
       </div>
       <br />
       <div className="body textMain italic">
