@@ -40,7 +40,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
     if (drawing_ref && drawing_ref.current) {
       drawing_ref.current.loadSaveData(letterContent.drawing);
     }
-  }, []);
+  }, [letterContent]);
 
   const randNum = (a, b) => {
     return Math.random() * (b - a) + a;
