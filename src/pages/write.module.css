@@ -1,3 +1,10 @@
 .arrow_btn {
   cursor: pointer;
 }
+
+.canvas {
+  background: #fff7ed;
+  border-radius: 6px;
+  border: 2px solid;
+  border-color: #f1e3d0;
+}

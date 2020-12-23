@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import styles from "./write.module.css";
 import { Link } from "react-router-dom";
 import ScrollMenu from "react-horizontal-scrolling-menu";
@@ -12,6 +12,7 @@ import PaperCard from "../components/papercard";
 import Sticker from "../components/sticker";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { sendAmplitudeData } from "../util/amplitude";
+import CanvasDraw from "react-canvas-draw";
 
 // Redux
 import { SET_VAL } from "../redux/masterReducer";
@@ -25,7 +26,7 @@ const recorder = new MicRecorder({
 
 const Write = (props) => {
   const dispatch = useDispatch();
-
+  const drawing_ref = useRef(null);
   const stateVal = useSelector((state) => state.state);
   if (!stateVal.selectedStudent) {
     props.history.push("/");
@@ -160,6 +161,27 @@ const Write = (props) => {
         style={{ maxWidth: "100%" }}
         onChange={(e) => dispatch(SET_VAL("message", e.target.value))}
       />
+      <br />
+      <br />
+      <div className="h2">Draw something</div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div
+          onClick={() => {
+            drawing_ref.current.clear();
+          }}
+        >
+          clear
+        </div>
+        <CanvasDraw
+          ref={drawing_ref}
+          lazyRadius={0}
+          brushRadius={5}
+          hideGrid={true}
+          canvasWidth={200}
+          canvasHeight={200}
+          className={styles.canvas}
+        />
+      </div>
       <br />
       <br />
       <div className="h2">Pick a sticker</div>
