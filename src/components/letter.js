@@ -25,7 +25,8 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       letterContent.email,
       letterContent.message,
       letterContent.audioFile,
-      letterContent.sticker
+      letterContent.sticker,
+      letterContent.drawing
     );
 
     if (JSON.parse(localStorage.getItem("sent")) === 0) {
@@ -70,18 +71,16 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       {sent === 1 || setIsPreview ? (
         <>
           <div className="body textMain">{letterContent.message}</div>
-          {letterContent.drawing && (
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <CanvasDraw
-                ref={drawing_ref}
-                lazyRadius={0}
-                brushRadius={5}
-                hideGrid={true}
-                canvasWidth={200}
-                canvasHeight={200}
-                className={canvas_styles.canvas}
-              />
-            </div>
+          {JSON.parse(letterContent.drawing).lines.length > 0 && (
+            <CanvasDraw
+              ref={drawing_ref}
+              lazyRadius={0}
+              brushRadius={5}
+              hideGrid={true}
+              canvasWidth={"100%"}
+              canvasHeight={200}
+              className={canvas_styles.canvas}
+            />
           )}
         </>
       ) : (

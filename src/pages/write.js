@@ -165,24 +165,24 @@ const Write = (props) => {
       <br />
       <br />
       <div className="h2">Draw something</div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <div
-          onClick={() => {
-            drawing_ref.current.clear();
-          }}
-        >
-          clear
-        </div>
-        <CanvasDraw
-          ref={drawing_ref}
-          lazyRadius={0}
-          brushRadius={5}
-          hideGrid={true}
-          canvasWidth={200}
-          canvasHeight={200}
-          className={styles.canvas}
-        />
+
+      <div
+        onClick={() => {
+          drawing_ref.current.clear();
+        }}
+      >
+        clear
       </div>
+      <CanvasDraw
+        ref={drawing_ref}
+        lazyRadius={0}
+        brushRadius={5}
+        hideGrid={true}
+        canvasWidth={"100%"}
+        canvasHeight={200}
+        className={styles.canvas}
+      />
+
       <br />
       <br />
       <div className="h2">Pick a sticker</div>

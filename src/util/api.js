@@ -9,7 +9,8 @@ const createCard = async (
   email,
   message,
   audioFile,
-  sticker
+  sticker,
+  drawing
 ) => {
   const data = new FormData();
   if (author === "") {
@@ -21,6 +22,7 @@ const createCard = async (
   data.append("recipient", recipient);
   data.append("email", email);
   data.append("message", message);
+  data.append("drawing", drawing);
   if (audioFile) {
     data.append("file", audioFile, "sample");
   }
