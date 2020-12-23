@@ -19,12 +19,12 @@
   margin: auto 0 auto auto;
   color: #0a3474;
   cursor: pointer;
-  transform: rotate(30deg);
+  transform: rotate(60deg);
   transition: transform 0.3s;
 }
 
 .undo:hover {
-  transform: rotate(-90deg);
+  transform: rotate(-60deg);
 }
 
 .clear {
@@ -45,11 +45,12 @@
   margin-right: 3px;
   cursor: pointer;
   border: 2px solid transparent;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 .color_square:hover {
   opacity: 1;
+  transform: scale(1.1);
 }
 
 .not_selected {

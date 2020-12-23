@@ -204,7 +204,7 @@ const Write = (props) => {
           }}
           className={styles.undo}
         >
-          <FiRotateCcw style={{ display: "block" }} />
+          <FiRotateCcw size={18} style={{ display: "block" }} />
         </div>
         <div
           onClick={() => {
@@ -212,7 +212,7 @@ const Write = (props) => {
           }}
           className={styles.clear}
         >
-          <FiX size={18} style={{ display: "block" }} />
+          <FiX size={22} style={{ display: "block" }} />
         </div>
       </div>
 
