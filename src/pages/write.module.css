@@ -16,11 +16,26 @@
 }
 
 .undo {
-  margin-left: auto;
+  margin: auto 0 auto auto;
+  color: #0a3474;
+  cursor: pointer;
+  transform: rotate(30deg);
+  transition: transform 0.3s;
+}
+
+.undo:hover {
+  transform: rotate(-90deg);
 }
 
 .clear {
-  margin-left: 5px;
+  margin: auto 0 auto 3px;
+  color: #fc777b;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.clear:hover {
+  transform: scale(1.2);
 }
 
 .color_square {
@@ -30,8 +45,13 @@
   margin-right: 3px;
   cursor: pointer;
   border: 2px solid transparent;
+  transition: opacity 0.2s;
 }
 
-.selected {
-  border: 2px solid rgb(101, 186, 255);
+.color_square:hover {
+  opacity: 1;
+}
+
+.not_selected {
+  opacity: 0.3;
 }

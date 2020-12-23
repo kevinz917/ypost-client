@@ -11,6 +11,7 @@ import ReactAudioPlayer from "react-audio-player";
 import PaperCard from "../components/papercard";
 import Sticker from "../components/sticker";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FiX, FiRotateCcw } from "react-icons/fi";
 import { sendAmplitudeData } from "../util/amplitude";
 import CanvasDraw from "react-canvas-draw";
 
@@ -133,7 +134,7 @@ const Write = (props) => {
     setSelected(new_stickers);
   };
 
-  const colors = ["#444", "#70e690", "#FC777B", "#0A3474"];
+  const colors = ["#444", "#70e690", "#FC777B", "#3370cc"];
 
   useEffect(() => {
     if (!isPreview && letterContent.drawing) {
@@ -189,7 +190,7 @@ const Write = (props) => {
           <div
             className={
               styles.color_square +
-              (index !== brush_color ? "" : " " + styles.selected)
+              (index === brush_color ? "" : " " + styles.not_selected)
             }
             style={{ backgroundColor: color }}
             onClick={() => {
@@ -203,7 +204,7 @@ const Write = (props) => {
           }}
           className={styles.undo}
         >
-          undo
+          <FiRotateCcw style={{ display: "block" }} />
         </div>
         <div
           onClick={() => {
@@ -211,7 +212,7 @@ const Write = (props) => {
           }}
           className={styles.clear}
         >
-          clear
+          <FiX size={18} style={{ display: "block" }} />
         </div>
       </div>
 
