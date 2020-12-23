@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PaperCard from "../components/papercard";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchStudents } from "../util/api";
+import { fetchStudents, fetchCount } from "../util/api";
 import { SET_VAL } from "../redux/masterReducer";
 import { Link } from "react-router-dom";
 import Stamp from "../assets/stamp.svg";
@@ -12,9 +12,11 @@ import "../styles/typography.css";
 import "../styles/animation.css";
 import Flake from "../assets/flake.svg";
 import { sendAmplitudeData } from "../util/amplitude";
+import styles from "./landing.module.css";
 
 const Landing = (props) => {
   const dispatch = useDispatch();
+  const [letter_count, setLetterCount] = useState(-1);
 
   // On mount
   useEffect(() => {
@@ -32,6 +34,10 @@ const Landing = (props) => {
         localStorage.setItem("letters", JSON.stringify([]));
       }
       dispatch(SET_VAL("isLoading", false));
+      const letterCount = await fetchCount();
+      if (letterCount && letterCount.data) {
+        setLetterCount(letterCount.data.count);
+      }
     };
 
     onMount();
@@ -99,6 +105,18 @@ const Landing = (props) => {
         </Link>
       </div>
       <br />
+      <div className={styles.letter_cnt_container + " body textMain fade-in"}>
+        {letter_count === -1 ? (
+          <span className={styles.letter_cnt_label}>Loading...</span>
+        ) : (
+          <div className="fade-in">
+            <span className={styles.letter_cnt_label}>
+              Total Letters Sent:{" "}
+            </span>
+            <span className={styles.letter_cnt_val}>{letter_count}</span>
+          </div>
+        )}
+      </div>
       <br />
       <AsyncSelect
         loadOptions={loadOptions}

@@ -56,4 +56,13 @@ const setOpened = async (id) => {
   await axios.post(`${Base}/card/opened`, { _id: id });
 };
 
-export { createCard, fetchCard, fetchStudents, setOpened };
+// Get number of letters
+const fetchCount = async () => {
+  let fetchedCount = await axios.get(`${Base}/card/count`);
+
+  if (fetchedCount) {
+    return fetchedCount;
+  }
+};
+
+export { createCard, fetchCard, fetchStudents, setOpened, fetchCount };
