@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+import ReactAudioPlayer from "react-audio-player";
 
 import "../styles/color.css";
 import "../styles/layout.css";
@@ -7,56 +8,28 @@ import "../styles/typography.css";
 import "../styles/animation.css";
 import styles from "./letter.module.css";
 
-import PaperCard from "../components/papercard";
-import ReactAudioPlayer from "react-audio-player";
-import BlurredObject from "../assets/blurredObject.png";
-
 const MemoryLetter = ({ letterContent }) => {
-  let history = useHistory();
-
   const randNum = (a, b) => {
     return Math.random() * (b - a) + a;
   };
   if (!letterContent) return <div />;
   return (
-    <PaperCard>
-      {setIsPreview && (
-        <React.Fragment>
-          <div className="link">
-            <span
-              className="navigation body"
-              onClick={() => {
-                setIsPreview(false);
-              }}
-            >
-              ← Back
-            </span>
-          </div>
-          <hr />
-          <br />
-        </React.Fragment>
-      )}
+    <div
+      className="paperCard"
+      style={{ marginTop: "15px", marginBottom: "15px" }}
+    >
       <div className="body textMain">
         Dear {letterContent.recipient.split(" ")[0]},
       </div>
       <br />
-      {sent === 1 || setIsPreview ? (
-        <div className="body textMain">{letterContent.message}</div>
-      ) : (
-        <img src={BlurredObject} alt="blurred" style={{ width: "100%" }} />
-      )}
+      <div className="body textMain">{letterContent.message}</div>
       {letterContent.audioUrl ? (
         <React.Fragment>
           <br />
-          {sent === 1 || setIsPreview ? (
-            <ReactAudioPlayer src={letterContent.audioUrl} controls />
-          ) : (
-            <div className="body textMain blurred">[ Hidden for now ]</div>
-          )}
+          <ReactAudioPlayer src={letterContent.audioUrl} controls />
           <br />
         </React.Fragment>
       ) : null}
-
       <br />
       <div className="body textMain" style={{ textAlign: "right" }}>
         Sincerely, <br />{" "}
@@ -78,27 +51,7 @@ const MemoryLetter = ({ letterContent }) => {
           ))}
         </div>
       )}
-      {!admin && (
-        <React.Fragment>
-          {setIsPreview ? (
-            <button className="buttonMain buttonPrimary">
-              <div>Send letter →</div>
-            </button>
-          ) : (
-            <Link to="/" className="link">
-              {sent !== 1 ? (
-                <div>You must send a letter to unlock. Pay it forward!</div>
-              ) : null}
-              <button className="buttonMain buttonPrimary">
-                {sent === 1
-                  ? "Send letter to friend"
-                  : "Send a letter to unlock →"}
-              </button>
-            </Link>
-          )}
-        </React.Fragment>
-      )}
-    </PaperCard>
+    </div>
   );
 };
 
