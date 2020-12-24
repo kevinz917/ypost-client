@@ -97,6 +97,17 @@ const About = (props) => {
         <button className="buttonMain buttonPrimary" style={{ width: "200px" }}>
           Send a Letter
         </button>
+        <br />
+        <div>
+        To report a problem or share a thought, contact us at&nbsp;
+        <a
+          href="mailto: ypost.connect@gmail.com"
+          target="_blank"
+          className="hyperlink italic"
+        >
+          ypost.connect@gmail.com
+        </a>.
+      </div>
       </Link>
     </PaperCard>
   );
