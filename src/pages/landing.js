@@ -73,7 +73,7 @@ const Landing = (props) => {
     dispatch(SET_VAL("email", e ? e.value : ""));
     dispatch(SET_VAL("selectedStudent", e ? e.label : ""));
   };
-
+  // console.log(stateVal.netid);
   return stateVal.isLoading ? (
     <img
       src={Flake}

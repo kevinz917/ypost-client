@@ -19,6 +19,7 @@ const state = (
     author: "",
     audioFile: null,
     auth: false,
+    netid: "",
   },
   action
 ) => {

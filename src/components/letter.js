@@ -15,12 +15,7 @@ import { sendAmplitudeData } from "../util/amplitude";
 import CanvasDraw from "react-canvas-draw";
 import canvas_styles from "../pages/write.module.css";
 
-const Letter = ({
-  letterContent,
-  sent = 0,
-  setIsPreview = null,
-  admin = true,
-}) => {
+const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
   let history = useHistory();
   const drawing_ref = useRef(null);
   const sendLetter = async (e) => {
@@ -126,25 +121,20 @@ const Letter = ({
           ))}
         </div>
       )}
-      {!admin && (
-        <React.Fragment>
-          {setIsPreview ? (
-            <button className="buttonMain buttonPrimary" onClick={sendLetter}>
-              <div>Send letter →</div>
-            </button>
-          ) : (
-            <Link to="/" className="link">
-              {sent !== 1 ? (
-                <div>You must send a letter to unlock. Pay it forward!</div>
-              ) : null}
-              <button className="buttonMain buttonPrimary">
-                {sent === 1
-                  ? "Send letter to friend"
-                  : "Send a letter to unlock →"}
-              </button>
-            </Link>
-          )}
-        </React.Fragment>
+
+      {setIsPreview ? (
+        <button className="buttonMain buttonPrimary" onClick={sendLetter}>
+          <div>Send letter →</div>
+        </button>
+      ) : (
+        <Link to="/" className="link">
+          {sent !== 1 ? (
+            <div>You must send a letter to unlock. Pay it forward!</div>
+          ) : null}
+          <button className="buttonMain buttonPrimary">
+            {sent === 1 ? "Send letter to friend" : "Send a letter to unlock →"}
+          </button>
+        </Link>
       )}
     </PaperCard>
   );
