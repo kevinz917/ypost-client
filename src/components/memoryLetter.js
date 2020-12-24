@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import "../styles/color.css";
@@ -10,33 +10,9 @@ import styles from "./letter.module.css";
 import PaperCard from "../components/papercard";
 import ReactAudioPlayer from "react-audio-player";
 import BlurredObject from "../assets/blurredObject.png";
-import { createCard } from "../util/api";
-import { sendAmplitudeData } from "../util/amplitude";
 
-const Letter = ({
-  letterContent,
-  sent = 0,
-  setIsPreview = null,
-  admin = true,
-}) => {
+const MemoryLetter = ({ letterContent }) => {
   let history = useHistory();
-  const sendLetter = async (e) => {
-    let createdCard = await createCard(
-      letterContent.author,
-      letterContent.recipient,
-      letterContent.email,
-      letterContent.message,
-      letterContent.audioFile,
-      letterContent.sticker
-    );
-
-    if (JSON.parse(localStorage.getItem("sent")) === 0) {
-      sendAmplitudeData("Unlocked");
-    }
-    localStorage.setItem("sent", 1);
-    sendAmplitudeData("Sent letter");
-    history.push("/done");
-  };
 
   const randNum = (a, b) => {
     return Math.random() * (b - a) + a;
@@ -105,7 +81,7 @@ const Letter = ({
       {!admin && (
         <React.Fragment>
           {setIsPreview ? (
-            <button className="buttonMain buttonPrimary" onClick={sendLetter}>
+            <button className="buttonMain buttonPrimary">
               <div>Send letter →</div>
             </button>
           ) : (
@@ -126,4 +102,4 @@ const Letter = ({
   );
 };
 
-export default Letter;
+export default MemoryLetter;
