@@ -35,7 +35,7 @@ const Memories = (props) => {
     />
   ) : (
     <div className="paperCardContainer fade-in">
-      <div style={{ height: "60px" }} />
+      <div style={{ height: "40px" }} />
       <div className="h1 textMain">Your memories 💌 </div>
       <div className="body" style={{ opacity: "0.7" }}>
         {userCards.length} postcards

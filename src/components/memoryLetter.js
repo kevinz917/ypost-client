@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import ReactAudioPlayer from "react-audio-player";
 
@@ -8,16 +8,40 @@ import "../styles/typography.css";
 import "../styles/animation.css";
 import styles from "./letter.module.css";
 
-const MemoryLetter = ({ letterContent }) => {
+// Rotate ref
+const useRotate = () => {
+  const [rotate, setRotate] = useState(false);
+
   const randNum = (a, b) => {
     return Math.random() * (b - a) + a;
   };
+
+  const onMouseEnter = () => {
+    console.log(true);
+    setRotate(true);
+  };
+
+  const onMouseLeave = () => {
+    setRotate(false);
+  };
+
+  const rotateStyle = !rotate
+    ? {
+        opacity: 1,
+      }
+    : {
+        transform: `rotate(${randNum(-7, 7)}deg) scale(1.1)`,
+      };
+
+  return { rotateStyle, onMouseEnter, onMouseLeave };
+};
+
+const MemoryLetter = ({ letterContent }) => {
+  const { rotateStyle, ...rotateProps } = useRotate();
+
   if (!letterContent) return <div />;
   return (
-    <div
-      className="paperCard"
-      style={{ marginTop: "15px", marginBottom: "15px" }}
-    >
+    <div className="memoryCard" style={rotateStyle} {...rotateProps}>
       <div className="body textMain">
         Dear {letterContent.recipient.split(" ")[0]},
       </div>
@@ -45,7 +69,6 @@ const MemoryLetter = ({ letterContent }) => {
                 alt="sticker"
                 width={100}
                 className={styles.placedSticker}
-                style={{ transform: `rotate(${randNum(-5, 5)}deg)` }}
               />
             </span>
           ))}
