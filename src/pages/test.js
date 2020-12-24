@@ -8,7 +8,7 @@ const Test = () => {
   useEffect(() => {
     const onMount = async () => {
       const auth = await casCheck();
-      // console.log(auth);
+      console.log(auth);
       if (!auth || !auth.data.auth || !auth.data.user) {
         setLoggedIn("");
       } else {
