@@ -65,4 +65,19 @@ const fetchCount = async () => {
   }
 };
 
-export { createCard, fetchCard, fetchStudents, setOpened, fetchCount };
+const fetchUserCards = async (id) => {
+  let fetchedCards = await axios.get(`${Base}/card/user/${id}`);
+  if (fetchedCards) {
+    return fetchedCards.data.cards;
+  }
+  return "invalid user :(";
+};
+
+export {
+  createCard,
+  fetchCard,
+  fetchStudents,
+  setOpened,
+  fetchCount,
+  fetchUserCards,
+};

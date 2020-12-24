@@ -13,7 +13,12 @@ import BlurredObject from "../assets/blurredObject.png";
 import { createCard } from "../util/api";
 import { sendAmplitudeData } from "../util/amplitude";
 
-const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
+const Letter = ({
+  letterContent,
+  sent = 0,
+  setIsPreview = null,
+  admin = true,
+}) => {
   let history = useHistory();
   const sendLetter = async (e) => {
     let createdCard = await createCard(
@@ -97,19 +102,25 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
           ))}
         </div>
       )}
-      {setIsPreview ? (
-        <button className="buttonMain buttonPrimary" onClick={sendLetter}>
-          <div>Send letter →</div>
-        </button>
-      ) : (
-        <Link to="/" className="link">
-          {sent !== 1 ? (
-            <div>You must send a letter to unlock. Pay it forward!</div>
-          ) : null}
-          <button className="buttonMain buttonPrimary">
-            {sent === 1 ? "Send letter to friend" : "Send a letter to unlock →"}
-          </button>
-        </Link>
+      {!admin && (
+        <React.Fragment>
+          {setIsPreview ? (
+            <button className="buttonMain buttonPrimary" onClick={sendLetter}>
+              <div>Send letter →</div>
+            </button>
+          ) : (
+            <Link to="/" className="link">
+              {sent !== 1 ? (
+                <div>You must send a letter to unlock. Pay it forward!</div>
+              ) : null}
+              <button className="buttonMain buttonPrimary">
+                {sent === 1
+                  ? "Send letter to friend"
+                  : "Send a letter to unlock →"}
+              </button>
+            </Link>
+          )}
+        </React.Fragment>
       )}
     </PaperCard>
   );
