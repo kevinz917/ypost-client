@@ -150,9 +150,14 @@ const Landing = (props) => {
             }
           />
         ) : (
-          <a href={`${process.env.REACT_APP_BACKEND_URL}/auth/cas`}>
-            <button className="buttonMain buttonRecord">Login with CAS</button>
-          </a>
+          <button
+            className="buttonMain buttonRecord"
+            onClick={() => {
+              window.location.href = `${process.env.REACT_APP_BACKEND_URL}/auth/cas`;
+            }}
+          >
+            Login with CAS
+          </button>
         )}
         {stateVal.auth ? (
           <React.Fragment>

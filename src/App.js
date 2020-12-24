@@ -25,20 +25,20 @@ function App() {
   const [closed, setClosed] = useState(false);
   const isLoading = useSelector((state) => state.state.isLoading);
 
-  useEffect(() => {
-    const onMount = async () => {
-      const auth = await casCheck();
-      // console.log(auth);
-      if (!auth || !auth.data.auth || !auth.data.user) {
-        dispatch(SET_VAL("auth", false));
-        dispatch(SET_VAL("netid", ""));
-      } else {
-        dispatch(SET_VAL("auth", true));
-        dispatch(SET_VAL("netid", auth.data.user.netId));
-      }
-    };
-    onMount();
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const onMount = async () => {
+  //     const auth = await casCheck();
+  //     // console.log(auth);
+  //     if (!auth || !auth.data.auth || !auth.data.user) {
+  //       dispatch(SET_VAL("auth", false));
+  //       dispatch(SET_VAL("netid", ""));
+  //     } else {
+  //       dispatch(SET_VAL("auth", true));
+  //       dispatch(SET_VAL("netid", auth.data.user.netId));
+  //     }
+  //   };
+  //   onMount();
+  // }, [dispatch]);
 
   return (
     <div className="backgroundLayout">
