@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Snowfall from "react-snowfall";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,9 +17,13 @@ import About from "./pages/about";
 import { casCheck } from "./util/api";
 import Memories from "./pages/memories";
 
+import "./styles/layout.css";
+
 function App() {
-  const isLoading = useSelector((state) => state.state.isLoading);
   const dispatch = useDispatch();
+
+  const [closed, setClosed] = useState(false);
+  const isLoading = useSelector((state) => state.state.isLoading);
 
   useEffect(() => {
     const onMount = async () => {
@@ -38,6 +42,19 @@ function App() {
 
   return (
     <div className="backgroundLayout">
+      {closed ? null : isLoading ? null : (
+        <div className="alert fade-in">
+          <span
+            className="closebtn"
+            onClick={() => {
+              setClosed(true);
+            }}
+          >
+            &times;
+          </span>
+          💌 &nbsp;New feature: share a drawing with your YPost!
+        </div>
+      )}
       <Router>
         <Switch>
           <Route path="/demo" component={Demo} />
@@ -65,3 +82,15 @@ function App() {
 }
 
 export default App;
+
+// <div className="alert fade-in">
+//           <span
+//             className="closebtn"
+//             onClick={() => {
+//               setClosed(true);
+//             }}
+//           >
+//             &times;
+//           </span>
+//           💌 &nbsp;New feature: share a drawing with your YPost!
+//         </div>

@@ -67,10 +67,6 @@
   animation: move-in-steps 1s infinite;
 }
 
-body {
-  padding: 20px;
-}
-
 @keyframes move-in-steps {
   0% {
     transform: scale(1);

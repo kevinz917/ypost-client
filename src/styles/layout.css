@@ -17,6 +17,7 @@
   width: 80vw;
   position: relative;
   max-width: 450px;
+  margin-top: 20px;
 }
 
 .report-container {
@@ -71,4 +72,32 @@
 .memoryCard:hover {
   transition: 0.3s;
   z-index: 10;
+}
+
+.alert {
+  padding: 6px;
+  background-color: #04a554;
+  opacity: 100%;
+  color: white;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100vw;
+  text-align: center;
+}
+
+.closebtn {
+  margin-left: 20px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 24px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-right: 20px;
+}
+
+.closebtn:hover {
+  color: black;
 }

@@ -25,6 +25,7 @@ const Landing = (props) => {
   // On mount
   useEffect(() => {
     const onMount = async () => {
+      dispatch(SET_VAL("isLoading", true));
       sendAmplitudeData("Visited home page");
       setLoadingState(0);
       let studentList = await fetchStudents();
@@ -44,6 +45,7 @@ const Landing = (props) => {
       if (letterCount && letterCount.data) {
         setLetterCount(letterCount.data.count);
       }
+      dispatch(SET_VAL("isLoading", false));
     };
 
     onMount();
