@@ -24,7 +24,6 @@ const Landing = (props) => {
     const onMount = async () => {
       sendAmplitudeData("Visited home page");
       dispatch(SET_VAL("isLoading", true));
-
       let studentList = await fetchStudents();
       dispatch(SET_VAL("studentList", studentList));
 
@@ -120,21 +119,27 @@ const Landing = (props) => {
           )}
         </div>
         <br />
-        <AsyncSelect
-          loadOptions={loadOptions}
-          placeholder="Type in a recipient's name..."
-          autoFocus
-          onChange={onInputChange}
-          isClearable={true}
-          value={
-            stateVal.email
-              ? {
-                  value: stateVal.email,
-                  label: stateVal.selectedStudent,
-                }
-              : null
-          }
-        />
+        {stateVal.auth ? (
+          <AsyncSelect
+            loadOptions={loadOptions}
+            placeholder="Type in a recipient's name..."
+            autoFocus
+            onChange={onInputChange}
+            isClearable={true}
+            value={
+              stateVal.email
+                ? {
+                    value: stateVal.email,
+                    label: stateVal.selectedStudent,
+                  }
+                : null
+            }
+          />
+        ) : (
+          <a href={`${process.env.REACT_APP_BACKEND_URL}/auth/cas`}>
+            <button className="buttonMain buttonRecord">Login with CAS</button>
+          </a>
+        )}
         <button className="buttonMain buttonPrimary" onClick={validate}>
           Continue →
         </button>

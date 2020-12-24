@@ -65,4 +65,19 @@ const fetchCount = async () => {
   }
 };
 
-export { createCard, fetchCard, fetchStudents, setOpened, fetchCount };
+const casCheck = async () => {
+  let auth = await axios.get(`${Base}/auth/check`, { withCredentials: true });
+  // console.log(auth);
+  if (auth) {
+    return auth;
+  }
+};
+
+export {
+  createCard,
+  fetchCard,
+  fetchStudents,
+  setOpened,
+  fetchCount,
+  casCheck,
+};

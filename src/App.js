@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Snowfall from "react-snowfall";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { SET_VAL } from "./redux/masterReducer";
 
 // Footer
 import Footer from "./components/footer";
@@ -13,9 +14,25 @@ import Done from "./pages/done";
 import Demo from "./pages/demo";
 import Open from "./pages/open";
 import About from "./pages/about";
+import { casCheck } from "./util/api";
 
 function App() {
   const isLoading = useSelector((state) => state.state.isLoading);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const onMount = async () => {
+      const auth = await casCheck();
+      // console.log(auth);
+      if (!auth || !auth.data.auth) {
+        dispatch(SET_VAL("auth", false));
+      } else {
+        dispatch(SET_VAL("auth", true));
+      }
+    };
+    onMount();
+  }, []);
+
   return (
     <div className="backgroundLayout">
       <Router>
