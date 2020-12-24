@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="backgroundLayout">
       {closed ? null : isLoading ? null : (
-        <div className="alert fade-in">
+        <div className="alert">
           <span
             className="closebtn"
             onClick={() => {
