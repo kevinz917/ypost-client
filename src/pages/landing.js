@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PaperCard from "../components/papercard";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchStudents } from "../util/api";
+import { fetchStudents, fetchCount } from "../util/api";
 import { SET_VAL } from "../redux/masterReducer";
 import { Link } from "react-router-dom";
 import Stamp from "../assets/stamp.svg";
@@ -11,25 +11,33 @@ import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 import Flake from "../assets/flake.svg";
+import { sendAmplitudeData } from "../util/amplitude";
+import styles from "./landing.module.css";
 
 const Landing = (props) => {
   const dispatch = useDispatch();
+  const [letter_count, setLetterCount] = useState(-1);
 
   // On mount
   useEffect(() => {
     const onMount = async () => {
+      sendAmplitudeData("Visited home page");
       dispatch(SET_VAL("isLoading", true));
 
       let studentList = await fetchStudents();
       dispatch(SET_VAL("studentList", studentList));
 
       if (localStorage.getItem("sent") === null) {
-        localStorage.setItem("sent", false);
+        localStorage.setItem("sent", 0);
       }
       if (localStorage.getItem("letters") === null) {
         localStorage.setItem("letters", JSON.stringify([]));
       }
       dispatch(SET_VAL("isLoading", false));
+      const letterCount = await fetchCount();
+      if (letterCount && letterCount.data) {
+        setLetterCount(letterCount.data.count);
+      }
     };
 
     onMount();
@@ -44,6 +52,7 @@ const Landing = (props) => {
     } else if (!stateVal.email.includes("@")) {
       setErrorMessage("Please enter a valid email address!");
     } else {
+      sendAmplitudeData("Selected contact");
       props.history.push("/write");
     }
   };
@@ -82,23 +91,32 @@ const Landing = (props) => {
         />
       </div>
       <br />
-      <div className="body textMain italic">
-        Who do you miss most? Let’s bring some light to their day.
-      </div>
+      <div className="body textMain italic">Who do you miss the most?</div>
       <br />
       <div className="body textMain">
-        This holiday season, let’s bridge the physical gap between us—whether
-        six feet or six time zones apart—with a virtual message of kindness, in
-        writing or voice. Because, in our disconnected times, our campus
-        community is more interconnected than it may seem.
+        3 Yalies built YPost so you can send virtual postcards to friends with{" "}
+        <span style={{ fontWeight: "bold" }}>gifs and audio messages</span>!
+        Check it out below, and Happy holidays :)
       </div>
       <br />
       <div className="body textMain italic">
         <Link to="/about" className="hyperlink">
-          Read about this project.
+          About this project.
         </Link>
       </div>
       <br />
+      <div className={styles.letter_cnt_container + " body textMain fade-in"}>
+        {letter_count === -1 ? (
+          <span className={styles.letter_cnt_label}>Loading...</span>
+        ) : (
+          <div className="fade-in">
+            <span className={styles.letter_cnt_label}>
+              Total Letters Sent:{" "}
+            </span>
+            <span className={styles.letter_cnt_val}>{letter_count}</span>
+          </div>
+        )}
+      </div>
       <br />
       <AsyncSelect
         loadOptions={loadOptions}

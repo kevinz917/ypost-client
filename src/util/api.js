@@ -1,18 +1,33 @@
 import axios from "axios";
 import { Base } from "./base";
+import { sendAmplitudeData } from "../util/amplitude";
 
 // Create card
-const createCard = async (author, recipient, message, audioFile, sticker) => {
-  console.log("Creating new card");
-
+const createCard = async (
+  author,
+  recipient,
+  email,
+  message,
+  audioFile,
+  sticker
+) => {
   const data = new FormData();
-  data.append("author", author);
+  if (author === "") {
+    data.append("author", "anonymous");
+  } else {
+    data.append("author", author);
+  }
+
   data.append("recipient", recipient);
+  data.append("email", email);
   data.append("message", message);
-  data.append("sticker", sticker);
   if (audioFile) {
     data.append("file", audioFile, "sample");
   }
+  sticker.forEach((x) => {
+    sendAmplitudeData(x);
+    data.append("sticker", x);
+  });
 
   axios.post(`${Base}/card/new`, data);
 };
@@ -41,4 +56,13 @@ const setOpened = async (id) => {
   await axios.post(`${Base}/card/opened`, { _id: id });
 };
 
-export { createCard, fetchCard, fetchStudents, setOpened };
+// Get number of letters
+const fetchCount = async () => {
+  let fetchedCount = await axios.get(`${Base}/card/count`);
+
+  if (fetchedCount) {
+    return fetchedCount;
+  }
+};
+
+export { createCard, fetchCard, fetchStudents, setOpened, fetchCount };

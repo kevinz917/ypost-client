@@ -1,0 +1,18 @@
+.letter_cnt_container {
+  text-align: right;
+}
+
+.letter_cnt_label {
+  opacity: 0.6;
+}
+
+.letter_cnt_val {
+  font-weight: 800;
+  font-size: 22px;
+  transition: 0.2s;
+}
+
+.letter_cnt_val:hover {
+  color: white;
+  text-shadow: 0 0 8px #fff, 0 0 11px #fff, 0 0 14px #e60073, 0 0 17px #e60073;
+}

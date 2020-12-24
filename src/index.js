@@ -10,6 +10,10 @@ import { Provider } from "react-redux";
 import { MasterReducer } from "./redux/masterReducer";
 import { PROD } from "./util/base";
 
+import { initAmplitude } from "./util/amplitude";
+
+initAmplitude();
+
 const composeEnhancer =
   (PROD !== "production" &&
     typeof window !== "undefined" &&

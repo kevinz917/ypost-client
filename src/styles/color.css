@@ -10,10 +10,6 @@
   --coral: #fc777b;
 }
 
-.backgroundColor {
-  background-color: var(--pageBackground);
-}
-
 .textMain {
   color: var(--brown100);
 }

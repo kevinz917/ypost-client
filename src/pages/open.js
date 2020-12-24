@@ -7,6 +7,7 @@ import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
+import { sendAmplitudeData } from "../util/amplitude";
 
 const timeout = (delay) => {
   return new Promise((res) => setTimeout(res, delay));
@@ -15,7 +16,7 @@ const timeout = (delay) => {
 const Open = (props) => {
   const letterId = props.match.params.id;
   const [isLoading, setIsLoading] = useState(true);
-  const [sent, setSent] = useState(false);
+  const [sent, setSent] = useState(0);
   const [letterContent, setLetterContent] = useState({});
   const [pageState, setPageState] = useState("");
 
@@ -33,16 +34,13 @@ const Open = (props) => {
   useEffect(() => {
     const onMount = async () => {
       setPageState("Opening");
+      sendAmplitudeData("Opened letter");
       // Check if it's first time visiting website
       if (localStorage.getItem("sent") === null) {
-        localStorage.setItem("sent", false);
+        localStorage.setItem("sent", 0);
       }
       if (localStorage.getItem("letters") === null) {
         localStorage.setItem("letters", JSON.stringify([]));
-      }
-      // Check if user has sent letter before
-      if (JSON.parse(localStorage.getItem("sent")) === true) {
-        setSent(true);
       }
 
       let fetchedCard = await fetchCard(letterId);
@@ -59,8 +57,10 @@ const Open = (props) => {
         temp.push(fetchedCard._id);
         localStorage.setItem("letters", JSON.stringify(temp));
       }
+      setSent(JSON.parse(localStorage.getItem("sent")));
       setIsLoading(false);
       await timeout(2000);
+
       setPageState("Opened");
     };
     onMount();

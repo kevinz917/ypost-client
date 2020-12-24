@@ -11,6 +11,7 @@ import ReactAudioPlayer from "react-audio-player";
 import PaperCard from "../components/papercard";
 import Sticker from "../components/sticker";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { sendAmplitudeData } from "../util/amplitude";
 
 // Redux
 import { SET_VAL } from "../redux/masterReducer";
@@ -40,9 +41,21 @@ const Write = (props) => {
   // sticker array
   const sources = [
     "https://media.giphy.com/media/VKwspRV2pafJu/giphy.gif",
-    "https://media.giphy.com/media/R7AW255ijTdV6/giphy.gif",
     "https://media.giphy.com/media/PuKSVqbw0hEpq/giphy.gif",
+    "https://media.giphy.com/media/11YoNDzlP6VSSs/giphy.gif",
+    "https://media.giphy.com/media/R7AW255ijTdV6/giphy.gif",
     "https://media.giphy.com/media/6eEWybJorTCvK/giphy.gif",
+    "https://media.giphy.com/media/l0HU9ZInhMHMO71Cw/giphy.gif",
+    "https://media.giphy.com/media/jnpF4fu32fhqE/giphy.gif",
+    "https://media.giphy.com/media/9JrvLb0fnrn7k1ZjhX/giphy.gif",
+    "https://media.giphy.com/media/3oz8xALpV1X2BPo7cI/giphy.gif",
+    "https://media.giphy.com/media/xTk9ZLRMhW9wrSUf4c/giphy.gif",
+    "https://media.giphy.com/media/l0HlNYLArnTIYvntm/giphy.gif",
+    "https://media.giphy.com/media/RdzzVrtvfqnM4/giphy.gif",
+    "https://media.giphy.com/media/hFIq9i5y2H10Q/giphy.gif",
+    "https://media.giphy.com/media/13lIFCT4YxJSes/giphy.gif",
+    "https://media.giphy.com/media/xz9j6yOIO2as0/giphy.gif",
+    "https://media.giphy.com/media/xUOxf7dQFhQ1NWnRBK/giphy.gif",
   ];
 
   const validate = async (e) => {
@@ -50,6 +63,7 @@ const Write = (props) => {
       setErrorMessage("Please type or record a message!");
     } else {
       setIsPreview(true);
+      sendAmplitudeData("Previewed letter");
     }
   };
 
@@ -112,11 +126,13 @@ const Write = (props) => {
     return {
       author: stateVal.author,
       recipient: stateVal.selectedStudent,
+      email: stateVal.email,
       message: stateVal.message,
       sticker: selected_stickers,
+      audioFile: audioFile,
       audioUrl: audioUrl,
     };
-  }, [isPreview, selected_stickers, stateVal, audioUrl]);
+  }, [isPreview, selected_stickers, stateVal, audioFile, audioUrl]);
 
   return isPreview ? (
     <Letter letterContent={letterContent} setIsPreview={setIsPreview} />
@@ -130,7 +146,7 @@ const Write = (props) => {
       <div className="h2">Who is this from?</div>
       <input
         className="inputMain"
-        placeholder="Your name, or leave it blank :)"
+        placeholder="Your name, or leave it blank"
         value={stateVal.author}
         onChange={(e) => dispatch(SET_VAL("author", e.target.value))}
       />
