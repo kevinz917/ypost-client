@@ -15,6 +15,7 @@ import Demo from "./pages/demo";
 import Open from "./pages/open";
 import About from "./pages/about";
 import { casCheck } from "./util/api";
+import Memories from "./pages/memories";
 
 function App() {
   const isLoading = useSelector((state) => state.state.isLoading);
@@ -42,6 +43,7 @@ function App() {
           <Route path="/write" component={Write} />
           <Route path="/letter/:id" component={Open} />
           <Route path="/about" component={About} />
+          <Route path="/user/:id" component={Memories} />
           <Route path="/" component={Landing} />
         </Switch>
         <Route

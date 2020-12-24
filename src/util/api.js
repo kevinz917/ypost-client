@@ -75,6 +75,14 @@ const casCheck = async () => {
   }
 };
 
+const fetchUserCards = async (id) => {
+  let fetchedCards = await axios.get(`${Base}/card/user/${id}`);
+  if (fetchedCards) {
+    return fetchedCards.data.cards;
+  }
+  return "invalid user :(";
+};
+
 export {
   createCard,
   fetchCard,
@@ -82,4 +90,5 @@ export {
   setOpened,
   fetchCount,
   casCheck,
+  fetchUserCards,
 };
