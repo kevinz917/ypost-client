@@ -75,8 +75,19 @@ const About = () => {
           target="_blank"
           className="hyperlink italic"
         >
-          join us.
-        </a>
+          join us
+        </a>.
+      </div>
+      <br />
+        <div>
+        To report a problem or share a thought, contact us at&nbsp;
+        <a
+          href="mailto: ypost.connect@gmail.com"
+          target="_blank"
+          className="hyperlink italic"
+        >
+          ypost.connect@gmail.com
+        </a>.
       </div>
     </PaperCard>
   );
