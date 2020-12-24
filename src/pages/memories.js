@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { sendAmplitudeData } from "../util/amplitude";
-import { SET_VAL } from "../redux/masterReducer";
 import { fetchUserCards } from "../util/api";
-import Letter from "../components/letter";
 import MemoryLetter from "../components/memoryLetter";
 import Flake from "../assets/flake.svg";
 
@@ -15,10 +12,7 @@ import "../styles/animation.css";
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 const Memories = (props) => {
-  const dispatch = useDispatch();
-
   const [userCards, setUserCards] = useState([]);
-  const stateVal = useSelector((state) => state.state);
   const [loadingState, setLoadingState] = useState(0);
 
   useEffect(() => {
