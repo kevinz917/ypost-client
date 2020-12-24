@@ -194,7 +194,8 @@ const Write = (props) => {
               (index === brush_color ? "" : " " + styles.not_selected)
             }
             style={{ backgroundColor: color }}
-            onClick={() => {
+            onClick={(e) => {
+              sendAmplitudeData(`${color}`);
               setBrushcolor(index);
             }}
           ></div>

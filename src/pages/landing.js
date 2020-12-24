@@ -39,13 +39,12 @@ const Landing = (props) => {
       }
       setLoadingState(1);
       await delay(800);
+      dispatch(SET_VAL("isLoading", false));
       setLoadingState(2);
-      await delay(50);
       const letterCount = await fetchCount();
       if (letterCount && letterCount.data) {
         setLetterCount(letterCount.data.count);
       }
-      dispatch(SET_VAL("isLoading", false));
     };
 
     onMount();
