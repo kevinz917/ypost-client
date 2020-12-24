@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import PaperCard from "../components/papercard";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchStudents, fetchCount } from "../util/api";
 import { SET_VAL } from "../redux/masterReducer";
@@ -9,6 +8,7 @@ import AsyncSelect from "react-select/async";
 import Flake from "../assets/flake.svg";
 import { sendAmplitudeData } from "../util/amplitude";
 import styles from "./landing.module.css";
+import { Base } from "../util/base";
 
 import "../styles/color.css";
 import "../styles/layout.css";
@@ -110,8 +110,10 @@ const Landing = (props) => {
         <br />
         <div className="body textMain">
           3 Yalies built YPost so you can send virtual postcards to friends with{" "}
-          <span style={{ fontWeight: "bold" }}>gifs and audio messages</span>!
-          Check it out below, and Happy holidays :)
+          <span style={{ fontWeight: "bold" }}>
+            drawings, gifs, and audio messages
+          </span>
+          ! Check it out below, and Happy Holidays :)
         </div>
         <br />
         <div className="body textMain italic">
@@ -153,7 +155,7 @@ const Landing = (props) => {
           <button
             className="buttonMain buttonRecord"
             onClick={() => {
-              window.location.href = `${process.env.REACT_APP_BACKEND_URL}/auth/cas`;
+              window.location.href = `${Base}/auth/cas`;
             }}
           >
             Login with CAS
