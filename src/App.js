@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Snowfall from "react-snowfall";
 import { useSelector } from "react-redux";
@@ -16,8 +16,13 @@ import About from "./pages/about";
 
 function App() {
   const isLoading = useSelector((state) => state.state.isLoading);
+  const [closed, setClosed] = useState(false)
   return (
     <div className="backgroundLayout">
+      {closed === false && <div class="alert">
+        <span class="closebtn" onClick={()=>{setClosed(true)}}>&times;</span>
+        💌 &nbsp;New feature alert: share a drawing with your YPost!
+      </div>}
       <Router>
         <Switch>
           <Route path="/demo" component={Demo} />

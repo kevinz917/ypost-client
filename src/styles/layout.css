@@ -40,6 +40,31 @@
   height: 40px;
 }
 
+.alert {
+  padding: 2px;
+  background-color: var(--coral);
+  opacity: 100%;
+  color: white;
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.closebtn {
+  margin-left: 20px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 24px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
 .footer {
   width: 100%;
   color: rgb(219, 173, 143);
