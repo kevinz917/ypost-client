@@ -15,15 +15,18 @@ import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
 const Landing = (props) => {
   const dispatch = useDispatch();
   const [letter_count, setLetterCount] = useState(-1);
+  const [loadingState, setLoadingState] = useState(0);
 
   // On mount
   useEffect(() => {
     const onMount = async () => {
       sendAmplitudeData("Visited home page");
-      dispatch(SET_VAL("isLoading", true));
+      setLoadingState(0);
       let studentList = await fetchStudents();
       dispatch(SET_VAL("studentList", studentList));
 
@@ -33,7 +36,10 @@ const Landing = (props) => {
       if (localStorage.getItem("letters") === null) {
         localStorage.setItem("letters", JSON.stringify([]));
       }
-      dispatch(SET_VAL("isLoading", false));
+      setLoadingState(1);
+      await delay(800);
+      setLoadingState(2);
+      await delay(50);
       const letterCount = await fetchCount();
       if (letterCount && letterCount.data) {
         setLetterCount(letterCount.data.count);
@@ -74,10 +80,16 @@ const Landing = (props) => {
     dispatch(SET_VAL("selectedStudent", e ? e.label : ""));
   };
   // console.log(stateVal.netid);
-  return stateVal.isLoading ? (
+  return loadingState === 0 ? (
     <img
       src={Flake}
       className="rotate snowflake paperCardContainer"
+      alt="snow"
+    />
+  ) : loadingState === 1 ? (
+    <img
+      src={Flake}
+      className="paperCardContainer snowflake move-me-3"
       alt="snow"
     />
   ) : (
@@ -140,13 +152,17 @@ const Landing = (props) => {
             <button className="buttonMain buttonRecord">Login with CAS</button>
           </a>
         )}
-        <button className="buttonMain buttonPrimary" onClick={validate}>
-          Continue →
-        </button>
-        {errorMessage ? (
+        {stateVal.auth ? (
           <React.Fragment>
-            <br />
-            <div className="body textMain italic">{errorMessage}</div>
+            <button className="buttonMain buttonPrimary" onClick={validate}>
+              Continue →
+            </button>
+            {errorMessage ? (
+              <React.Fragment>
+                <br />
+                <div className="body textMain italic">{errorMessage}</div>
+              </React.Fragment>
+            ) : null}
           </React.Fragment>
         ) : null}
       </div>
