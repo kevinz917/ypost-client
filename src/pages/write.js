@@ -76,6 +76,7 @@ const Write = (props) => {
         audioFile: audioFile,
         audioUrl: audioUrl,
         drawing: drawing_ref.current.getSaveData(),
+        netId: stateVal.netid,
       });
       sendAmplitudeData("Previewed letter");
     }

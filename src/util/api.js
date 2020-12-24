@@ -10,7 +10,8 @@ const createCard = async (
   message,
   audioFile,
   sticker,
-  drawing
+  drawing,
+  netId
 ) => {
   const data = new FormData();
   if (author === "") {
@@ -30,7 +31,7 @@ const createCard = async (
     sendAmplitudeData(x);
     data.append("sticker", x);
   });
-
+  data.append("netId", netId);
   axios.post(`${Base}/card/new`, data);
 };
 

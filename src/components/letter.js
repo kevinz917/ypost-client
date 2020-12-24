@@ -26,7 +26,8 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       letterContent.message,
       letterContent.audioFile,
       letterContent.sticker,
-      letterContent.drawing
+      letterContent.drawing,
+      letterContent.netId
     );
 
     if (JSON.parse(localStorage.getItem("sent")) === 0) {
