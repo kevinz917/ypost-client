@@ -9,7 +9,9 @@ const createCard = async (
   email,
   message,
   audioFile,
-  sticker
+  sticker,
+  drawing,
+  netId
 ) => {
   const data = new FormData();
   if (author === "") {
@@ -21,6 +23,7 @@ const createCard = async (
   data.append("recipient", recipient);
   data.append("email", email);
   data.append("message", message);
+  data.append("drawing", drawing);
   if (audioFile) {
     data.append("file", audioFile, "sample");
   }
@@ -28,7 +31,7 @@ const createCard = async (
     sendAmplitudeData(x);
     data.append("sticker", x);
   });
-
+  data.append("netId", netId);
   axios.post(`${Base}/card/new`, data);
 };
 
@@ -65,6 +68,14 @@ const fetchCount = async () => {
   }
 };
 
+const casCheck = async () => {
+  let auth = await axios.get(`${Base}/auth/check`, { withCredentials: true });
+  // console.log(auth);
+  if (auth) {
+    return auth;
+  }
+};
+
 const fetchUserCards = async (id) => {
   let fetchedCards = await axios.get(`${Base}/card/user/${id}`);
   if (fetchedCards) {
@@ -79,5 +90,6 @@ export {
   fetchStudents,
   setOpened,
   fetchCount,
+  casCheck,
   fetchUserCards,
 };
