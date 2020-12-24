@@ -42,7 +42,7 @@ function App() {
 
   return (
     <div className="backgroundLayout">
-      {closed ? null : (
+      {closed ? null : isLoading ? null : (
         <div className="alert">
           <span
             className="closebtn"
