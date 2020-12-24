@@ -12,25 +12,36 @@ import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
 const Memories = (props) => {
   const dispatch = useDispatch();
 
   const [userCards, setUserCards] = useState([]);
   const stateVal = useSelector((state) => state.state);
+  const [loadingState, setLoadingState] = useState(0);
 
   useEffect(() => {
     const onMount = async () => {
-      dispatch(SET_VAL("isLoading", true));
+      setLoadingState(0);
       let fetchedCards = await fetchUserCards(props.match.params.id);
       setUserCards(fetchedCards);
-      dispatch(SET_VAL("isLoading", false));
+      setLoadingState(1);
+      await delay(800);
+      setLoadingState(2);
     };
     onMount();
   }, []);
-  return stateVal.isLoading ? (
+  return loadingState === 0 ? (
     <img
       src={Flake}
       className="rotate snowflake paperCardContainer"
+      alt="snow"
+    />
+  ) : loadingState === 1 ? (
+    <img
+      src={Flake}
+      className="paperCardContainer snowflake move-me-3"
       alt="snow"
     />
   ) : (

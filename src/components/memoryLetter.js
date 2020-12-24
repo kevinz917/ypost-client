@@ -30,7 +30,7 @@ const useRotate = () => {
         opacity: 1,
       }
     : {
-        transform: `rotate(${randNum(-7, 7)}deg) scale(1.1)`,
+        transform: `rotate(${randNum(-4, 4)}deg) scale(1.08)`,
       };
 
   return { rotateStyle, onMouseEnter, onMouseLeave };
