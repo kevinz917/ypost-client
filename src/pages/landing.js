@@ -21,6 +21,7 @@ const Landing = (props) => {
   const dispatch = useDispatch();
   const [letter_count, setLetterCount] = useState(-1);
   const [loadingState, setLoadingState] = useState(0);
+  const stateVal = useSelector((state) => state.state);
 
   // On mount
   useEffect(() => {
@@ -28,9 +29,10 @@ const Landing = (props) => {
       dispatch(SET_VAL("isLoading", true));
       sendAmplitudeData("Visited home page");
       setLoadingState(0);
-      let studentList = await fetchStudents();
-      dispatch(SET_VAL("studentList", studentList));
-
+      if (stateVal.auth) {
+        let studentList = await fetchStudents();
+        dispatch(SET_VAL("studentList", studentList));
+      }
       if (localStorage.getItem("sent") === null) {
         localStorage.setItem("sent", 0);
       }
@@ -48,9 +50,8 @@ const Landing = (props) => {
     };
 
     onMount();
-  }, [dispatch]);
+  }, [dispatch, stateVal.auth]);
 
-  const stateVal = useSelector((state) => state.state);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const validate = (e) => {
