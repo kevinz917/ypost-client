@@ -76,82 +76,12 @@ const About = () => {
           className="hyperlink italic"
         >
           join us
-        </a>.
+        </a>
+        .
       </div>
       <br />
-        <div>
-        To report a problem or share a thought, contact us at&nbsp;
-        <a
-          href="mailto: ypost.connect@gmail.com"
-          target="_blank"
-          className="hyperlink italic"
-        >
-          ypost.connect@gmail.com
-        </a>.
-      </div>
     </PaperCard>
   );
 };
 
 export default About;
-
-// <div className="about-title">
-// YPost is an exploration of how we can use technology <br />
-// to facilitate meaningful connection among people.
-// </div>;
-
-// <div className="about-citation">
-//   Loneliness and the Workplace, 2020 U.S. Report{" "}
-//   <a
-//     className="hyperlink"
-//     target="_blank"
-//     rel="noreferrer noopener"
-//     href="https://www.cigna.com/about-us/newsroom/news-and-views/press-releases/2020/cigna-takes-action-to-combat-the-rise-of-loneliness-and-improve-mental-wellness-in-america"
-//   >
-//     LINK
-//   </a>
-// </div>;
-
-// <div className="body">
-// In our socially distant times, our team hopes to provide a simple,
-// unique method of communication—so we can find connection in separation.
-// </div>
-// <div className="body">
-// The holidays are a time for reflection—about the people you love, the
-// memories you have made. Who has supported you this semester? Made you
-// laugh? Made our uncertain year feel just a bit less chaotic? Let’s bring
-// some light to their day.
-// </div>
-
-// <div className="about-header">let's pay kindness forward</div>
-//       <div className="about-quote">
-//         “[L]oneliness is not about how many people you interact with. … It's
-//         about the meaning you share with other people.”
-//       </div>
-//       <div className="about-citation">
-//         Johann Hari on the Your Undivided Attention, Episode 8: The Opposite of
-//         Addition{" "}
-//         <a
-//           className="hyperlink"
-//           target="_blank"
-//           rel="noreferrer noopener"
-//           href="https://assets-global.website-files.com/5f0e1294f002b1bb26e1f304/5f0e1294f002b12e30e1f418_CHT-Undivided-Attention-Podcast-Ep.8-The-Opposite-of-Addiction.pdf"
-//         >
-//           LINK
-//         </a>
-//       </div>
-
-// <div className="body">
-//   We are in the midst of a pandemic—a mental health pandemic—and young people
-//   are particularly vulnerable. A recent survey by&nbsp;
-//   <a
-//     className="hyperlink"
-//     target="_blank"
-//     rel="noreferrer noopener"
-//     href="https://www.cigna.com/about-us/newsroom/news-and-views/press-releases/2020/cigna-takes-action-to-combat-the-rise-of-loneliness-and-improve-mental-wellness-in-america"
-//   >
-//     CIGNA
-//   </a>{" "}
-//   finds that nearly three quarters of the Gen Z population sometimes or always
-//   feels alone.
-// </div>;

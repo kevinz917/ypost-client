@@ -33,7 +33,6 @@ const Done = (props) => {
           </Link>
         </div>
       ) : null}
-
       <br />
       <div className="paperCard" style={{ maxWidth: 450 }}>
         <div className="horizontalInbetween">

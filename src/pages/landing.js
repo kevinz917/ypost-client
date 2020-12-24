@@ -6,13 +6,14 @@ import { SET_VAL } from "../redux/masterReducer";
 import { Link } from "react-router-dom";
 import Stamp from "../assets/stamp.svg";
 import AsyncSelect from "react-select/async";
+import Flake from "../assets/flake.svg";
+import { sendAmplitudeData } from "../util/amplitude";
+import styles from "./landing.module.css";
+
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
-import Flake from "../assets/flake.svg";
-import { sendAmplitudeData } from "../util/amplitude";
-import styles from "./landing.module.css";
 
 const Landing = (props) => {
   const dispatch = useDispatch();
@@ -81,77 +82,82 @@ const Landing = (props) => {
       alt="snow"
     />
   ) : (
-    <PaperCard>
-      <div className="horizontalInbetween">
-        <div className="h1 textMain">Hey Yalies!</div>
-        <img
-          src={Stamp}
-          alt="logo"
-          style={{ transform: "rotate(20deg)", width: "75px" }}
+    <div className="paperCardContainer">
+      <div className="paperCard">
+        <div className="horizontalInbetween">
+          <div className="h1 textMain">Hey Yalies!</div>
+          <img
+            src={Stamp}
+            alt="logo"
+            style={{ transform: "rotate(20deg)", width: "75px" }}
+          />
+        </div>
+        <br />
+        <div className="body textMain italic">Who do you miss the most?</div>
+        <br />
+        <div className="body textMain">
+          3 Yalies built YPost so you can send virtual postcards to friends with{" "}
+          <span style={{ fontWeight: "bold" }}>gifs and audio messages</span>!
+          Check it out below, and Happy holidays :)
+        </div>
+        <br />
+        <div className="body textMain italic">
+          <Link to="/about" className="hyperlink">
+            About this project.
+          </Link>
+        </div>
+        <br />
+        <div className={styles.letter_cnt_container + " body textMain fade-in"}>
+          {letter_count === -1 ? (
+            <span className={styles.letter_cnt_label}>Loading...</span>
+          ) : (
+            <div className="fade-in">
+              <span className={styles.letter_cnt_label}>
+                Total Letters Sent:{" "}
+              </span>
+              <span className={styles.letter_cnt_val}>{letter_count}</span>
+            </div>
+          )}
+        </div>
+        <br />
+        <AsyncSelect
+          loadOptions={loadOptions}
+          placeholder="Type in a recipient's name..."
+          autoFocus
+          onChange={onInputChange}
+          isClearable={true}
+          value={
+            stateVal.email
+              ? {
+                  value: stateVal.email,
+                  label: stateVal.selectedStudent,
+                }
+              : null
+          }
         />
+        <button className="buttonMain buttonPrimary" onClick={validate}>
+          Continue →
+        </button>
+        {errorMessage ? (
+          <React.Fragment>
+            <br />
+            <div className="body textMain italic">{errorMessage}</div>
+          </React.Fragment>
+        ) : null}
       </div>
       <br />
-      <div className="body textMain italic">Who do you miss the most?</div>
-      <br />
-      <div className="body textMain">
-        3 Yalies built YPost so you can send virtual postcards to friends with{" "}
-        <span style={{ fontWeight: "bold" }}>gifs and audio messages</span>!
-        Check it out below, and Happy holidays :)
-      </div>
-      <br />
-      <div className="body textMain italic">
-        <Link to="/about" className="hyperlink">
-          About this project.
-        </Link>
-      </div>
-      <br />
-      <div className={styles.letter_cnt_container + " body textMain fade-in"}>
-        {letter_count === -1 ? (
-          <span className={styles.letter_cnt_label}>Loading...</span>
-        ) : (
-          <div className="fade-in">
-            <span className={styles.letter_cnt_label}>
-              Total Letters Sent:{" "}
-            </span>
-            <span className={styles.letter_cnt_val}>{letter_count}</span>
-          </div>
-        )}
-      </div>
-      <br />
-      <AsyncSelect
-        loadOptions={loadOptions}
-        placeholder="Type in a recipient's name..."
-        autoFocus
-        onChange={onInputChange}
-        isClearable={true}
-        value={
-          stateVal.email
-            ? {
-                value: stateVal.email,
-                label: stateVal.selectedStudent,
-              }
-            : null
-        }
-      />
-      <button className="buttonMain buttonPrimary" onClick={validate}>
-        Continue →
-      </button>
-      <br />
-      <div>
-      To report a problem or share a thought, contact us at&nbsp;
+      <div className="report-container">
+        To report a problem or share a thought, talk to us{" "}
         <a
-          href="mailto: ypost.connect@gmail.com"
+          href="mailto: founders@ypost.app"
           target="_blank"
           className="hyperlink italic"
         >
-          ypost.connect@gmail.com
-        </a>. 
+          here
+        </a>
+        .
       </div>
-      <br />
-      {errorMessage ? (
-        <div className="body textMain italic">{errorMessage}</div>
-      ) : null}
-    </PaperCard>
+    </div>
   );
 };
 
