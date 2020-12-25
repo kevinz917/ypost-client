@@ -55,15 +55,6 @@ const MemoryLetter = ({ letterContent }) => {
       </div>
       <br />
       <div className="body textMain">{letterContent.message}</div>
-      {letterContent.audioUrl ? (
-        <React.Fragment>
-          <br />
-          <ReactAudioPlayer src={letterContent.audioUrl} controls />
-          <br />
-        </React.Fragment>
-      ) : null}
-      <br />
-      <div className="body textMain">{letterContent.message}</div>
       {letterContent.drawing &&
         JSON.parse(letterContent.drawing).lines.length > 0 && (
           <CanvasDraw
@@ -77,6 +68,14 @@ const MemoryLetter = ({ letterContent }) => {
             disabled={true}
           />
         )}
+      {letterContent.audioUrl ? (
+        <>
+          <br />
+          <ReactAudioPlayer src={letterContent.audioUrl} controls />
+          <br />
+        </>
+      ) : null}
+      <br />
       <div className="body textMain" style={{ textAlign: "right" }}>
         Sincerely, <br />{" "}
         {letterContent.author ? letterContent.author : "Anonymous :)"}
