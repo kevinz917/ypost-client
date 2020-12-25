@@ -32,10 +32,10 @@ function App() {
       const auth = await casCheck();
       // console.log(auth);
       if (!auth || !auth.data.auth || !auth.data.user) {
-        dispatch(SET_VAL("auth", false));
+        dispatch(SET_VAL("auth", 0));
         dispatch(SET_VAL("netid", ""));
       } else {
-        dispatch(SET_VAL("auth", true));
+        dispatch(SET_VAL("auth", 1));
         dispatch(SET_VAL("netid", auth.data.user.netId));
       }
     };

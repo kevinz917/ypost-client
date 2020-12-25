@@ -48,8 +48,7 @@ const Landing = (props) => {
         setLetterCount(letterCount.data.count);
       }
     };
-
-    onMount();
+    if (stateVal.auth !== -1) onMount();
   }, [dispatch, stateVal.auth]);
 
   const [errorMessage, setErrorMessage] = useState(null);
