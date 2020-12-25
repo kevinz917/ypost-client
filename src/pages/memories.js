@@ -19,6 +19,7 @@ const Memories = (props) => {
     const onMount = async () => {
       setLoadingState(0);
       let fetchedCards = await fetchUserCards(props.match.params.id);
+      fetchedCards.reverse();
       setUserCards(fetchedCards);
       setLoadingState(1);
       await delay(800);
@@ -41,6 +42,11 @@ const Memories = (props) => {
   ) : (
     <div className="paperCardContainer fade-in">
       <div style={{ height: "40px" }} />
+      <div className="link" onClick={(e) => props.history.push("/")}>
+        <span className="navigation body">← Homepage</span>
+      </div>
+      <hr />
+      <br />
       <div className="h1 textMain">Your memories 💌 </div>
       <div className="body" style={{ opacity: "0.7" }}>
         {userCards.length} postcards
