@@ -18,6 +18,7 @@ import About from "./pages/about";
 import Test from "./pages/test";
 import { casCheck } from "./util/api";
 import Memories from "./pages/memories";
+import Ticker from "react-ticker";
 
 import "./styles/layout.css";
 
@@ -54,7 +55,13 @@ function App() {
           >
             &times;
           </span>
-          💌 &nbsp;New feature: share a drawing with your YPost!
+          <Ticker>
+            {() => (
+              <div style={{ margin: "0 25px" }}>
+                💌 &nbsp;New feature: share a drawing with your YPost!
+              </div>
+            )}
+          </Ticker>
         </div>
       )}
       <Router>
