@@ -52,7 +52,9 @@ function App() {
           >
             &times;
           </span>
-          💌 &nbsp;New feature: share a drawing with your YPost!
+          💌 &nbsp;New feature:{" "}
+          <span style={{ fontWeight: "bold" }}>ONE-TIME</span> Authentication
+          via Yale CAS!
         </div>
       )}
       <Router>
