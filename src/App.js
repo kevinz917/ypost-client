@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Snowfall from "react-snowfall";
 import { useSelector, useDispatch } from "react-redux";
 import { SET_VAL } from "./redux/masterReducer";
+import axios from "axios";
 
 // Footer
 import Footer from "./components/footer";
@@ -22,7 +23,7 @@ import "./styles/layout.css";
 
 function App() {
   const dispatch = useDispatch();
-
+  axios.defaults.withCredentials = true;
   const [closed, setClosed] = useState(false);
   const isLoading = useSelector((state) => state.state.isLoading);
 
