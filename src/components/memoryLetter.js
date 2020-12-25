@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
 import ReactAudioPlayer from "react-audio-player";
 
 import "../styles/color.css";
@@ -7,6 +6,8 @@ import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 import styles from "./letter.module.css";
+import CanvasDraw from "react-canvas-draw";
+import canvas_styles from "../pages/write.module.css";
 
 // Rotate ref
 const useRotate = () => {
@@ -38,6 +39,13 @@ const useRotate = () => {
 
 const MemoryLetter = ({ letterContent }) => {
   const { rotateStyle, ...rotateProps } = useRotate();
+  const drawing_ref = useRef(null);
+
+  useEffect(() => {
+    if (drawing_ref && drawing_ref.current && letterContent.drawing) {
+      drawing_ref.current.loadSaveData(letterContent.drawing);
+    }
+  }, [letterContent]);
 
   if (!letterContent) return <div />;
   return (
@@ -55,6 +63,20 @@ const MemoryLetter = ({ letterContent }) => {
         </React.Fragment>
       ) : null}
       <br />
+      <div className="body textMain">{letterContent.message}</div>
+      {letterContent.drawing &&
+        JSON.parse(letterContent.drawing).lines.length > 0 && (
+          <CanvasDraw
+            ref={drawing_ref}
+            lazyRadius={0}
+            brushRadius={5}
+            hideGrid={true}
+            canvasWidth={"100%"}
+            canvasHeight={200}
+            className={canvas_styles.canvas}
+            disabled={true}
+          />
+        )}
       <div className="body textMain" style={{ textAlign: "right" }}>
         Sincerely, <br />{" "}
         {letterContent.author ? letterContent.author : "Anonymous :)"}
