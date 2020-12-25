@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import PaperCard from "../components/papercard";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchStudents, fetchCount } from "../util/api";
 import { SET_VAL } from "../redux/masterReducer";
@@ -9,32 +8,41 @@ import AsyncSelect from "react-select/async";
 import Flake from "../assets/flake.svg";
 import { sendAmplitudeData } from "../util/amplitude";
 import styles from "./landing.module.css";
+import { Base } from "../util/base";
 
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
 const Landing = (props) => {
   const dispatch = useDispatch();
   const [letter_count, setLetterCount] = useState(-1);
+  const [loadingState, setLoadingState] = useState(0);
+  const stateVal = useSelector((state) => state.state);
 
   // On mount
   useEffect(() => {
     const onMount = async () => {
-      sendAmplitudeData("Visited home page");
       dispatch(SET_VAL("isLoading", true));
-
-      let studentList = await fetchStudents();
-      dispatch(SET_VAL("studentList", studentList));
-
+      sendAmplitudeData("Visited home page");
+      setLoadingState(0);
+      if (stateVal.auth) {
+        let studentList = await fetchStudents();
+        dispatch(SET_VAL("studentList", studentList));
+      }
       if (localStorage.getItem("sent") === null) {
         localStorage.setItem("sent", 0);
       }
       if (localStorage.getItem("letters") === null) {
         localStorage.setItem("letters", JSON.stringify([]));
       }
+      setLoadingState(1);
+      await delay(800);
       dispatch(SET_VAL("isLoading", false));
+      setLoadingState(2);
       const letterCount = await fetchCount();
       if (letterCount && letterCount.data) {
         setLetterCount(letterCount.data.count);
@@ -42,9 +50,8 @@ const Landing = (props) => {
     };
 
     onMount();
-  }, [dispatch]);
+  }, [dispatch, stateVal.auth]);
 
-  const stateVal = useSelector((state) => state.state);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const validate = (e) => {
@@ -74,11 +81,17 @@ const Landing = (props) => {
     dispatch(SET_VAL("email", e ? e.value : ""));
     dispatch(SET_VAL("selectedStudent", e ? e.label : ""));
   };
-
-  return stateVal.isLoading ? (
+  // console.log(stateVal.netid);
+  return loadingState === 0 ? (
     <img
       src={Flake}
       className="rotate snowflake paperCardContainer"
+      alt="snow"
+    />
+  ) : loadingState === 1 ? (
+    <img
+      src={Flake}
+      className="paperCardContainer snowflake move-me-3"
       alt="snow"
     />
   ) : (
@@ -97,8 +110,10 @@ const Landing = (props) => {
         <br />
         <div className="body textMain">
           3 Yalies built YPost so you can send virtual postcards to friends with{" "}
-          <span style={{ fontWeight: "bold" }}>gifs and audio messages</span>!
-          Check it out below, and Happy holidays :)
+          <span style={{ fontWeight: "bold" }}>
+            drawings, gifs, and audio messages
+          </span>
+          ! Check it out below, and Happy Holidays :)
         </div>
         <br />
         <div className="body textMain italic">
@@ -120,28 +135,43 @@ const Landing = (props) => {
           )}
         </div>
         <br />
-        <AsyncSelect
-          loadOptions={loadOptions}
-          placeholder="Type in a recipient's name..."
-          autoFocus
-          onChange={onInputChange}
-          isClearable={true}
-          value={
-            stateVal.email
-              ? {
-                  value: stateVal.email,
-                  label: stateVal.selectedStudent,
-                }
-              : null
-          }
-        />
-        <button className="buttonMain buttonPrimary" onClick={validate}>
-          Continue →
-        </button>
-        {errorMessage ? (
+        {stateVal.auth ? (
+          <AsyncSelect
+            loadOptions={loadOptions}
+            placeholder="Type in a recipient's name..."
+            autoFocus
+            onChange={onInputChange}
+            isClearable={true}
+            value={
+              stateVal.email
+                ? {
+                    value: stateVal.email,
+                    label: stateVal.selectedStudent,
+                  }
+                : null
+            }
+          />
+        ) : (
+          <button
+            className="buttonMain buttonRecord"
+            onClick={() => {
+              window.location.href = `${Base}/auth/cas`;
+            }}
+          >
+            Login with CAS
+          </button>
+        )}
+        {stateVal.auth ? (
           <React.Fragment>
-            <br />
-            <div className="body textMain italic">{errorMessage}</div>
+            <button className="buttonMain buttonPrimary" onClick={validate}>
+              Continue →
+            </button>
+            {errorMessage ? (
+              <React.Fragment>
+                <br />
+                <div className="body textMain italic">{errorMessage}</div>
+              </React.Fragment>
+            ) : null}
           </React.Fragment>
         ) : null}
       </div>

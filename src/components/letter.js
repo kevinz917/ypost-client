@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import "../styles/color.css";
@@ -12,14 +12,12 @@ import ReactAudioPlayer from "react-audio-player";
 import BlurredObject from "../assets/blurredObject.png";
 import { createCard } from "../util/api";
 import { sendAmplitudeData } from "../util/amplitude";
+import CanvasDraw from "react-canvas-draw";
+import canvas_styles from "../pages/write.module.css";
 
-const Letter = ({
-  letterContent,
-  sent = 0,
-  setIsPreview = null,
-  admin = true,
-}) => {
+const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
   let history = useHistory();
+  const drawing_ref = useRef(null);
   const sendLetter = async (e) => {
     let createdCard = await createCard(
       letterContent.author,
@@ -27,7 +25,9 @@ const Letter = ({
       letterContent.email,
       letterContent.message,
       letterContent.audioFile,
-      letterContent.sticker
+      letterContent.sticker,
+      letterContent.drawing,
+      letterContent.netId
     );
 
     if (JSON.parse(localStorage.getItem("sent")) === 0) {
@@ -37,6 +37,11 @@ const Letter = ({
     sendAmplitudeData("Sent letter");
     history.push("/done");
   };
+  useEffect(() => {
+    if (drawing_ref && drawing_ref.current && letterContent.drawing) {
+      drawing_ref.current.loadSaveData(letterContent.drawing);
+    }
+  }, [letterContent]);
 
   const randNum = (a, b) => {
     return Math.random() * (b - a) + a;
@@ -65,7 +70,22 @@ const Letter = ({
       </div>
       <br />
       {sent === 1 || setIsPreview ? (
-        <div className="body textMain">{letterContent.message}</div>
+        <>
+          <div className="body textMain">{letterContent.message}</div>
+          {letterContent.drawing &&
+            JSON.parse(letterContent.drawing).lines.length > 0 && (
+              <CanvasDraw
+                ref={drawing_ref}
+                lazyRadius={0}
+                brushRadius={5}
+                hideGrid={true}
+                canvasWidth={"100%"}
+                canvasHeight={200}
+                className={canvas_styles.canvas}
+                disabled={true}
+              />
+            )}
+        </>
       ) : (
         <img src={BlurredObject} alt="blurred" style={{ width: "100%" }} />
       )}
@@ -102,25 +122,20 @@ const Letter = ({
           ))}
         </div>
       )}
-      {!admin && (
-        <React.Fragment>
-          {setIsPreview ? (
-            <button className="buttonMain buttonPrimary" onClick={sendLetter}>
-              <div>Send letter →</div>
-            </button>
-          ) : (
-            <Link to="/" className="link">
-              {sent !== 1 ? (
-                <div>You must send a letter to unlock. Pay it forward!</div>
-              ) : null}
-              <button className="buttonMain buttonPrimary">
-                {sent === 1
-                  ? "Send letter to friend"
-                  : "Send a letter to unlock →"}
-              </button>
-            </Link>
-          )}
-        </React.Fragment>
+
+      {setIsPreview ? (
+        <button className="buttonMain buttonPrimary" onClick={sendLetter}>
+          <div>Send letter →</div>
+        </button>
+      ) : (
+        <Link to="/" className="link">
+          {sent !== 1 ? (
+            <div>You must send a letter to unlock. Pay it forward!</div>
+          ) : null}
+          <button className="buttonMain buttonPrimary">
+            {sent === 1 ? "Send letter to friend" : "Send a letter to unlock →"}
+          </button>
+        </Link>
       )}
     </PaperCard>
   );
