@@ -67,7 +67,7 @@ function App() {
           <Route path="/letter/:id" component={Open} />
           <Route path="/about" component={About} />
           <Route path="/user/:id" component={Memories} />
-          <Route path="/test" component={Test} />
+          {/* <Route path="/test" component={Test} /> */}
           <Route path="/" component={Landing} />
         </Switch>
         <Route
