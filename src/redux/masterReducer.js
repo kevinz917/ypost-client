@@ -18,7 +18,7 @@ const state = (
     message: "",
     author: "",
     audioFile: null,
-    auth: true,
+    auth: false,
     netid: "",
   },
   action
