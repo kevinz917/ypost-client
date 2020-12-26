@@ -65,9 +65,7 @@ const About = () => {
         className="link"
         style={{ display: "flex", justifyContent: "center" }}
       >
-        <button className="buttonMain buttonPrimary">
-          Send a Postcard Now
-        </button>
+        <button className="buttonMain buttonPrimary">Send a YPost Now</button>
       </Link>
       <br />
       <div className="body">

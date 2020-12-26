@@ -18,7 +18,7 @@ const useRotate = () => {
   };
 
   const onMouseEnter = () => {
-    console.log(true);
+    // console.log(true);
     setRotate(true);
   };
 
@@ -31,7 +31,7 @@ const useRotate = () => {
         opacity: 1,
       }
     : {
-        transform: `rotate(${randNum(-4, 4)}deg) scale(1.08)`,
+        transform: `rotate(${randNum(-4, 4)}deg) scale(1.02)`,
       };
 
   return { rotateStyle, onMouseEnter, onMouseLeave };
@@ -40,16 +40,26 @@ const useRotate = () => {
 const MemoryLetter = ({ letterContent }) => {
   const { rotateStyle, ...rotateProps } = useRotate();
   const drawing_ref = useRef(null);
+  const [width, setWidth] = useState(-1);
+  const ref = useRef(null);
 
   useEffect(() => {
     if (drawing_ref && drawing_ref.current && letterContent.drawing) {
       drawing_ref.current.loadSaveData(letterContent.drawing);
     }
+    if (ref.current) {
+      setWidth(ref.current.offsetWidth);
+    }
   }, [letterContent]);
 
   if (!letterContent) return <div />;
   return (
-    <div className="memoryCard" style={rotateStyle} {...rotateProps}>
+    <div
+      ref={ref}
+      className="memoryCard"
+      style={width > 500 ? rotateStyle : {}}
+      {...rotateProps}
+    >
       <div className="body textMain">
         Dear {letterContent.recipient.split(" ")[0]},
       </div>
@@ -88,7 +98,11 @@ const MemoryLetter = ({ letterContent }) => {
               <img
                 src={sticker}
                 alt="sticker"
-                width={100}
+                width={Math.min(
+                  150,
+                  (width - 56 - letterContent.sticker.length * 20) /
+                    letterContent.sticker.length
+                )}
                 className={styles.placedSticker}
               />
             </span>

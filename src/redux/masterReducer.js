@@ -13,13 +13,13 @@ const state = (
   state = {
     isLoading: false,
     studentList: [],
+    studentId: "none",
     selectedStudent: null,
     email: "",
     message: "",
     author: "",
     audioFile: null,
-    auth: true,
-    netid: "",
+    auth: -1,
   },
   action
 ) => {

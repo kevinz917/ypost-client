@@ -76,7 +76,7 @@
 
 .alert {
   padding: 6px;
-  background-color: #04a554;
+  background-color: #588fcf;
   opacity: 1;
   color: white;
   margin-bottom: 20px;
@@ -84,6 +84,7 @@
   font-weight: 600;
   max-width: 100vw;
   text-align: center;
+  white-space: nowrap;
 }
 
 .closebtn {
@@ -92,10 +93,10 @@
   font-weight: bold;
   float: right;
   font-size: 24px;
-  line-height: 20px;
+  line-height: 26px;
   cursor: pointer;
   transition: 0.3s;
-  margin-right: 20px;
+  margin-right: 1vw;
 }
 
 .closebtn:hover {

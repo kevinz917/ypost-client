@@ -69,10 +69,8 @@ const fetchCount = async () => {
 };
 
 const casCheck = async () => {
-  // console.log(Base);
   let auth = await axios.get(`${Base}/auth/check`);
-  console.log(`${Base}/auth/check`);
-  // console.log(auth);
+
   if (auth) {
     return auth;
   }

@@ -21,6 +21,7 @@ const Landing = (props) => {
   const dispatch = useDispatch();
   const [letter_count, setLetterCount] = useState(-1);
   const [loadingState, setLoadingState] = useState(0);
+  const [hovered, setHovered] = useState(false);
   const stateVal = useSelector((state) => state.state);
 
   // On mount
@@ -48,8 +49,7 @@ const Landing = (props) => {
         setLetterCount(letterCount.data.count);
       }
     };
-
-    onMount();
+    if (stateVal.auth !== -1) onMount();
   }, [dispatch, stateVal.auth]);
 
   const [errorMessage, setErrorMessage] = useState(null);
@@ -96,6 +96,37 @@ const Landing = (props) => {
     />
   ) : (
     <div className="paperCardContainer">
+      {stateVal.auth && stateVal.auth !== -1 && (
+        <Link to={`/user/${stateVal.auth.studentId}`}>
+          <div
+            className={styles.memory + " paperCard pointer body"}
+            onMouseEnter={() => {
+              setHovered(true);
+            }}
+            onMouseLeave={() => {
+              setHovered(false);
+            }}
+          >
+            <div
+              style={{
+                fontWeight: "bold",
+                fontSize: "20px",
+                color: hovered ? "var(--coral)" : "black",
+                transition: "color 0.3s",
+              }}
+            >
+              💌 &nbsp; Visit Memory Lane →
+            </div>
+
+            <div
+              className="fade-in"
+              style={{ opacity: hovered ? 1 : 0, transition: "opacity 0.3s" }}
+            >
+              Check out all of your YPosts in one place here.
+            </div>
+          </div>
+        </Link>
+      )}
       <div className="paperCard">
         <div className="horizontalInbetween">
           <div className="h1 textMain">Hey Yalies!</div>
@@ -128,7 +159,7 @@ const Landing = (props) => {
           ) : (
             <div className="fade-in">
               <span className={styles.letter_cnt_label}>
-                Total Letters Sent:{" "}
+                Total YPosts Sent:{" "}
               </span>
               <span className={styles.letter_cnt_val}>{letter_count}</span>
             </div>
@@ -181,6 +212,7 @@ const Landing = (props) => {
         <a
           href="mailto: founders@ypost.app"
           target="_blank"
+          rel="noreferrer"
           className="hyperlink italic"
         >
           here

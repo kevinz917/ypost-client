@@ -26,7 +26,7 @@ const Memories = (props) => {
       setLoadingState(2);
     };
     onMount();
-  }, []);
+  }, [props.match.params.id]);
   return loadingState === 0 ? (
     <img
       src={Flake}
@@ -43,19 +43,19 @@ const Memories = (props) => {
     <div className="paperCardContainer fade-in">
       <div style={{ height: "40px" }} />
       <div className="link" onClick={(e) => props.history.push("/")}>
-        <span className="navigation body">← Homepage</span>
+        <span className="navigation body">← Back</span>
       </div>
       <hr />
       <br />
-      <div className="h1 textMain">Your memories 💌 </div>
+      <div className="h1 textMain">💌 Memory Lane</div>
       <div className="body" style={{ opacity: "0.7" }}>
         {userCards.length} postcards
       </div>
       <br />
       <div>
-        {userCards.map((card, idx) => {
-          return <MemoryLetter letterContent={card} />;
-        })}
+        {userCards.map((card, index) => (
+          <MemoryLetter key={index} letterContent={card} />
+        ))}
       </div>
     </div>
   );

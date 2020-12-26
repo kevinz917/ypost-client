@@ -4,7 +4,6 @@ import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
-import Yalelogo from "../assets/yalelogo.svg";
 import { sendAmplitudeData } from "../util/amplitude";
 
 const Done = (props) => {
@@ -28,7 +27,7 @@ const Done = (props) => {
           <div className="body textMain">Open your last letter! </div>
           <Link to={`/letter/${lastLetterId}`} className="link">
             <button className="buttonMain buttonPrimary">
-              <div>Open letter</div>
+              <div>Open YPost</div>
             </button>
           </Link>
         </div>
@@ -37,23 +36,16 @@ const Done = (props) => {
       <div className="paperCard" style={{ maxWidth: 450 }}>
         <div className="horizontalInbetween">
           <div className="h1 textMain">You're all set! </div>
-          <img
-            src={Yalelogo}
-            style={{ transform: "rotate(20deg)", width: "30px" }}
-            alt="YaleLogo"
-          />
         </div>
         <br />
         <div className="body textMain">
-          Your postcard has arrived in their inbox. Make sure to ask them to
-          check! Have a great day.
+          Your YPost has arrived in their inbox. Make sure to ask them to check!
+          Have a great day.
         </div>
         <br />
-        <br />
-        <div className="body textMain italic">Send another letter</div>
         <Link to="/" className="link">
           <button className="buttonMain buttonPrimary">
-            <div>Send another letter</div>
+            <div>Send another YPost</div>
           </button>
         </Link>
       </div>

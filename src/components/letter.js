@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import "../styles/color.css";
@@ -18,6 +18,8 @@ import canvas_styles from "../pages/write.module.css";
 const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
   let history = useHistory();
   const drawing_ref = useRef(null);
+  const [width, setWidth] = useState(-1);
+  const ref = useRef(null);
   const sendLetter = async (e) => {
     let createdCard = await createCard(
       letterContent.author,
@@ -41,6 +43,9 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
     if (drawing_ref && drawing_ref.current && letterContent.drawing) {
       drawing_ref.current.loadSaveData(letterContent.drawing);
     }
+    if (ref.current) {
+      setWidth(ref.current.offsetWidth);
+    }
   }, [letterContent]);
 
   const randNum = (a, b) => {
@@ -48,7 +53,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
   };
   if (!letterContent) return <div />;
   return (
-    <PaperCard>
+    <PaperCard ref={ref}>
       {setIsPreview && (
         <React.Fragment>
           <div className="link">
@@ -114,7 +119,11 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
               <img
                 src={sticker}
                 alt="sticker"
-                width={100}
+                width={Math.min(
+                  150,
+                  (width - 56 - letterContent.sticker.length * 20) /
+                    letterContent.sticker.length
+                )}
                 className={styles.placedSticker}
                 style={{ transform: `rotate(${randNum(-5, 5)}deg)` }}
               />
@@ -125,15 +134,15 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
 
       {setIsPreview ? (
         <button className="buttonMain buttonPrimary" onClick={sendLetter}>
-          <div>Send letter →</div>
+          <div>Send YPost →</div>
         </button>
       ) : (
         <Link to="/" className="link">
           {sent !== 1 ? (
-            <div>You must send a letter to unlock. Pay it forward!</div>
+            <div>You must send a YPost to unlock. Pay it forward!</div>
           ) : null}
           <button className="buttonMain buttonPrimary">
-            {sent === 1 ? "Send letter to friend" : "Send a letter to unlock →"}
+            {sent === 1 ? "Send YPost to a Friend" : "Send a YPost to Unlock →"}
           </button>
         </Link>
       )}

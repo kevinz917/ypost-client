@@ -16,3 +16,13 @@
   color: white;
   text-shadow: 0 0 8px #fff, 0 0 11px #fff, 0 0 14px #e60073, 0 0 17px #e60073;
 }
+
+.memory {
+  max-height: 23px;
+  transition: max-height 0.3s linear;
+}
+
+.memory:hover {
+  max-height: 69px;
+  transition: max-height 0.3s linear;
+}
