@@ -101,7 +101,7 @@ const Landing = (props) => {
             to={`/user/${stateVal.auth.studentId}`}
             className={styles.memories_link}
           >
-            See your memories ⌛️💌
+            Memory Lane ⌛️💌
           </Link>
         </div>
       )}

@@ -58,16 +58,16 @@ function App() {
           >
             &times;
           </span>
-          <Ticker>
+          <Ticker height={26}>
             {() => (
               <div style={{ margin: "0 25px" }}>
-                💌 &nbsp;New feature:{" "}
-                <span
-                  style={{ fontWeight: "bold", textDecoration: "underline" }}
-                >
-                  one-time
-                </span>{" "}
-                authentication via Yale CAS!
+                💌
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;New Feature: visit Memory Lane to view received YPosts!
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp; 💌
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;Privacy Update: one-time authentication via Yale CAS!
               </div>
             )}
           </Ticker>
