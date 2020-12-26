@@ -255,7 +255,7 @@ const Write = (props) => {
       {audioFile === null ? null : <ReactAudioPlayer src={audioUrl} controls />}
       <hr />
       <button className="buttonMain buttonPrimary" onClick={validate}>
-        <div>Preview letter →</div>
+        <div>Preview YPost →</div>
       </button>
       {errorMessage ? (
         <div className="body textMain italic">{errorMessage}</div>

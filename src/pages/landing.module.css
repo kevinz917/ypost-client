@@ -18,9 +18,11 @@
 }
 
 .memory {
-  transition: transform 0.3s;
+  max-height: 23px;
+  transition: max-height 0.3s;
 }
 
 .memory:hover {
-  transform: scale(1.03);
+  max-height: 69px;
+  transition: max-height 0.3s;
 }

@@ -43,11 +43,11 @@ const Memories = (props) => {
     <div className="paperCardContainer fade-in">
       <div style={{ height: "40px" }} />
       <div className="link" onClick={(e) => props.history.push("/")}>
-        <span className="navigation body">← Homepage</span>
+        <span className="navigation body">← Back</span>
       </div>
       <hr />
       <br />
-      <div className="h1 textMain">Your memories 💌 </div>
+      <div className="h1 textMain">💌 Memory Lane</div>
       <div className="body" style={{ opacity: "0.7" }}>
         {userCards.length} postcards
       </div>

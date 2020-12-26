@@ -21,6 +21,7 @@ const Landing = (props) => {
   const dispatch = useDispatch();
   const [letter_count, setLetterCount] = useState(-1);
   const [loadingState, setLoadingState] = useState(0);
+  const [hovered, setHovered] = useState(false);
   const stateVal = useSelector((state) => state.state);
 
   // On mount
@@ -98,11 +99,31 @@ const Landing = (props) => {
       {stateVal.auth && stateVal.auth !== -1 && (
         <Link to={`/user/${stateVal.auth.studentId}`}>
           <div
-            className={
-              styles.memory + " paperCard pointer horizontalInbetween body"
-            }
+            className={styles.memory + " paperCard pointer body"}
+            onMouseEnter={() => {
+              setHovered(true);
+            }}
+            onMouseLeave={() => {
+              setHovered(false);
+            }}
           >
-            <div>💌 Check out all of your cards in one place here →</div>
+            <div
+              style={{
+                fontWeight: "bold",
+                fontSize: "20px",
+                color: hovered ? "var(--coral)" : "black",
+                transition: "color 0.3s",
+              }}
+            >
+              💌 &nbsp; Visit Memory Lane →
+            </div>
+
+            <div
+              className="fade-in"
+              style={{ opacity: hovered ? 1 : 0, transition: "opacity 0.3s" }}
+            >
+              Check out all of your YPosts in one place here.
+            </div>
           </div>
         </Link>
       )}
@@ -138,7 +159,7 @@ const Landing = (props) => {
           ) : (
             <div className="fade-in">
               <span className={styles.letter_cnt_label}>
-                Total Letters Sent:{" "}
+                Total YPosts Sent:{" "}
               </span>
               <span className={styles.letter_cnt_val}>{letter_count}</span>
             </div>

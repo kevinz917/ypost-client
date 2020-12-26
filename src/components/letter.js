@@ -134,15 +134,15 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
 
       {setIsPreview ? (
         <button className="buttonMain buttonPrimary" onClick={sendLetter}>
-          <div>Send letter →</div>
+          <div>Send YPost →</div>
         </button>
       ) : (
         <Link to="/" className="link">
           {sent !== 1 ? (
-            <div>You must send a letter to unlock. Pay it forward!</div>
+            <div>You must send a YPost to unlock. Pay it forward!</div>
           ) : null}
           <button className="buttonMain buttonPrimary">
-            {sent === 1 ? "Send letter to friend" : "Send a letter to unlock →"}
+            {sent === 1 ? "Send YPost to a Friend" : "Send a YPost to Unlock →"}
           </button>
         </Link>
       )}
