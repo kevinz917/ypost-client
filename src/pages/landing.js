@@ -97,7 +97,11 @@ const Landing = (props) => {
     <div className="paperCardContainer">
       {stateVal.auth && stateVal.auth !== -1 && (
         <Link to={`/user/${stateVal.auth.studentId}`}>
-          <div className="paperCard pointer horizontalInbetween body">
+          <div
+            className={
+              styles.memory + " paperCard pointer horizontalInbetween body"
+            }
+          >
             <div>💌 Check out all of your cards in one place here →</div>
           </div>
         </Link>

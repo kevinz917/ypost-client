@@ -31,7 +31,7 @@ const useRotate = () => {
         opacity: 1,
       }
     : {
-        transform: `rotate(${randNum(-4, 4)}deg) scale(1.08)`,
+        transform: `rotate(${randNum(-4, 4)}deg) scale(1.02)`,
       };
 
   return { rotateStyle, onMouseEnter, onMouseLeave };
@@ -57,7 +57,7 @@ const MemoryLetter = ({ letterContent }) => {
     <div
       ref={ref}
       className="memoryCard"
-      style={width > 506 ? rotateStyle : {}}
+      style={width > 500 ? rotateStyle : {}}
       {...rotateProps}
     >
       <div className="body textMain">

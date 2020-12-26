@@ -16,3 +16,11 @@
   color: white;
   text-shadow: 0 0 8px #fff, 0 0 11px #fff, 0 0 14px #e60073, 0 0 17px #e60073;
 }
+
+.memory {
+  transition: transform 0.3s;
+}
+
+.memory:hover {
+  transform: scale(1.03);
+}

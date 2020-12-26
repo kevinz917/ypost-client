@@ -68,11 +68,7 @@ function App() {
                 💌
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Privacy Update:{" "}
-                <span
-                  style={{ fontWeight: "bold", textDecoration: "underline" }}
-                >
-                  one-time
-                </span>{" "}
+                <span style={{ fontWeight: "bold" }}>one-time</span>{" "}
                 authentication via Yale CAS!
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </div>
