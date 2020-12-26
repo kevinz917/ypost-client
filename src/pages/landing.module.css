@@ -19,10 +19,10 @@
 
 .memory {
   max-height: 23px;
-  transition: max-height 0.3s;
+  transition: max-height 0.3s linear;
 }
 
 .memory:hover {
   max-height: 69px;
-  transition: max-height 0.3s;
+  transition: max-height 0.3s linear;
 }
