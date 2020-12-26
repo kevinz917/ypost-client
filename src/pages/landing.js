@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchStudents, fetchCount, fetchUserId } from "../util/api";
+import { fetchStudents, fetchCount } from "../util/api";
 import { SET_VAL } from "../redux/masterReducer";
 import { Link } from "react-router-dom";
 import Stamp from "../assets/stamp.svg";
@@ -33,10 +33,6 @@ const Landing = (props) => {
         let studentList = await fetchStudents();
         dispatch(SET_VAL("studentList", studentList));
       }
-      if (stateVal.netid) {
-        let studentId = await fetchUserId(stateVal.netid);
-        dispatch(SET_VAL("studentId", studentId));
-      }
       if (localStorage.getItem("sent") === null) {
         localStorage.setItem("sent", 0);
       }
@@ -53,7 +49,7 @@ const Landing = (props) => {
       }
     };
     if (stateVal.auth !== -1) onMount();
-  }, [dispatch, stateVal.auth, stateVal.netid]);
+  }, [dispatch, stateVal.auth]);
 
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -99,10 +95,10 @@ const Landing = (props) => {
     />
   ) : (
     <div className="paperCardContainer">
-      {stateVal.studentId !== "none" && (
+      {stateVal.auth && stateVal.auth !== -1 && (
         <div className={styles.memories_container}>
           <Link
-            to={`/user/${stateVal.studentId}`}
+            to={`/user/${stateVal.auth.studentId}`}
             className={styles.memories_link}
           >
             See your memories ⌛️💌

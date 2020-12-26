@@ -26,7 +26,7 @@ const Memories = (props) => {
       setLoadingState(2);
     };
     onMount();
-  }, []);
+  }, [props.match.params.id]);
   return loadingState === 0 ? (
     <img
       src={Flake}

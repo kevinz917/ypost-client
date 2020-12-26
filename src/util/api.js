@@ -84,14 +84,6 @@ const fetchUserCards = async (id) => {
   return "invalid user :(";
 };
 
-const fetchUserId = async (netid) => {
-  let fetchedId = await axios.get(`${Base}/card/userid/${netid}`);
-
-  if (fetchedId) {
-    return fetchedId.data.userId;
-  }
-};
-
 export {
   createCard,
   fetchCard,
@@ -100,5 +92,4 @@ export {
   fetchCount,
   casCheck,
   fetchUserCards,
-  fetchUserId,
 };

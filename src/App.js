@@ -32,12 +32,15 @@ function App() {
     const onMount = async () => {
       const auth = await casCheck();
       // console.log(auth);
-      if (!auth || !auth.data.auth || !auth.data.user) {
-        dispatch(SET_VAL("auth", 0));
-        dispatch(SET_VAL("netid", ""));
+      if (
+        !auth ||
+        !auth.data.auth ||
+        !auth.data.user ||
+        !auth.data.user.studentId
+      ) {
+        dispatch(SET_VAL("auth", null));
       } else {
-        dispatch(SET_VAL("auth", 1));
-        dispatch(SET_VAL("netid", auth.data.user.netId));
+        dispatch(SET_VAL("auth", auth.data.user));
       }
     };
     onMount();
