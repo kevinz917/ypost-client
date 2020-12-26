@@ -96,14 +96,11 @@ const Landing = (props) => {
   ) : (
     <div className="paperCardContainer">
       {stateVal.auth && stateVal.auth !== -1 && (
-        <div className={styles.memories_container}>
-          <Link
-            to={`/user/${stateVal.auth.studentId}`}
-            className={styles.memories_link}
-          >
-            Memory Lane ⌛️💌
-          </Link>
-        </div>
+        <Link to={`/user/${stateVal.auth.studentId}`}>
+          <div className="paperCard pointer horizontalInbetween body">
+            <div>💌 Check out all of your cards in one place here →</div>
+          </div>
+        </Link>
       )}
       <div className="paperCard">
         <div className="horizontalInbetween">
