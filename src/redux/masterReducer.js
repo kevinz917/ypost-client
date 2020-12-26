@@ -13,6 +13,7 @@ const state = (
   state = {
     isLoading: false,
     studentList: [],
+    studentId: "none",
     selectedStudent: null,
     email: "",
     message: "",

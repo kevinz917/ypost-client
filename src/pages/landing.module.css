@@ -16,3 +16,19 @@
   color: white;
   text-shadow: 0 0 8px #fff, 0 0 11px #fff, 0 0 14px #e60073, 0 0 17px #e60073;
 }
+
+.memories_container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.memories_link {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 6px 7px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.memories_link:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}

@@ -15,7 +15,7 @@ import Done from "./pages/done";
 import Demo from "./pages/demo";
 import Open from "./pages/open";
 import About from "./pages/about";
-import Test from "./pages/test";
+// import Test from "./pages/test";
 import { casCheck } from "./util/api";
 import Memories from "./pages/memories";
 import Ticker from "react-ticker";
@@ -60,11 +60,11 @@ function App() {
               <div style={{ margin: "0 25px" }}>
                 💌 &nbsp;New feature:{" "}
                 <span
-                  style={{ fontWeight: "bold", fontDecoration: "underline" }}
+                  style={{ fontWeight: "bold", textDecoration: "underline" }}
                 >
                   one-time
                 </span>{" "}
-                Authentication via Yale CAS!
+                authentication via Yale CAS!
               </div>
             )}
           </Ticker>
