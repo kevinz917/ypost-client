@@ -53,9 +53,9 @@ const Memories = (props) => {
       </div>
       <br />
       <div>
-        {userCards.map((card, idx) => {
-          return <MemoryLetter letterContent={card} />;
-        })}
+        {userCards.map((card, index) => (
+          <MemoryLetter key={index} letterContent={card} />
+        ))}
       </div>
     </div>
   );

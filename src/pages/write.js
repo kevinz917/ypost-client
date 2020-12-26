@@ -190,6 +190,7 @@ const Write = (props) => {
       <div className={styles.toolbar}>
         {colors.map((color, index) => (
           <div
+            key={index}
             className={
               styles.color_square +
               (index === brush_color ? "" : " " + styles.not_selected)
