@@ -24,6 +24,7 @@ const Memories = (props) => {
       setLoadingState(1);
       await delay(800);
       setLoadingState(2);
+      sendAmplitudeData("Visited Memory Lane");
     };
     onMount();
   }, [props.match.params.id]);
