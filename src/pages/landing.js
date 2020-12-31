@@ -166,47 +166,7 @@ const Landing = (props) => {
           )}
         </div>
         <br />
-        {stateVal.auth ? (
-          <AsyncSelect
-            loadOptions={loadOptions}
-            placeholder="Type in a recipient's name..."
-            autoFocus
-            onChange={onInputChange}
-            isClearable={true}
-            value={
-              stateVal.email
-                ? {
-                    value: stateVal.email,
-                    label: stateVal.selectedStudent,
-                  }
-                : null
-            }
-          />
-        ) : (
-          <button
-            className="buttonMain buttonRecord"
-            onClick={() => {
-              window.location.href = `${Base}/auth/cas`;
-            }}
-          >
-            Login with CAS
-          </button>
-        )}
-        {stateVal.auth ? (
-          <React.Fragment>
-            <button className="buttonMain buttonPrimary" onClick={validate}>
-              Continue →
-            </button>
-            {errorMessage ? (
-              <React.Fragment>
-                <br />
-                <div className="body textMain italic">{errorMessage}</div>
-              </React.Fragment>
-            ) : null}
-          </React.Fragment>
-        ) : null}
       </div>
-      <br />
       <div className="report-container">
         To report a problem or share a thought, talk to us{" "}
         <a
