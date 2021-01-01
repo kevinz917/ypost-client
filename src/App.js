@@ -63,13 +63,7 @@ function App() {
               <div>
                 💌
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                New Feature: visit Memory Lane to view received YPosts!
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                💌
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Privacy Update:{" "}
-                <span style={{ fontWeight: "bold" }}>one-time</span>{" "}
-                authentication via Yale CAS!
+                Last hour to send YPosts featuring New Years stickers!
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </div>
             )}
