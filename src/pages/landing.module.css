@@ -18,11 +18,12 @@
 }
 
 .memory {
-  max-height: 23px;
+  max-height: 50px;
   transition: max-height 0.3s linear;
+  display: block !important;
 }
 
 .memory:hover {
-  max-height: 69px;
+  max-height: 75px;
   transition: max-height 0.3s linear;
 }
