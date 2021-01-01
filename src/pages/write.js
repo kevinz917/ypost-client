@@ -44,22 +44,14 @@ const Write = (props) => {
 
   // sticker array
   const sources = [
-    "https://media.giphy.com/media/VKwspRV2pafJu/giphy.gif",
-    "https://media.giphy.com/media/PuKSVqbw0hEpq/giphy.gif",
-    "https://media.giphy.com/media/11YoNDzlP6VSSs/giphy.gif",
-    "https://media.giphy.com/media/R7AW255ijTdV6/giphy.gif",
-    "https://media.giphy.com/media/6eEWybJorTCvK/giphy.gif",
-    "https://media.giphy.com/media/l0HU9ZInhMHMO71Cw/giphy.gif",
-    "https://media.giphy.com/media/jnpF4fu32fhqE/giphy.gif",
-    "https://media.giphy.com/media/9JrvLb0fnrn7k1ZjhX/giphy.gif",
-    "https://media.giphy.com/media/3oz8xALpV1X2BPo7cI/giphy.gif",
-    "https://media.giphy.com/media/xTk9ZLRMhW9wrSUf4c/giphy.gif",
-    "https://media.giphy.com/media/l0HlNYLArnTIYvntm/giphy.gif",
-    "https://media.giphy.com/media/RdzzVrtvfqnM4/giphy.gif",
-    "https://media.giphy.com/media/hFIq9i5y2H10Q/giphy.gif",
-    "https://media.giphy.com/media/13lIFCT4YxJSes/giphy.gif",
-    "https://media.giphy.com/media/xz9j6yOIO2as0/giphy.gif",
-    "https://media.giphy.com/media/xUOxf7dQFhQ1NWnRBK/giphy.gif",
+    "https://media.giphy.com/media/3oFzm06fG8g4FO0bMQ/giphy.gif",
+    "https://media.giphy.com/media/1PMVNNKVIL8Ig/giphy.gif",
+    "https://media.giphy.com/media/HsKTkfCuNdM5y/giphy.gif",
+    "https://media.giphy.com/media/bbALkCMRZvoB8MoDd1/giphy.gif",
+    "https://media.giphy.com/media/CLhTC0KCYGI3Tt8dba/giphy.gif",
+    "https://media.giphy.com/media/NsKiCmWdA96V4w10N5/giphy.gif",
+    "https://media.giphy.com/media/IwAZ6dvvvaTtdI8SD5/giphy.gif",
+    "https://media.giphy.com/media/l9quOLGzQbAKQHJx7y/giphy.gif",
   ];
 
   const validate = async (e) => {
