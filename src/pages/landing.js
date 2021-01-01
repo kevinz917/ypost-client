@@ -134,7 +134,6 @@ const Landing = (props) => {
             </div>
           )}
         </div>
-        <br />
         {stateVal.auth && stateVal.auth !== -1 && (
           <Link to={`/user/${stateVal.auth.studentId}`}>
             <button
@@ -150,12 +149,26 @@ const Landing = (props) => {
               <div>💌 &nbsp; Visit Memory Lane →</div>
               <div
                 className="fade-in"
-                style={{ opacity: hovered ? 1 : 0, transition: "opacity 0.3s" }}
+                style={{
+                  opacity: hovered ? 1 : 0,
+                  transition: "opacity 0.3s",
+                  fontWeight: 400,
+                }}
               >
                 Check out all of your YPosts in one place here.
               </div>
             </button>
           </Link>
+        )}
+        {!stateVal.auth && (
+          <button
+            className="buttonMain buttonRecord"
+            onClick={() => {
+              window.location.href = `${Base}/auth/cas`;
+            }}
+          >
+            Login with CAS
+          </button>
         )}
       </div>
       <br />
