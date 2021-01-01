@@ -10,9 +10,9 @@ import Footer from "./components/footer";
 
 // Pages
 import Landing from "./pages/landing";
-import Write from "./pages/write";
-import Done from "./pages/done";
-import Demo from "./pages/demo";
+// import Write from "./pages/write";
+// import Done from "./pages/done";
+// import Demo from "./pages/demo";
 import Open from "./pages/open";
 import About from "./pages/about";
 // import Test from "./pages/test";
@@ -63,7 +63,11 @@ function App() {
               <div>
                 💌
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Last hour to send YPosts featuring New Years stickers!
+                Thanks for your support of YPost!
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                💌
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Wishing everyone peace and joy in the new year :)
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </div>
             )}
@@ -72,9 +76,9 @@ function App() {
       )}
       <Router>
         <Switch>
-          <Route path="/demo" component={Demo} />
+          {/* <Route path="/demo" component={Demo} />
           <Route path="/done" component={Done} />
-          <Route path="/write" component={Write} />
+          <Route path="/write" component={Write} /> */}
           <Route path="/letter/:id" component={Open} />
           <Route path="/about" component={About} />
           <Route path="/user/:id" component={Memories} />

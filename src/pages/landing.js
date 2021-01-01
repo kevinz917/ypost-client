@@ -96,37 +96,6 @@ const Landing = (props) => {
     />
   ) : (
     <div className="paperCardContainer">
-      {stateVal.auth && stateVal.auth !== -1 && (
-        <Link to={`/user/${stateVal.auth.studentId}`}>
-          <div
-            className={styles.memory + " paperCard pointer body"}
-            onMouseEnter={() => {
-              setHovered(true);
-            }}
-            onMouseLeave={() => {
-              setHovered(false);
-            }}
-          >
-            <div
-              style={{
-                fontWeight: "bold",
-                fontSize: "20px",
-                color: hovered ? "var(--coral)" : "black",
-                transition: "color 0.3s",
-              }}
-            >
-              💌 &nbsp; Visit Memory Lane →
-            </div>
-
-            <div
-              className="fade-in"
-              style={{ opacity: hovered ? 1 : 0, transition: "opacity 0.3s" }}
-            >
-              Check out all of your YPosts in one place here.
-            </div>
-          </div>
-        </Link>
-      )}
       <div className="paperCard">
         <div className="horizontalInbetween">
           <div className="h1 textMain">Hey Yalies!</div>
@@ -165,24 +134,33 @@ const Landing = (props) => {
             </div>
           )}
         </div>
-        <br />
-        {stateVal.auth ? (
-          <AsyncSelect
-            loadOptions={loadOptions}
-            placeholder="Type in a recipient's name..."
-            autoFocus
-            onChange={onInputChange}
-            isClearable={true}
-            value={
-              stateVal.email
-                ? {
-                    value: stateVal.email,
-                    label: stateVal.selectedStudent,
-                  }
-                : null
-            }
-          />
-        ) : (
+        {stateVal.auth && stateVal.auth !== -1 && (
+          <Link to={`/user/${stateVal.auth.studentId}`}>
+            <button
+              className={styles.memory + " buttonMain buttonPrimary"}
+              onClick={validate}
+              onMouseEnter={() => {
+                setHovered(true);
+              }}
+              onMouseLeave={() => {
+                setHovered(false);
+              }}
+            >
+              <div>💌 &nbsp; Visit Memory Lane →</div>
+              <div
+                className="fade-in"
+                style={{
+                  opacity: hovered ? 1 : 0,
+                  transition: "opacity 0.3s",
+                  fontWeight: 400,
+                }}
+              >
+                Check out all of your YPosts in one place here.
+              </div>
+            </button>
+          </Link>
+        )}
+        {!stateVal.auth && (
           <button
             className="buttonMain buttonRecord"
             onClick={() => {
@@ -192,21 +170,9 @@ const Landing = (props) => {
             Login with CAS
           </button>
         )}
-        {stateVal.auth ? (
-          <React.Fragment>
-            <button className="buttonMain buttonPrimary" onClick={validate}>
-              Continue →
-            </button>
-            {errorMessage ? (
-              <React.Fragment>
-                <br />
-                <div className="body textMain italic">{errorMessage}</div>
-              </React.Fragment>
-            ) : null}
-          </React.Fragment>
-        ) : null}
       </div>
       <br />
+
       <div className="report-container">
         To report a problem or share a thought, talk to us{" "}
         <a
