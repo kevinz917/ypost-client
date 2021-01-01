@@ -76,7 +76,7 @@
 
 .alert {
   padding: 6px;
-  background-color: #588fcf;
+  background-color: var(--coral);
   opacity: 1;
   color: white;
   margin-bottom: 20px;
