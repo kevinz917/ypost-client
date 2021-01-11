@@ -1,11 +1,16 @@
 import React from "react";
 import PaperCard from "../components/papercard";
 import styles from "../components/letter.module.css";
+import { Link } from "react-router-dom";
 
 function Thankyou() {
   return (
     <PaperCard maxWidth={550}>
-      <div style={{ display: "flex", marginBottom: "10px" }}>
+      <Link to="/" className="link">
+        <span className="navigation body">← Back</span>
+      </Link>
+      <hr />
+      <div style={{ display: "flex", margin: "20px 0 10px 0" }}>
         <span style={{ margin: "auto" }}>
           <img
             src="https://media.giphy.com/media/QAsBwSjx9zVKoGp9nr/giphy.gif"
