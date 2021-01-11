@@ -19,6 +19,7 @@ import About from "./pages/about";
 import { casCheck } from "./util/api";
 import Memories from "./pages/memories";
 import Ticker from "react-ticker";
+import Thankyou from "./pages/thankyou";
 
 import "./styles/layout.css";
 
@@ -81,6 +82,7 @@ function App() {
           <Route path="/write" component={Write} /> */}
           <Route path="/letter/:id" component={Open} />
           <Route path="/about" component={About} />
+          <Route path="/thankyou" component={Thankyou} />
           <Route path="/user/:id" component={Memories} />
           {/* <Route path="/test" component={Test} /> */}
           <Route path="/" component={Landing} />
