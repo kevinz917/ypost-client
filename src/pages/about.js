@@ -71,7 +71,7 @@ const About = () => {
       <div className="body">
         If you're interested in building more projects like these,{" "}
         <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSenof0DZ6B5CCd_3mwOOyAzh5wxl7QCNe5vt1ZX4FadvRJ76g/viewform?fbzx=1924041856365897544"
+          href="https://airtable.com/shri5KvR07pfStFL6?fbclid=IwAR3C0mtSJR0zxL-R0Py1vsBLAjBBVkpMU0SyoncDj8ZZdHcUAJZpPeeuOQI"
           target="_blank"
           className="hyperlink italic"
         >
