@@ -122,6 +122,21 @@ const Landing = (props) => {
           </Link>
         </div>
         <br />
+        <div className="body textMain">
+          Join our team.
+          <br />
+          Apply&nbsp;
+          <a
+            className="hyperlink italic"
+            target="_blank"
+            rel="noreferrer"
+            href="https://airtable.com/shri5KvR07pfStFL6?fbclid=IwAR3C0mtSJR0zxL-R0Py1vsBLAjBBVkpMU0SyoncDj8ZZdHcUAJZpPeeuOQI"
+          >
+            here
+          </a>{" "}
+          by 1/17.
+        </div>
+        <br />
         <div className={styles.letter_cnt_container + " body textMain fade-in"}>
           {letter_count === -1 ? (
             <span className={styles.letter_cnt_label}>Loading...</span>
