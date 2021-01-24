@@ -68,16 +68,15 @@ const Landing = (props) => {
     dispatch(SET_VAL("selectedStudent", e ? e.label : ""));
   };
 
-  // console.log(stateVal.netid);
-  return loadingState === 0 ? null : loadingState === 1 ? null : (
+  return loadingState === 0 ? null : (
     <div className="paperCardContainer">
       <div className="paperCard">
         <div className="horizontalInbetween">
-          <div className="h1 textMain">YPost</div>
+          <div className="h2 textMain">YPost</div>
           <img
             src={Stamp}
             alt="logo"
-            style={{ transform: "rotate(20deg)", width: "75px" }}
+            style={{ transform: "rotate(20deg)", width: "50px" }}
           />
         </div>
         <br />

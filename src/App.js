@@ -56,7 +56,7 @@ function App() {
           <Route exact path="/about" component={About} />
           <Route exact path="/user/:id" component={Memories} />
           <Route exact path="/test" component={Test} />
-          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/me" component={Profile} />
           <Route exact path="/" component={Landing} />
           <Route exact={false} component={Notfound} />
         </Switch>
