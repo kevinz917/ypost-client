@@ -32,6 +32,7 @@
 }
 
 .buttonMain {
+  text-decoration: none;
   margin: 10px 0 10px 0;
   width: 100%;
   display: inline-block;
@@ -55,11 +56,13 @@
 
 /* buttons */
 .buttonMain:hover {
+  text-decoration: none;
   transition: 0.3s;
   cursor: pointer;
 }
 
 .buttonMain:focus {
+  text-decoration: none;
   outline: none;
 }
 

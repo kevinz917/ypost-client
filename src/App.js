@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { SET_VAL } from "./redux/masterReducer";
@@ -18,6 +18,7 @@ import Test from "./pages/test";
 import { casCheck } from "./util/api";
 import Memories from "./pages/memories";
 import Notfound from "./pages/notfound";
+import Profile from "./pages/profile/profile";
 
 import "./styles/layout.css";
 // import Ticker from "react-ticker";
@@ -55,6 +56,7 @@ function App() {
           <Route exact path="/about" component={About} />
           <Route exact path="/user/:id" component={Memories} />
           <Route exact path="/test" component={Test} />
+          <Route exact path="/profile" component={Profile} />
           <Route exact path="/" component={Landing} />
           <Route exact={false} component={Notfound} />
         </Switch>
