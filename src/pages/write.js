@@ -28,7 +28,7 @@ const recorder = new MicRecorder({
 const Write = (props) => {
   const dispatch = useDispatch();
   const drawing_ref = useRef(null);
-  const stateVal = useSelector((state) => state.state);
+  const stateVal = useSelector((state) => state.state); // redux
   const [brush_color, setBrushcolor] = useState(0);
   const [letterContent, setLetterContent] = useState({});
   if (!stateVal.selectedStudent) {

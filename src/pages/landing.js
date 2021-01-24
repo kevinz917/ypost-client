@@ -21,7 +21,6 @@ const Landing = (props) => {
   const dispatch = useDispatch();
   const [letter_count, setLetterCount] = useState(-1);
   const [loadingState, setLoadingState] = useState(0);
-  const [hovered, setHovered] = useState(false);
   const stateVal = useSelector((state) => state.state);
 
   // On mount
@@ -81,24 +80,13 @@ const Landing = (props) => {
     dispatch(SET_VAL("email", e ? e.value : ""));
     dispatch(SET_VAL("selectedStudent", e ? e.label : ""));
   };
+
   // console.log(stateVal.netid);
-  return loadingState === 0 ? (
-    <img
-      src={Flake}
-      className="rotate snowflake paperCardContainer"
-      alt="snow"
-    />
-  ) : loadingState === 1 ? (
-    <img
-      src={Flake}
-      className="paperCardContainer snowflake move-me-3"
-      alt="snow"
-    />
-  ) : (
+  return loadingState === 0 ? null : loadingState === 1 ? null : (
     <div className="paperCardContainer">
       <div className="paperCard">
         <div className="horizontalInbetween">
-          <div className="h1 textMain">Hey Yalies!</div>
+          <div className="h1 textMain">YPost</div>
           <img
             src={Stamp}
             alt="logo"
@@ -106,35 +94,15 @@ const Landing = (props) => {
           />
         </div>
         <br />
-        <div className="body textMain italic">Who do you miss the most?</div>
-        <br />
         <div className="body textMain">
-          3 Yalies built YPost so you can send virtual postcards to friends with{" "}
-          <span style={{ fontWeight: "bold" }}>
-            drawings, gifs, and audio messages
-          </span>
-          ! Check it out below, and Happy Holidays :)
+          Send simple and delightful cards to your teammates. Show your
+          gratitude and build a better team, together ~
         </div>
         <br />
         <div className="body textMain italic">
           <Link to="/about" className="hyperlink">
             About this project.
           </Link>
-        </div>
-        <br />
-        <div className="body textMain">
-          Join our team.
-          <br />
-          Apply&nbsp;
-          <a
-            className="hyperlink italic"
-            target="_blank"
-            rel="noreferrer"
-            href="https://airtable.com/shri5KvR07pfStFL6?fbclid=IwAR3C0mtSJR0zxL-R0Py1vsBLAjBBVkpMU0SyoncDj8ZZdHcUAJZpPeeuOQI"
-          >
-            here
-          </a>{" "}
-          by 1/17.
         </div>
         <br />
         <div className={styles.letter_cnt_container + " body textMain fade-in"}>
@@ -150,30 +118,18 @@ const Landing = (props) => {
           )}
         </div>
         {stateVal.auth && stateVal.auth !== -1 && (
-          <Link to={`/user/${stateVal.auth.studentId}`}>
-            <button
-              className={styles.memory + " buttonMain buttonPrimary"}
-              onClick={validate}
-              onMouseEnter={() => {
-                setHovered(true);
-              }}
-              onMouseLeave={() => {
-                setHovered(false);
-              }}
-            >
-              <div>💌 &nbsp; Visit Memory Lane →</div>
-              <div
-                className="fade-in"
-                style={{
-                  opacity: hovered ? 1 : 0,
-                  transition: "opacity 0.3s",
-                  fontWeight: 400,
-                }}
-              >
-                Check out all of your YPosts in one place here.
-              </div>
-            </button>
-          </Link>
+          <React.Fragment>
+            <Link to="/write">
+              <button className="buttonMain buttonPrimary">
+                <div>Send a note</div>
+              </button>
+            </Link>
+            <Link to={`/user/${stateVal.auth.studentId}`}>
+              <button className="buttonMain buttonPrimary">
+                <div>View your cards </div>
+              </button>
+            </Link>
+          </React.Fragment>
         )}
         {!stateVal.auth && (
           <button
