@@ -6,7 +6,6 @@ import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 import styles from "./letter.module.css";
-import writeStyles from "../pages/write.module.css";
 
 import PaperCard from "../components/papercard";
 import ReactAudioPlayer from "react-audio-player";
@@ -181,7 +180,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       <div className="paperCard">
         {setIsPreview ? (
           <button className="buttonMain buttonPrimary" onClick={sendLetter}>
-            <div>Send YPost →</div>
+            <div>Send a note →</div>
           </button>
         ) : (
           <Link to="/" className="link">
@@ -189,9 +188,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
               <div>You must send a YPost to unlock. Pay it forward!</div>
             ) : null}
             <button className="buttonMain buttonPrimary">
-              {sent === 1
-                ? "Send YPost to a Friend"
-                : "Send a YPost to Unlock →"}
+              {sent === 1 ? "Send a note" : "Send a note to Unlock →"}
             </button>
           </Link>
         )}
@@ -201,13 +198,3 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
 };
 
 export default Letter;
-
-// <div className="frame-container-box">
-// {frames.map((frame) => {
-//   return (
-//     <div onClick={() => dispatch(SET_VAL("frame", frame))}>
-//       <img src={frame} className="frame-container" alt={frame} />
-//     </div>
-//   );
-// })}
-// </div>

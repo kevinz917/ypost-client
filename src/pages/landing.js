@@ -101,11 +101,6 @@ const Landing = (props) => {
           gratitude and build a better team, together ~
         </div>
         <br />
-        <div className="body textMain italic">
-          <Link to="/about" className="hyperlink">
-            About this project.
-          </Link>
-        </div>
         <br />
         <div className={styles.letter_cnt_container + " body textMain fade-in"}>
           {letter_count === -1 ? (

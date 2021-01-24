@@ -11,6 +11,7 @@ import { MasterReducer } from "./redux/masterReducer";
 import { PROD } from "./util/base";
 
 import { initAmplitude } from "./util/amplitude";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 initAmplitude();
 

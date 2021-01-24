@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { SET_VAL } from "./redux/masterReducer";
 import axios from "axios";
 
-// Footer
-import Footer from "./components/footer";
+// footer + nav
+// import Footer from "./components/footer";
+import Navigation from "./components/nav/navigation";
 
-// Pages
+// pages
 import Landing from "./pages/landing";
 import Write from "./pages/write";
 import Done from "./pages/done";
@@ -16,6 +17,7 @@ import About from "./pages/about";
 import Test from "./pages/test";
 import { casCheck } from "./util/api";
 import Memories from "./pages/memories";
+import Notfound from "./pages/notfound";
 
 import "./styles/layout.css";
 // import Ticker from "react-ticker";
@@ -23,7 +25,7 @@ import "./styles/layout.css";
 function App() {
   const dispatch = useDispatch();
   axios.defaults.withCredentials = true;
-  const isLoading = useSelector((state) => state.state.isLoading);
+  // const isLoading = useSelector((state) => state.state.isLoading);
 
   useEffect(() => {
     const onMount = async () => {
@@ -45,6 +47,7 @@ function App() {
   return (
     <div className="backgroundLayout">
       <Router>
+        <Navigation />
         <Switch>
           <Route exact path="/write" component={Write} />
           <Route exact path="/done" component={Done} />
@@ -53,9 +56,9 @@ function App() {
           <Route exact path="/user/:id" component={Memories} />
           <Route exact path="/test" component={Test} />
           <Route exact path="/" component={Landing} />
+          <Route exact={false} component={Notfound} />
         </Switch>
       </Router>
-      {isLoading ? null : <Footer />}
     </div>
   );
 }

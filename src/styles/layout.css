@@ -3,6 +3,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: rgb(255, 252, 246);
 }
 
 .paperCardContainer {
