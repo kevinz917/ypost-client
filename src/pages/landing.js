@@ -29,6 +29,8 @@ const Landing = (props) => {
       dispatch(SET_VAL("isLoading", true));
       sendAmplitudeData("Visited home page");
       setLoadingState(0);
+
+      // fetch list of all students
       if (stateVal.auth) {
         let studentList = await fetchStudents();
         dispatch(SET_VAL("studentList", studentList));
@@ -117,8 +119,24 @@ const Landing = (props) => {
             </div>
           )}
         </div>
+        <br />
         {stateVal.auth && stateVal.auth !== -1 && (
           <React.Fragment>
+            <AsyncSelect
+              loadOptions={loadOptions}
+              placeholder="Type in recipient name"
+              autoFocus
+              onChange={onInputChange}
+              isClearable={true}
+              value={
+                stateVal.email
+                  ? {
+                      value: stateVal.email,
+                      label: stateVal.selectedStudent,
+                    }
+                  : null
+              }
+            />
             <Link to="/write">
               <button className="buttonMain buttonPrimary">
                 <div>Send a note</div>

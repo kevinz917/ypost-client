@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Snowfall from "react-snowfall";
 import { useSelector, useDispatch } from "react-redux";
 import { SET_VAL } from "./redux/masterReducer";
 import axios from "axios";
@@ -12,7 +11,6 @@ import Footer from "./components/footer";
 import Landing from "./pages/landing";
 import Write from "./pages/write";
 import Done from "./pages/done";
-import Demo from "./pages/demo";
 import Open from "./pages/open";
 import About from "./pages/about";
 import Test from "./pages/test";
@@ -30,7 +28,6 @@ function App() {
   useEffect(() => {
     const onMount = async () => {
       const auth = await casCheck();
-      // console.log(auth);
       if (
         !auth ||
         !auth.data.auth ||
@@ -50,7 +47,6 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/write" component={Write} />
-          <Route exact path="/demo" component={Demo} />
           <Route exact path="/done" component={Done} />
           <Route exact path="/letter/:id" component={Open} />
           <Route exact path="/about" component={About} />

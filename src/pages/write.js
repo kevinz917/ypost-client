@@ -31,6 +31,7 @@ const Write = (props) => {
   const stateVal = useSelector((state) => state.state); // redux
   const [brush_color, setBrushcolor] = useState(0);
   const [letterContent, setLetterContent] = useState({});
+
   if (!stateVal.selectedStudent) {
     props.history.push("/");
   }
@@ -47,11 +48,6 @@ const Write = (props) => {
     "https://media.giphy.com/media/3oFzm06fG8g4FO0bMQ/giphy.gif",
     "https://media.giphy.com/media/1PMVNNKVIL8Ig/giphy.gif",
     "https://media.giphy.com/media/HsKTkfCuNdM5y/giphy.gif",
-    "https://media.giphy.com/media/bbALkCMRZvoB8MoDd1/giphy.gif",
-    "https://media.giphy.com/media/CLhTC0KCYGI3Tt8dba/giphy.gif",
-    "https://media.giphy.com/media/NsKiCmWdA96V4w10N5/giphy.gif",
-    "https://media.giphy.com/media/IwAZ6dvvvaTtdI8SD5/giphy.gif",
-    "https://media.giphy.com/media/l9quOLGzQbAKQHJx7y/giphy.gif",
   ];
 
   const validate = async (e) => {
@@ -166,7 +162,6 @@ const Write = (props) => {
       <br />
       <br />
       <div className="h2">Draw something</div>
-
       <CanvasDraw
         ref={drawing_ref}
         lazyRadius={0}
@@ -211,7 +206,6 @@ const Write = (props) => {
           <FiX size={22} style={{ display: "block" }} />
         </div>
       </div>
-
       <br />
       <br />
       <div className="h2">Pick a sticker</div>

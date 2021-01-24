@@ -6,6 +6,10 @@ body {
   font-family: "Zilla Slab", serif;
 }
 
+hr {
+  padding: 2px 0 2px 0;
+}
+
 .body {
   font-size: 17px;
   font-weight: normal;
@@ -15,13 +19,13 @@ body {
 .h1 {
   font-size: 27px;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .h2 {
   font-size: 23px;
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .buttonMain {

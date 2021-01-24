@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-// General purpose action to change val given field
+// General purpose action
 const SET_VAL = (field, val) => {
   return {
     type: "SET_VAL",
@@ -15,6 +15,7 @@ const state = (
     studentList: [],
     studentId: "none",
     selectedStudent: null,
+    frame: null,
     email: "",
     message: "",
     author: "",
