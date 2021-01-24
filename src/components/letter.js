@@ -6,6 +6,7 @@ import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 import styles from "./letter.module.css";
+import writeStyles from "../pages/write.module.css";
 
 import PaperCard from "../components/papercard";
 import ReactAudioPlayer from "react-audio-player";
@@ -35,7 +36,8 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       letterContent.audioFile,
       letterContent.sticker,
       letterContent.drawing,
-      letterContent.netId
+      letterContent.netId,
+      stateVal.frame
     );
 
     if (JSON.parse(localStorage.getItem("sent")) === 0) {
@@ -62,43 +64,58 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
   const frames = [
     "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
     "https://i2.wp.com/digital-photography-school.com/wp-content/uploads/2019/05/joseph-barrientos-49318-unsplash-e1558728034701.jpg?resize=1500%2C1000&ssl=1",
+    "https://images.unsplash.com/photo-1611420379241-d5246020832c?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
   ];
+
+  const handleSelect = (key) => {
+    dispatch(SET_VAL("frame", key));
+  };
 
   if (!letterContent) return <div />;
   return (
     <div className="paperCardContainer">
-      <div className="paperCard">
-        <div className="h2">Pick a frame</div>
-        {setIsPreview && (
+      {setIsPreview && (
+        <div className="paperCard">
+          <React.Fragment>
+            <div className="link">
+              <span
+                className="navigation body"
+                onClick={() => setIsPreview(false)}
+              >
+                ← Back
+              </span>
+            </div>
+            <hr />
+            <br />
+          </React.Fragment>
+          <div className="h2">Pick a frame</div>
           <div className="frame-container-box">
-            {frames.map((frame) => {
+            {frames.map((frame, idx) => {
               return (
-                <div onClick={() => dispatch(SET_VAL("frame", frame))}>
-                  <img src={frame} className="frame-container" alt={frame} />
+                <div
+                  className="frame-container"
+                  onClick={() => dispatch(SET_VAL("frame", frame))}
+                >
+                  <img
+                    src={frame}
+                    className={`${
+                      frame === stateVal.frame ? "selected-frame" : null
+                    } frame-image`}
+                    alt={frame}
+                  />
                 </div>
               );
             })}
           </div>
-        )}
-      </div>
-      <PaperCard ref={ref} frameImage={stateVal.frame}>
+        </div>
+      )}
+      <PaperCard
+        ref={ref}
+        frameImage={
+          letterContent.frame.length > 0 ? letterContent.frame : stateVal.frame
+        }
+      >
         <div>
-          {setIsPreview && (
-            <React.Fragment>
-              <div className="link">
-                <span
-                  className="navigation body"
-                  onClick={() => {
-                    setIsPreview(false);
-                  }}
-                >
-                  ← Back
-                </span>
-              </div>
-              <hr />
-              <br />
-            </React.Fragment>
-          )}
           <div className="body textMain">
             Dear {letterContent.recipient.split(" ")[0]},
           </div>
@@ -134,7 +151,6 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
               <br />
             </React.Fragment>
           ) : null}
-
           <br />
           <div className="body textMain" style={{ textAlign: "right" }}>
             Sincerely, <br />{" "}
@@ -185,3 +201,13 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
 };
 
 export default Letter;
+
+// <div className="frame-container-box">
+// {frames.map((frame) => {
+//   return (
+//     <div onClick={() => dispatch(SET_VAL("frame", frame))}>
+//       <img src={frame} className="frame-container" alt={frame} />
+//     </div>
+//   );
+// })}
+// </div>

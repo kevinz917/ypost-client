@@ -35,7 +35,8 @@ const Open = (props) => {
     const onMount = async () => {
       setPageState("Opening");
       sendAmplitudeData("Opened letter");
-      // Check if it's first time visiting website
+
+      // check if it's first time visiting website
       if (localStorage.getItem("sent") === null) {
         localStorage.setItem("sent", 0);
       }
@@ -51,7 +52,7 @@ const Open = (props) => {
         setOpened(fetchedCard._id);
       }
 
-      // Add card to localStorage
+      // add card to localStorage
       let temp = JSON.parse(localStorage.getItem("letters"));
       if (temp.includes(fetchedCard._id) === false) {
         temp.push(fetchedCard._id);

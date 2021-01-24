@@ -8,7 +8,6 @@ import "../styles/typography.css";
 import "../styles/animation.css";
 import Mic from "../assets/mic.svg";
 import ReactAudioPlayer from "react-audio-player";
-import PaperCard from "../components/papercard";
 import Sticker from "../components/sticker";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FiX, FiRotateCcw } from "react-icons/fi";
@@ -135,7 +134,7 @@ const Write = (props) => {
   return isPreview ? (
     <Letter letterContent={letterContent} setIsPreview={setIsPreview} />
   ) : (
-    <PaperCard>
+    <div className="paperCard paperCardContainer">
       <Link to="/" className="link">
         <span className="navigation body">← Back</span>
       </Link>
@@ -246,7 +245,7 @@ const Write = (props) => {
       {errorMessage ? (
         <div className="body textMain italic">{errorMessage}</div>
       ) : null}
-    </PaperCard>
+    </div>
   );
 };
 

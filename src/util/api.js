@@ -11,7 +11,8 @@ const createCard = async (
   audioFile,
   sticker,
   drawing,
-  netId
+  netId,
+  frame
 ) => {
   const data = new FormData();
   if (author === "") {
@@ -24,6 +25,7 @@ const createCard = async (
   data.append("email", email);
   data.append("message", message);
   data.append("drawing", drawing);
+  data.append("frame", frame);
   if (audioFile) {
     data.append("file", audioFile, "sample");
   }
@@ -32,6 +34,8 @@ const createCard = async (
     data.append("sticker", x);
   });
   data.append("netId", netId);
+
+  console.log(data);
   axios.post(`${Base}/card/new`, data);
 };
 
