@@ -12,6 +12,7 @@ const SET_VAL = (field, val) => {
 const state = (
   state = {
     isLoading: false,
+    letterCount: null,
     studentList: [],
     studentId: "none",
     selectedStudent: null,

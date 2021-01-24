@@ -5,7 +5,6 @@ import { SET_VAL } from "../redux/masterReducer";
 import { Link } from "react-router-dom";
 import Stamp from "../assets/stamp.svg";
 import AsyncSelect from "react-select/async";
-import Flake from "../assets/flake.svg";
 import { sendAmplitudeData } from "../util/amplitude";
 import styles from "./landing.module.css";
 import { Base } from "../util/base";
@@ -19,7 +18,6 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 const Landing = (props) => {
   const dispatch = useDispatch();
-  const [letter_count, setLetterCount] = useState(-1);
   const [loadingState, setLoadingState] = useState(0);
   const stateVal = useSelector((state) => state.state);
 
@@ -31,40 +29,27 @@ const Landing = (props) => {
       setLoadingState(0);
 
       // fetch list of all students
-      if (stateVal.auth) {
+      if (stateVal.auth && stateVal.studentList.length < 2) {
         let studentList = await fetchStudents();
         dispatch(SET_VAL("studentList", studentList));
       }
+
       if (localStorage.getItem("sent") === null) {
         localStorage.setItem("sent", 0);
       }
       if (localStorage.getItem("letters") === null) {
         localStorage.setItem("letters", JSON.stringify([]));
       }
-      setLoadingState(1);
-      await delay(800);
       dispatch(SET_VAL("isLoading", false));
       setLoadingState(2);
-      const letterCount = await fetchCount();
-      if (letterCount && letterCount.data) {
-        setLetterCount(letterCount.data.count);
+
+      if (stateVal.letterCount === null) {
+        const letterCount = await fetchCount();
+        dispatch(SET_VAL("letterCount", letterCount.data.count));
       }
     };
     if (stateVal.auth !== -1) onMount();
   }, [dispatch, stateVal.auth]);
-
-  const [errorMessage, setErrorMessage] = useState(null);
-
-  const validate = (e) => {
-    if (stateVal.email.length === 0) {
-      setErrorMessage("Email can't be empty!");
-    } else if (!stateVal.email.includes("@")) {
-      setErrorMessage("Please enter a valid email address!");
-    } else {
-      sendAmplitudeData("Selected contact");
-      props.history.push("/write");
-    }
-  };
 
   const filterStudents = (inputValue) => {
     return stateVal.studentList.filter((i) =>
@@ -103,14 +88,16 @@ const Landing = (props) => {
         <br />
         <br />
         <div className={styles.letter_cnt_container + " body textMain fade-in"}>
-          {letter_count === -1 ? (
+          {stateVal.letterCount === null ? (
             <span className={styles.letter_cnt_label}>Loading...</span>
           ) : (
             <div className="fade-in">
               <span className={styles.letter_cnt_label}>
                 Total YPosts Sent:{" "}
               </span>
-              <span className={styles.letter_cnt_val}>{letter_count}</span>
+              <span className={styles.letter_cnt_val}>
+                {stateVal.letterCount}
+              </span>
             </div>
           )}
         </div>
@@ -138,7 +125,7 @@ const Landing = (props) => {
               </button>
             </Link>
             <Link to={`/user/${stateVal.auth.studentId}`}>
-              <button className="buttonMain buttonPrimary">
+              <button className="buttonMain buttonSecondary">
                 <div>View your cards </div>
               </button>
             </Link>

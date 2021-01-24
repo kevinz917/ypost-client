@@ -66,10 +66,6 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
     "https://images.unsplash.com/photo-1611420379241-d5246020832c?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
   ];
 
-  const handleSelect = (key) => {
-    dispatch(SET_VAL("frame", key));
-  };
-
   if (!letterContent) return <div />;
   return (
     <div className="paperCardContainer">
