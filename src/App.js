@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SET_VAL } from "./redux/masterReducer";
-import axios from "axios";
-
+import { validateCookie } from "./api/user";
+import Cookies from "universal-cookie";
+import PrivateRoute from "./components/routing/privateRoute";
 // footer + nav
 // import Footer from "./components/footer";
 import Navigation from "./components/nav/navigation";
@@ -15,48 +16,49 @@ import Done from "./pages/done";
 import Open from "./pages/open";
 import About from "./pages/about";
 import Test from "./pages/test";
-import { casCheck } from "./util/api";
 import Memories from "./pages/memories";
 import Notfound from "./pages/notfound";
 import Profile from "./pages/profile/profile";
+import Login from "./pages/public/login";
 
 import "./styles/layout.css";
 // import Ticker from "react-ticker";
+const cookies = new Cookies();
 
 function App() {
   const dispatch = useDispatch();
-  axios.defaults.withCredentials = true;
-  // const isLoading = useSelector((state) => state.state.isLoading);
 
   useEffect(() => {
     const onMount = async () => {
-      const auth = await casCheck();
-      if (
-        !auth ||
-        !auth.data.auth ||
-        !auth.data.user ||
-        !auth.data.user.studentId
-      ) {
-        dispatch(SET_VAL("auth", null));
+      dispatch(SET_VAL("isLoading", true));
+
+      if (document.cookie.indexOf("ypostUser") !== -1) {
+        let res = await validateCookie(cookies.get("ypostUser").accessToken);
+        console.log(res);
+        if (res) {
+          dispatch(SET_VAL("auth", 1));
+          dispatch(SET_VAL("isLoading", false));
+        }
       } else {
-        dispatch(SET_VAL("auth", auth.data.user));
+        dispatch(SET_VAL("auth", -1));
       }
     };
     onMount();
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="backgroundLayout">
       <Router>
         <Navigation />
         <Switch>
-          <Route exact path="/write" component={Write} />
-          <Route exact path="/done" component={Done} />
-          <Route exact path="/letter/:id" component={Open} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/about" component={About} />
           <Route exact path="/user/:id" component={Memories} />
           <Route exact path="/test" component={Test} />
-          <Route exact path="/me" component={Profile} />
+          <PrivateRoute exact path="/me" component={Profile} />
+          <PrivateRoute exact path="/write" component={Write} />
+          <PrivateRoute exact path="/done" component={Done} />
+          <PrivateRoute exact path="/letter/:id" component={Open} />
           <Route exact path="/" component={Landing} />
           <Route exact={false} component={Notfound} />
         </Switch>

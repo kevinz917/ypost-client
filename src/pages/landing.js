@@ -48,7 +48,11 @@ const Landing = (props) => {
         dispatch(SET_VAL("letterCount", letterCount.data.count));
       }
     };
-    if (stateVal.auth !== -1) onMount();
+    if (stateVal.auth !== -1) {
+      onMount();
+    } else {
+      console.log("not checking");
+    }
   }, [dispatch, stateVal.auth]);
 
   const filterStudents = (inputValue) => {
@@ -101,7 +105,7 @@ const Landing = (props) => {
           )}
         </div>
         <br />
-        {stateVal.auth && stateVal.auth !== -1 && (
+        {stateVal.auth !== -1 && (
           <React.Fragment>
             <AsyncSelect
               loadOptions={loadOptions}
@@ -130,19 +134,13 @@ const Landing = (props) => {
             </Link>
           </React.Fragment>
         )}
-        {!stateVal.auth && (
-          <button
-            className="buttonMain buttonRecord"
-            onClick={() => {
-              window.location.href = `${Base}/auth/cas`;
-            }}
-          >
-            Login with CAS
-          </button>
-        )}
+        {stateVal.auth === -1 ? (
+          <Link to="/login" className="link">
+            <button className="buttonMain buttonRecord">Log in here</button>
+          </Link>
+        ) : null}
       </div>
       <br />
-
       <div className="report-container">
         To report a problem or share a thought, talk to us{" "}
         <a

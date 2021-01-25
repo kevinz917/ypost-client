@@ -21,7 +21,7 @@ const state = (
     message: "",
     author: "",
     audioFile: null,
-    auth: -1,
+    auth: 0,
   },
   action
 ) => {
