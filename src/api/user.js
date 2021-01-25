@@ -1,7 +1,12 @@
 import axios from "axios";
 import { Base } from "../util/base";
 import Cookies from "universal-cookie";
-import { SET_VAL, SET_USER_INFO, SET_USERID } from "../redux/masterReducer";
+import {
+  SET_VAL,
+  SET_USER_INFO,
+  SET_USERID,
+  SET_FETCHED_CARDS,
+} from "../redux/masterReducer";
 import { store } from "../index";
 
 const cookies = new Cookies();
@@ -57,6 +62,7 @@ const validateCookie = async (val) => {
   }
 };
 
+// fetch info
 const fetchUserInfo = async () => {
   try {
     const res = await axios.post(`${Base}/user/fetchInfo`, null, {
@@ -67,8 +73,8 @@ const fetchUserInfo = async () => {
       const userInfo = res.data.data;
       store.dispatch(
         SET_USER_INFO({
-          sentCards: userInfo.sentCards,
-          receivedCards: userInfo.receivedCards,
+          // sentCards: userInfo.sentCards,
+          // receivedCards: userInfo.receivedCards,
           email: userInfo.email,
         })
       );
@@ -79,6 +85,23 @@ const fetchUserInfo = async () => {
   }
 };
 
+// fetch all cards
+const fetchAllCards = async () => {
+  try {
+    const res = await axios.post(`${Base}/user/fetchall`, null, {
+      headers: headers,
+    });
+
+    store.dispatch(SET_FETCHED_CARDS(res.data.data));
+
+    // console.log(res.data.data);
+
+    return res;
+  } catch (err) {
+    return;
+  }
+};
+
 // log out
 const logout = async () => {
   console.log("logging out");
@@ -86,4 +109,11 @@ const logout = async () => {
   store.dispatch(SET_VAL("auth", -1));
 };
 
-export { onSignup, onLogin, validateCookie, logout, fetchUserInfo };
+export {
+  onSignup,
+  onLogin,
+  validateCookie,
+  logout,
+  fetchUserInfo,
+  fetchAllCards,
+};

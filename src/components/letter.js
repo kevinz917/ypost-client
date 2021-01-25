@@ -28,6 +28,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
 
   const sendLetter = async () => {
     let createdCard = await createCard(
+      stateVal.userInfo.userId,
       letterContent.author,
       letterContent.recipient,
       letterContent.email,
@@ -107,7 +108,9 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       <PaperCard
         ref={ref}
         frameImage={
-          letterContent.frame.length > 0 ? letterContent.frame : stateVal.frame
+          letterContent.frame && letterContent.frame.length > 0
+            ? letterContent.frame
+            : stateVal.frame
         }
       >
         <div>

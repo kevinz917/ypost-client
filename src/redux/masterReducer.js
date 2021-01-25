@@ -24,6 +24,13 @@ const SET_USER_INFO = (payload) => {
   };
 };
 
+const SET_FETCHED_CARDS = (payload) => {
+  return {
+    type: "SET_FETCHED_CARDS",
+    payload,
+  };
+};
+
 const state = (
   state = {
     isLoading: false,
@@ -60,10 +67,19 @@ const state = (
         ...state,
         userInfo: {
           ...state.userInfo,
-          sentCards: action.payload.sentCards,
-          receivedCards: action.payload.receivedCards,
+          // sentCards: action.payload.sentCards,
+          // receivedCards: action.payload.receivedCards,
           groups: action.payload.groups,
           email: action.payload.email,
+        },
+      };
+    case "SET_FETCHED_CARDS":
+      return {
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          sentCards: action.payload.sentCards,
+          receivedCards: action.payload.receivedCards,
         },
       };
     default:
@@ -73,4 +89,4 @@ const state = (
 
 const MasterReducer = combineReducers({ state });
 
-export { SET_VAL, SET_USER_INFO, SET_USERID, MasterReducer };
+export { SET_VAL, SET_USER_INFO, SET_USERID, SET_FETCHED_CARDS, MasterReducer };

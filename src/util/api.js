@@ -4,6 +4,7 @@ import { sendAmplitudeData } from "../util/amplitude";
 
 // Create card
 const createCard = async (
+  userId,
   author,
   recipient,
   email,
@@ -15,6 +16,7 @@ const createCard = async (
   frame
 ) => {
   const data = new FormData();
+  data.append("userId", userId);
   if (author === "") {
     data.append("author", "anonymous");
   } else {

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { sendAmplitudeData } from "../util/amplitude";
-import { fetchUserCards } from "../util/api";
 import MemoryLetter from "../components/memoryLetter";
-import Flake from "../assets/flake.svg";
 import { useSelector, useDispatch } from "react-redux";
-import { SET_VAL, SET_USER_INFO } from "../redux/masterReducer";
-import { fetchUserInfo } from "../api/user";
+import {
+  SET_VAL,
+  SET_USER_INFO,
+  SET_FETCHED_CARDS,
+} from "../redux/masterReducer";
+import { fetchUserInfo, fetchAllCards } from "../api/user";
 import { ButtonGroup, ToggleButton } from "react-bootstrap";
 
 import "../styles/color.css";
@@ -31,6 +33,8 @@ const Memories = (props) => {
       await fetchUserInfo();
       SET_VAL("isLoading", false);
 
+      await fetchAllCards();
+
       sendAmplitudeData("Visited Memory Lane");
     };
     onMount();
@@ -38,20 +42,18 @@ const Memories = (props) => {
 
   return stateVal.isLoading === true ? null : (
     <div className="paperCardContainer fade-in">
-      <div style={{ height: "40px", width: "100%" }} />
+      <div style={{ height: "40px", width: "500px" }} />
       <div className="link" onClick={(e) => props.history.push("/")}>
         <span className="navigation body">← Back</span>
       </div>
       <hr />
-      <br />
       <div className="header2 textMain">💌 Your cards</div>
-      <br />
-      <ButtonGroup toggle>
+      <ButtonGroup toggle style={{ width: "100%" }}>
         {radios.map((radio, idx) => (
           <ToggleButton
             key={idx}
             type="radio"
-            variant="secondary"
+            variant="outline-secondary"
             name="radio"
             value={radio.value}
             checked={radioValue === radio.value}
@@ -61,11 +63,17 @@ const Memories = (props) => {
           </ToggleButton>
         ))}
       </ButtonGroup>
-      <div>
-        {stateVal.userInfo.receivedCards.map((card, index) => (
-          <MemoryLetter key={index} letterContent={card} />
-        ))}
-      </div>
+      {radioValue === "1" ? (
+        <React.Fragment>
+          {stateVal.userInfo.sentCards.length > 0 ? (
+            <div>
+              {stateVal.userInfo.sentCards.map((card, index) => (
+                <MemoryLetter letterContent={card} />
+              ))}
+            </div>
+          ) : null}
+        </React.Fragment>
+      ) : null}
     </div>
   );
 };
