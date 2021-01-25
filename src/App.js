@@ -22,7 +22,6 @@ import Profile from "./pages/profile/profile";
 import Login from "./pages/public/login";
 
 import "./styles/layout.css";
-// import Ticker from "react-ticker";
 const cookies = new Cookies();
 
 function App() {

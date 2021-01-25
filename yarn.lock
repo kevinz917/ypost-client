@@ -9505,16 +9505,6 @@ react-select@^3.1.1:
     react-input-autosize "^2.2.2"
     react-transition-group "^4.3.0"
 
-react-snowfall@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-snowfall/-/react-snowfall-1.0.2.tgz#cafdeacea28638ea710687f101ec4c8e92550e9c"
-  integrity sha512-wmKa7Vhl26Ixo5hBp3lgM9z7o43itLv7LF7IuuD0vZPh3TclfM2wokujQb/gg5Ml2c6r6hyU7WXmvMg63TkhtA==
-
-react-ticker@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/react-ticker/-/react-ticker-1.2.2.tgz#12cda5ff8266c6fe90ffcd8c58e12ba1596ddf24"
-  integrity sha512-PXUujoPJvajxwOfosuuujlrBUrjgGp4FB4haWFOI25ujhMppW4SuLkiOdQ9AylrWN3yTHWdk2kbQWe3n9SjFGA==
-
 react-transition-group@^4.3.0, react-transition-group@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.1.tgz#63868f9325a38ea5ee9535d828327f85773345c9"

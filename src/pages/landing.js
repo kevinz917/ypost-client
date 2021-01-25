@@ -71,14 +71,7 @@ const Landing = (props) => {
   return loadingState === 0 ? null : (
     <div className="paperCardContainer">
       <div className="paperCard">
-        <div className="horizontalInbetween">
-          <div className="h2 textMain">YPost</div>
-          <img
-            src={Stamp}
-            alt="logo"
-            style={{ transform: "rotate(20deg)", width: "50px" }}
-          />
-        </div>
+        <div className="h2 textMain">YPost</div>
         <br />
         <div className="body textMain">
           Send simple and delightful cards to your teammates. Show your
@@ -154,3 +147,9 @@ const Landing = (props) => {
 };
 
 export default Landing;
+
+// <img
+//   src={Stamp}
+//   alt="logo"
+//   style={{ transform: "rotate(20deg)", width: "50px" }}
+// />;

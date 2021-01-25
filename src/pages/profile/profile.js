@@ -16,6 +16,7 @@ const Profile = (props) => {
   return (
     <div className="profile-container">
       <div className="header2">My profile</div>
+      <div className="textMain body">Groups: </div>
       <br />
       <Button onClick={logOut}>Logout</Button>
     </div>
