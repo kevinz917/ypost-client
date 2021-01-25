@@ -83,7 +83,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
             <hr />
             <br />
           </React.Fragment>
-          <div className="h2">Pick a frame</div>
+          <div className="header2">Pick a frame</div>
           <div className="frame-container-box">
             {frames.map((frame, idx) => {
               return (

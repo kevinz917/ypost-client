@@ -8,7 +8,7 @@ const Profile = (props) => {
 
   return (
     <div className="profile-container">
-      <div className="h2">My profile</div>
+      <div className="header2">My profile</div>
       <br />
       <div className="body textMain">NetId: {authVal.netId}</div>
       <div className="body textMain">Groups: WLI</div>

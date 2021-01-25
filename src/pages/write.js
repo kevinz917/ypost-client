@@ -140,7 +140,7 @@ const Write = (props) => {
       </Link>
       <hr />
       <br />
-      <div className="h2">Who is this from?</div>
+      <div className="header2">Who is this from?</div>
       <input
         className="inputMain"
         placeholder="Your name, or leave it blank"
@@ -149,7 +149,7 @@ const Write = (props) => {
       />
       <br />
       <br />
-      <div className="h2">Write a message</div>
+      <div className="header2">Write a message</div>
       <textarea
         className="inputMain textareaMain"
         placeholder="Write here"
@@ -160,7 +160,7 @@ const Write = (props) => {
       />
       <br />
       <br />
-      <div className="h2">Draw something</div>
+      <div className="header2">Draw something</div>
       <CanvasDraw
         ref={drawing_ref}
         lazyRadius={0}
@@ -207,7 +207,7 @@ const Write = (props) => {
       </div>
       <br />
       <br />
-      <div className="h2">Pick a sticker</div>
+      <div className="header2">Pick a sticker</div>
       <div style={{ width: "100%" }}>
         <ScrollMenu
           data={stickers}
@@ -222,7 +222,7 @@ const Write = (props) => {
       </div>
       <br />
       <br />
-      <div className="h2">Add a voice message!</div>
+      <div className="header2">Add a voice message!</div>
       <button
         className="buttonMain buttonRecord"
         onClick={(e) => toggle(e)}
