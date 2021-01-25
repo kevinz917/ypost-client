@@ -7,14 +7,13 @@ import Stamp from "../assets/stamp.svg";
 import AsyncSelect from "react-select/async";
 import { sendAmplitudeData } from "../util/amplitude";
 import styles from "./landing.module.css";
-import { Base } from "../util/base";
 
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+// const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 const Landing = (props) => {
   const dispatch = useDispatch();
@@ -48,11 +47,8 @@ const Landing = (props) => {
         dispatch(SET_VAL("letterCount", letterCount.data.count));
       }
     };
-    if (stateVal.auth !== -1) {
-      onMount();
-    } else {
-      console.log("not checking");
-    }
+
+    onMount();
   }, [dispatch, stateVal.auth]);
 
   const filterStudents = (inputValue) => {

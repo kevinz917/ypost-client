@@ -48,6 +48,7 @@ const validateCookie = async (val) => {
 
 // log out
 const logout = async () => {
+  console.log("logging out");
   cookies.remove("ypostUser");
   store.dispatch(SET_VAL("auth", -1));
 };
