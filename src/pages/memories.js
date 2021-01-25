@@ -3,58 +3,66 @@ import { sendAmplitudeData } from "../util/amplitude";
 import { fetchUserCards } from "../util/api";
 import MemoryLetter from "../components/memoryLetter";
 import Flake from "../assets/flake.svg";
+import { useSelector, useDispatch } from "react-redux";
+import { SET_VAL, SET_USER_INFO } from "../redux/masterReducer";
+import { fetchUserInfo } from "../api/user";
+import { ButtonGroup, ToggleButton } from "react-bootstrap";
 
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+// const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 const Memories = (props) => {
-  const [userCards, setUserCards] = useState([]);
-  const [loadingState, setLoadingState] = useState(0);
+  const stateVal = useSelector((state) => state.state);
+  const [radioValue, setRadioValue] = useState("1");
+
+  const radios = [
+    { name: "Sent", value: "1" },
+    { name: "Received", value: "2" },
+  ];
 
   useEffect(() => {
     const onMount = async () => {
-      setLoadingState(0);
-      let fetchedCards = await fetchUserCards(props.match.params.id);
-      fetchedCards.reverse();
-      setUserCards(fetchedCards);
-      setLoadingState(1);
-      await delay(800);
-      setLoadingState(2);
+      // fetch user info
+      SET_VAL("isLoading", true);
+      await fetchUserInfo();
+      SET_VAL("isLoading", false);
+
       sendAmplitudeData("Visited Memory Lane");
     };
     onMount();
   }, [props.match.params.id]);
-  return loadingState === 0 ? (
-    <img
-      src={Flake}
-      className="rotate snowflake paperCardContainer"
-      alt="snow"
-    />
-  ) : loadingState === 1 ? (
-    <img
-      src={Flake}
-      className="paperCardContainer snowflake move-me-3"
-      alt="snow"
-    />
-  ) : (
+
+  return stateVal.isLoading === true ? null : (
     <div className="paperCardContainer fade-in">
-      <div style={{ height: "40px" }} />
+      <div style={{ height: "40px", width: "100%" }} />
       <div className="link" onClick={(e) => props.history.push("/")}>
         <span className="navigation body">← Back</span>
       </div>
       <hr />
       <br />
-      <div className="h1 textMain">💌 Memory Lane</div>
-      <div className="body" style={{ opacity: "0.7" }}>
-        {userCards.length} postcards
-      </div>
+      <div className="header2 textMain">💌 Your cards</div>
       <br />
+      <ButtonGroup toggle>
+        {radios.map((radio, idx) => (
+          <ToggleButton
+            key={idx}
+            type="radio"
+            variant="secondary"
+            name="radio"
+            value={radio.value}
+            checked={radioValue === radio.value}
+            onChange={(e) => setRadioValue(e.currentTarget.value)}
+          >
+            {radio.name}
+          </ToggleButton>
+        ))}
+      </ButtonGroup>
       <div>
-        {userCards.map((card, index) => (
+        {stateVal.userInfo.receivedCards.map((card, index) => (
           <MemoryLetter key={index} letterContent={card} />
         ))}
       </div>
@@ -63,3 +71,9 @@ const Memories = (props) => {
 };
 
 export default Memories;
+
+// <div>
+//   {stateVal.userInfo.receivedCards.map((card, index) => (
+//     <MemoryLetter key={index} letterContent={card} />
+//   ))}
+// </div>;

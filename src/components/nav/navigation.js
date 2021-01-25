@@ -19,9 +19,9 @@ const Navigation = () => {
           <Link to="/" className="link">
             <div className="nav-item-left body textMain">home</div>
           </Link>
-          <Link to="/about" className="link">
+          <a href="mailto:kevin.zhang@yale.edu" target="_blank">
             <div className="nav-item-left body textMain">contact</div>
-          </Link>
+          </a>
         </div>
         {auth === 1 ? (
           <Link to="/me" className="link">
