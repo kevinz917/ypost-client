@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import AsyncSelect from "react-select/async";
 import { sendAmplitudeData } from "../util/amplitude";
 import styles from "./landing.module.css";
-import { fetchUserInfo } from "../api/user";
 
 import "../styles/color.css";
 import "../styles/layout.css";

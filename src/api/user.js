@@ -52,8 +52,6 @@ const validateCookie = async (val) => {
     });
 
     if (res.data.status === "success") {
-      // console.log(res.data);
-      // store.dispatch(SET_VAL("userInfo", { userId: res.data.userId }));
       store.dispatch(SET_USERID(res.data.userId));
       return true;
     }
@@ -73,8 +71,6 @@ const fetchUserInfo = async () => {
       const userInfo = res.data.data;
       store.dispatch(
         SET_USER_INFO({
-          // sentCards: userInfo.sentCards,
-          // receivedCards: userInfo.receivedCards,
           email: userInfo.email,
         })
       );
