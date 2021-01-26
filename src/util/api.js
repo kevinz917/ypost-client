@@ -40,7 +40,6 @@ const createCard = async (
   });
   data.append("netId", netId);
 
-  console.log(data);
   axios.post(`${Base}/card/new`, data);
 };
 

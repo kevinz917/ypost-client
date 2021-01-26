@@ -7,6 +7,7 @@ import {
   SET_USERID,
   SET_FETCHED_CARDS,
 } from "../redux/masterReducer";
+import { SET_GROUPID } from "../redux/groupReducer";
 import { store } from "../index";
 
 const cookies = new Cookies();
@@ -52,9 +53,8 @@ const validateCookie = async (val) => {
     });
 
     if (res.data.status === "success") {
-      // console.log(res.data);
-      // store.dispatch(SET_VAL("userInfo", { userId: res.data.userId }));
       store.dispatch(SET_USERID(res.data.userId));
+      store.dispatch(SET_GROUPID(res.data.groupId));
       return true;
     }
   } catch {
@@ -73,8 +73,6 @@ const fetchUserInfo = async () => {
       const userInfo = res.data.data;
       store.dispatch(
         SET_USER_INFO({
-          // sentCards: userInfo.sentCards,
-          // receivedCards: userInfo.receivedCards,
           email: userInfo.email,
         })
       );
