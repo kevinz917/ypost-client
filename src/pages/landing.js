@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchStudents, fetchCount } from "../util/api";
+import { fetchCount } from "../util/api";
 import { SET_VAL } from "../redux/masterReducer";
 import { Link } from "react-router-dom";
-import AsyncSelect from "react-select/async";
+import Select from "react-select";
 import { sendAmplitudeData } from "../util/amplitude";
 import styles from "./landing.module.css";
+import { fetchMembers } from "../api/group";
 
 import "../styles/color.css";
 import "../styles/layout.css";
@@ -13,22 +14,21 @@ import "../styles/typography.css";
 import "../styles/animation.css";
 import Hero from "../assets/hero.png";
 
-// const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
 const Landing = () => {
   const dispatch = useDispatch();
   const stateVal = useSelector((state) => state.state);
+  const groupVal = useSelector((state) => state.groupReducer);
 
-  // On mount
+  // on mount
   useEffect(() => {
     const onMount = async () => {
       dispatch(SET_VAL("isLoading", true));
       sendAmplitudeData("Visited home page");
 
-      // fetch list of all students in same org
+      // fetch students in same group
       if (stateVal.auth && stateVal.studentList.length < 2) {
-        let studentList = await fetchStudents();
-        dispatch(SET_VAL("studentList", studentList));
+        let userList = await fetchMembers(groupVal.groupId);
+        dispatch(SET_VAL("studentList", userList));
       }
 
       if (localStorage.getItem("sent") === null) {
@@ -50,18 +50,7 @@ const Landing = () => {
     }
   }, []);
 
-  const filterStudents = (inputValue) => {
-    return stateVal.studentList.filter((i) =>
-      i.label.toLowerCase().includes(inputValue.toLowerCase())
-    );
-  };
-
-  const loadOptions = (inputValue, callback) => {
-    setTimeout(() => {
-      callback(filterStudents(inputValue));
-    }, 1000);
-  };
-
+  // input change for async select
   const onInputChange = (e) => {
     dispatch(SET_VAL("email", e ? e.value : ""));
     dispatch(SET_VAL("selectedStudent", e ? e.label : ""));
@@ -108,8 +97,8 @@ const Landing = () => {
         <br />
         {stateVal.auth !== -1 && (
           <React.Fragment>
-            <AsyncSelect
-              loadOptions={loadOptions}
+            <Select
+              options={stateVal.studentList}
               placeholder="Type in recipient name"
               autoFocus
               onChange={onInputChange}
