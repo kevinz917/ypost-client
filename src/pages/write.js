@@ -8,7 +8,6 @@ import "../styles/typography.css";
 import "../styles/animation.css";
 import Mic from "../assets/mic.svg";
 import ReactAudioPlayer from "react-audio-player";
-import PaperCard from "../components/papercard";
 import Sticker from "../components/sticker";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FiX, FiRotateCcw } from "react-icons/fi";
@@ -28,9 +27,10 @@ const recorder = new MicRecorder({
 const Write = (props) => {
   const dispatch = useDispatch();
   const drawing_ref = useRef(null);
-  const stateVal = useSelector((state) => state.state);
+  const stateVal = useSelector((state) => state.state); // redux
   const [brush_color, setBrushcolor] = useState(0);
   const [letterContent, setLetterContent] = useState({});
+
   if (!stateVal.selectedStudent) {
     props.history.push("/");
   }
@@ -47,11 +47,6 @@ const Write = (props) => {
     "https://media.giphy.com/media/3oFzm06fG8g4FO0bMQ/giphy.gif",
     "https://media.giphy.com/media/1PMVNNKVIL8Ig/giphy.gif",
     "https://media.giphy.com/media/HsKTkfCuNdM5y/giphy.gif",
-    "https://media.giphy.com/media/bbALkCMRZvoB8MoDd1/giphy.gif",
-    "https://media.giphy.com/media/CLhTC0KCYGI3Tt8dba/giphy.gif",
-    "https://media.giphy.com/media/NsKiCmWdA96V4w10N5/giphy.gif",
-    "https://media.giphy.com/media/IwAZ6dvvvaTtdI8SD5/giphy.gif",
-    "https://media.giphy.com/media/l9quOLGzQbAKQHJx7y/giphy.gif",
   ];
 
   const validate = async (e) => {
@@ -139,13 +134,12 @@ const Write = (props) => {
   return isPreview ? (
     <Letter letterContent={letterContent} setIsPreview={setIsPreview} />
   ) : (
-    <PaperCard>
+    <div className="paperCard paperCardContainer">
       <Link to="/" className="link">
         <span className="navigation body">← Back</span>
       </Link>
       <hr />
-      <br />
-      <div className="h2">Who is this from?</div>
+      <div className="header3">Who is this from?</div>
       <input
         className="inputMain"
         placeholder="Your name, or leave it blank"
@@ -154,7 +148,7 @@ const Write = (props) => {
       />
       <br />
       <br />
-      <div className="h2">Write a message</div>
+      <div className="header3">Write a message</div>
       <textarea
         className="inputMain textareaMain"
         placeholder="Write here"
@@ -165,8 +159,7 @@ const Write = (props) => {
       />
       <br />
       <br />
-      <div className="h2">Draw something</div>
-
+      <div className="header3">Draw something</div>
       <CanvasDraw
         ref={drawing_ref}
         lazyRadius={0}
@@ -178,7 +171,6 @@ const Write = (props) => {
         canvasHeight={200}
         className={styles.canvas}
       />
-
       <div className={styles.toolbar}>
         {colors.map((color, index) => (
           <div
@@ -211,10 +203,9 @@ const Write = (props) => {
           <FiX size={22} style={{ display: "block" }} />
         </div>
       </div>
-
       <br />
       <br />
-      <div className="h2">Pick a sticker</div>
+      <div className="header3">Pick a sticker</div>
       <div style={{ width: "100%" }}>
         <ScrollMenu
           data={stickers}
@@ -229,7 +220,7 @@ const Write = (props) => {
       </div>
       <br />
       <br />
-      <div className="h2">Add a voice message!</div>
+      <div className="header3">Add a voice message!</div>
       <button
         className="buttonMain buttonRecord"
         onClick={(e) => toggle(e)}
@@ -252,7 +243,7 @@ const Write = (props) => {
       {errorMessage ? (
         <div className="body textMain italic">{errorMessage}</div>
       ) : null}
-    </PaperCard>
+    </div>
   );
 };
 

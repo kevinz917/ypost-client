@@ -11,6 +11,7 @@ import { MasterReducer } from "./redux/masterReducer";
 import { PROD } from "./util/base";
 
 import { initAmplitude } from "./util/amplitude";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 initAmplitude();
 
@@ -31,6 +32,8 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
+
+export { store };
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,27 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchStudents, fetchCount } from "../util/api";
 import { SET_VAL } from "../redux/masterReducer";
 import { Link } from "react-router-dom";
-import Stamp from "../assets/stamp.svg";
 import AsyncSelect from "react-select/async";
-import Flake from "../assets/flake.svg";
 import { sendAmplitudeData } from "../util/amplitude";
 import styles from "./landing.module.css";
-import { Base } from "../util/base";
+import { fetchUserInfo } from "../api/user";
 
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
+import Hero from "../assets/hero.png";
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+// const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-const Landing = (props) => {
+const Landing = () => {
   const dispatch = useDispatch();
-  const [letter_count, setLetterCount] = useState(-1);
-  const [loadingState, setLoadingState] = useState(0);
-  const [hovered, setHovered] = useState(false);
   const stateVal = useSelector((state) => state.state);
 
   // On mount
@@ -29,41 +25,33 @@ const Landing = (props) => {
     const onMount = async () => {
       dispatch(SET_VAL("isLoading", true));
       sendAmplitudeData("Visited home page");
-      setLoadingState(0);
-      if (stateVal.auth) {
+
+      // await fetchUserInfo();
+
+      // fetch list of all students
+      if (stateVal.auth && stateVal.studentList.length < 2) {
         let studentList = await fetchStudents();
         dispatch(SET_VAL("studentList", studentList));
       }
+
       if (localStorage.getItem("sent") === null) {
         localStorage.setItem("sent", 0);
       }
       if (localStorage.getItem("letters") === null) {
         localStorage.setItem("letters", JSON.stringify([]));
       }
-      setLoadingState(1);
-      await delay(800);
       dispatch(SET_VAL("isLoading", false));
-      setLoadingState(2);
-      const letterCount = await fetchCount();
-      if (letterCount && letterCount.data) {
-        setLetterCount(letterCount.data.count);
+
+      if (stateVal.letterCount === null) {
+        const letterCount = await fetchCount();
+        dispatch(SET_VAL("letterCount", letterCount.data.count));
       }
     };
-    if (stateVal.auth !== -1) onMount();
-  }, [dispatch, stateVal.auth]);
 
-  const [errorMessage, setErrorMessage] = useState(null);
-
-  const validate = (e) => {
-    if (stateVal.email.length === 0) {
-      setErrorMessage("Email can't be empty!");
-    } else if (!stateVal.email.includes("@")) {
-      setErrorMessage("Please enter a valid email address!");
-    } else {
-      sendAmplitudeData("Selected contact");
-      props.history.push("/write");
+    if (stateVal.auth === 1) {
+      onMount();
     }
-  };
+  }, []);
 
   const filterStudents = (inputValue) => {
     return stateVal.studentList.filter((i) =>
@@ -81,125 +69,82 @@ const Landing = (props) => {
     dispatch(SET_VAL("email", e ? e.value : ""));
     dispatch(SET_VAL("selectedStudent", e ? e.label : ""));
   };
-  // console.log(stateVal.netid);
-  return loadingState === 0 ? (
-    <img
-      src={Flake}
-      className="rotate snowflake paperCardContainer"
-      alt="snow"
-    />
-  ) : loadingState === 1 ? (
-    <img
-      src={Flake}
-      className="paperCardContainer snowflake move-me-3"
-      alt="snow"
-    />
-  ) : (
+
+  return stateVal.isLoading === 0 ? null : (
     <div className="paperCardContainer">
+      {stateVal.auth === 1 ? (
+        <Link to="/feedback" className="link">
+          <div className="paperCard">
+            <div className="header3 textMain">Share your thoughts →</div>
+            <div className="textMain body">
+              File a complaint or say anonymously directly to your manager
+            </div>
+          </div>
+        </Link>
+      ) : null}
       <div className="paperCard">
-        <div className="horizontalInbetween">
-          <div className="h1 textMain">Hey Yalies!</div>
-          <img
-            src={Stamp}
-            alt="logo"
-            style={{ transform: "rotate(20deg)", width: "75px" }}
-          />
+        <div className="w-100 d-flex flex-column align-items-center">
+          <img src={Hero} style={{ width: "90%", height: "auto" }} alt="hero" />
         </div>
-        <br />
-        <div className="body textMain italic">Who do you miss the most?</div>
+        <hr />
+        <div className="h2 textMain">YPost</div>
         <br />
         <div className="body textMain">
-          3 Yalies built YPost so you can send virtual postcards to friends with{" "}
-          <span style={{ fontWeight: "bold" }}>
-            drawings, gifs, and audio messages
-          </span>
-          ! Check it out below, and Happy Holidays :)
-        </div>
-        <br />
-        <div className="body textMain italic">
-          <Link to="/about" className="hyperlink">
-            About this project.
-          </Link>
-        </div>
-        <br />
-        <div className="body textMain">
-          Join our team.
-          <br />
-          Apply&nbsp;
-          <a
-            className="hyperlink italic"
-            target="_blank"
-            rel="noreferrer"
-            href="https://airtable.com/shri5KvR07pfStFL6?fbclid=IwAR3C0mtSJR0zxL-R0Py1vsBLAjBBVkpMU0SyoncDj8ZZdHcUAJZpPeeuOQI"
-          >
-            here
-          </a>{" "}
-          by 1/17.
+          Send simple and delightful cards to your teammates. Show your
+          gratitude and build a better team, together ~
         </div>
         <br />
         <div className={styles.letter_cnt_container + " body textMain fade-in"}>
-          {letter_count === -1 ? (
+          {stateVal.letterCount === null ? (
             <span className={styles.letter_cnt_label}>Loading...</span>
           ) : (
             <div className="fade-in">
               <span className={styles.letter_cnt_label}>
-                Total YPosts Sent:{" "}
+                total notes sent:{" "}
               </span>
-              <span className={styles.letter_cnt_val}>{letter_count}</span>
+              <span className={styles.letter_cnt_val}>
+                {stateVal.letterCount}
+              </span>
             </div>
           )}
         </div>
-        {stateVal.auth && stateVal.auth !== -1 && (
-          <Link to={`/user/${stateVal.auth.studentId}`}>
-            <button
-              className={styles.memory + " buttonMain buttonPrimary"}
-              onClick={validate}
-              onMouseEnter={() => {
-                setHovered(true);
-              }}
-              onMouseLeave={() => {
-                setHovered(false);
-              }}
-            >
-              <div>💌 &nbsp; Visit Memory Lane →</div>
-              <div
-                className="fade-in"
-                style={{
-                  opacity: hovered ? 1 : 0,
-                  transition: "opacity 0.3s",
-                  fontWeight: 400,
-                }}
-              >
-                Check out all of your YPosts in one place here.
-              </div>
-            </button>
+        <br />
+        {stateVal.auth !== -1 && (
+          <React.Fragment>
+            <AsyncSelect
+              loadOptions={loadOptions}
+              placeholder="Type in recipient name"
+              autoFocus
+              onChange={onInputChange}
+              isClearable={true}
+              value={
+                stateVal.email
+                  ? {
+                      value: stateVal.email,
+                      label: stateVal.selectedStudent,
+                    }
+                  : null
+              }
+            />
+            <Link to="/write">
+              <button className="buttonMain buttonPrimary">
+                <div>Send a note</div>
+              </button>
+            </Link>
+            <Link to={`/user/${stateVal.userInfo.userId}`}>
+              <button className="buttonMain buttonSecondary">
+                <div>View your cards </div>
+              </button>
+            </Link>
+          </React.Fragment>
+        )}
+        {stateVal.auth === -1 ? (
+          <Link to="/login" className="link">
+            <button className="buttonMain buttonRecord">Log in here</button>
           </Link>
-        )}
-        {!stateVal.auth && (
-          <button
-            className="buttonMain buttonRecord"
-            onClick={() => {
-              window.location.href = `${Base}/auth/cas`;
-            }}
-          >
-            Login with CAS
-          </button>
-        )}
+        ) : null}
       </div>
       <br />
-
-      <div className="report-container">
-        To report a problem or share a thought, talk to us{" "}
-        <a
-          href="mailto: founders@ypost.app"
-          target="_blank"
-          rel="noreferrer"
-          className="hyperlink italic"
-        >
-          here
-        </a>
-        .
-      </div>
     </div>
   );
 };
