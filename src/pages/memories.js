@@ -7,7 +7,7 @@ import {
   SET_USER_INFO,
   SET_FETCHED_CARDS,
 } from "../redux/masterReducer";
-import { fetchUserInfo, fetchAllCards } from "../api/user";
+import { fetchAllCards } from "../api/user";
 import { ButtonGroup, ToggleButton } from "react-bootstrap";
 
 import "../styles/color.css";

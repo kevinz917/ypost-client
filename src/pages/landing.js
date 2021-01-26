@@ -100,7 +100,7 @@ const Landing = () => {
           ) : (
             <div className="fade-in">
               <span className={styles.letter_cnt_label}>
-                Total letters Sent:{" "}
+                total notes sent:{" "}
               </span>
               <span className={styles.letter_cnt_val}>
                 {stateVal.letterCount}

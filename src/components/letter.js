@@ -16,6 +16,7 @@ import CanvasDraw from "react-canvas-draw";
 import canvas_styles from "../pages/write.module.css";
 import { SET_VAL } from "../redux/masterReducer";
 import { useDispatch, useSelector } from "react-redux";
+import Switch from "react-switch";
 
 const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
   let history = useHistory();
@@ -25,9 +26,10 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
   const drawing_ref = useRef(null);
   const [width, setWidth] = useState(-1);
   const ref = useRef(null);
+  const [visibilityCheck, setVisibilityCheck] = useState(false);
 
   const sendLetter = async () => {
-    let createdCard = await createCard(
+    await createCard(
       stateVal.userInfo.userId,
       letterContent.author,
       letterContent.recipient,
@@ -37,7 +39,8 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       letterContent.sticker,
       letterContent.drawing,
       letterContent.netId,
-      stateVal.frame
+      stateVal.frame,
+      visibilityCheck
     );
 
     if (JSON.parse(localStorage.getItem("sent")) === 0) {
@@ -72,18 +75,27 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
     <div className="paperCardContainer">
       {setIsPreview && (
         <div className="paperCard">
-          <React.Fragment>
-            <div className="link">
-              <span
-                className="navigation body"
-                onClick={() => setIsPreview(false)}
-              >
-                ← Back
-              </span>
-            </div>
-            <hr />
-            <br />
-          </React.Fragment>
+          <div className="link">
+            <span
+              className="navigation body"
+              onClick={() => setIsPreview(false)}
+            >
+              ← Back
+            </span>
+          </div>
+          <hr />
+          <div className="d-flex flex-row align-items-center">
+            <Switch
+              onChange={() => setVisibilityCheck(!visibilityCheck)}
+              checked={visibilityCheck}
+              height={20}
+              width={40}
+              checkedIcon={false}
+              uncheckedIcon={false}
+            />
+            <div className="ml-2">Share with team feed</div>
+          </div>
+          <br />
           <div className="header2">Pick a frame</div>
           <div className="frame-container-box">
             {frames.map((frame, idx) => {

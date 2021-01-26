@@ -2,7 +2,7 @@ import axios from "axios";
 import { Base } from "./base";
 import { sendAmplitudeData } from "../util/amplitude";
 
-// Create card
+// create card
 const createCard = async (
   userId,
   author,
@@ -13,7 +13,8 @@ const createCard = async (
   sticker,
   drawing,
   netId,
-  frame
+  frame,
+  visibility
 ) => {
   const data = new FormData();
   data.append("userId", userId);
@@ -28,6 +29,8 @@ const createCard = async (
   data.append("message", message);
   data.append("drawing", drawing);
   data.append("frame", frame);
+  data.append("visibility", visibility);
+
   if (audioFile) {
     data.append("file", audioFile, "sample");
   }
@@ -41,7 +44,7 @@ const createCard = async (
   axios.post(`${Base}/card/new`, data);
 };
 
-//  Fetch single card
+//  fetch single card
 const fetchCard = async (id) => {
   let fetchedCard = await axios.get(`${Base}/card/single/${id}`);
 
@@ -51,7 +54,7 @@ const fetchCard = async (id) => {
   return null;
 };
 
-// Fetch all students
+// fetch all students
 const fetchStudents = async () => {
   let fetchedStudentList = await axios.get(`${Base}/card/allstudents`);
 
@@ -60,12 +63,12 @@ const fetchStudents = async () => {
   }
 };
 
-// Set letter to "sent" status
+// set letter to "sent" status
 const setOpened = async (id) => {
   await axios.post(`${Base}/card/opened`, { _id: id });
 };
 
-// Get number of letters
+// get number of letters
 const fetchCount = async () => {
   let fetchedCount = await axios.get(`${Base}/card/count`);
 
@@ -74,6 +77,7 @@ const fetchCount = async () => {
   }
 };
 
+// check cas login
 const casCheck = async () => {
   let auth = await axios.get(`${Base}/auth/check`);
 
@@ -82,6 +86,7 @@ const casCheck = async () => {
   }
 };
 
+// fetch all cards from users
 const fetchUserCards = async (id) => {
   let fetchedCards = await axios.get(`${Base}/card/user/${id}`);
   if (fetchedCards) {

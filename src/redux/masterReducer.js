@@ -51,6 +51,7 @@ const state = (
       groups: [],
       email: "",
     },
+    groupInfo: null,
   },
   action
 ) => {
