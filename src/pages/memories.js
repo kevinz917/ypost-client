@@ -20,6 +20,7 @@ import "../styles/animation.css";
 const Memories = (props) => {
   const stateVal = useSelector((state) => state.state);
   const [radioValue, setRadioValue] = useState("1");
+  const [isFetching, setIsFetching] = useState(false);
 
   const radios = [
     { name: "Sent", value: "1" },
@@ -28,17 +29,14 @@ const Memories = (props) => {
 
   useEffect(() => {
     const onMount = async () => {
-      // fetch user info
-      SET_VAL("isLoading", true);
-      await fetchUserInfo();
-      SET_VAL("isLoading", false);
-
+      // fetch cards
+      setIsFetching(true);
       await fetchAllCards();
-
+      setIsFetching(false);
       sendAmplitudeData("Visited Memory Lane");
     };
     onMount();
-  }, [props.match.params.id]);
+  }, []);
 
   return stateVal.isLoading === true ? null : (
     <div className="paperCardContainer fade-in">
@@ -63,11 +61,27 @@ const Memories = (props) => {
           </ToggleButton>
         ))}
       </ButtonGroup>
-      {radioValue === "1" ? (
+      <br />
+      {isFetching ? (
+        <div className="w-100 d-flex flex-row justify-content-center">
+          <br />
+          Loading letters ...
+        </div>
+      ) : radioValue === "1" ? (
         <React.Fragment>
           {stateVal.userInfo.sentCards.length > 0 ? (
             <div>
-              {stateVal.userInfo.sentCards.map((card, index) => (
+              {stateVal.userInfo.sentCards.map((card) => (
+                <MemoryLetter letterContent={card} />
+              ))}
+            </div>
+          ) : null}
+        </React.Fragment>
+      ) : radioValue === "2" ? (
+        <React.Fragment>
+          {stateVal.userInfo.receivedCards.length > 0 ? (
+            <div>
+              {stateVal.userInfo.receivedCards.map((card) => (
                 <MemoryLetter letterContent={card} />
               ))}
             </div>
@@ -79,9 +93,3 @@ const Memories = (props) => {
 };
 
 export default Memories;
-
-// <div>
-//   {stateVal.userInfo.receivedCards.map((card, index) => (
-//     <MemoryLetter key={index} letterContent={card} />
-//   ))}
-// </div>;

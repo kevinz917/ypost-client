@@ -56,7 +56,7 @@ const MemoryLetter = ({ letterContent }) => {
   return (
     <div
       ref={ref}
-      className="memoryCard"
+      className="memoryCard fade-in"
       style={width > 500 ? rotateStyle : {}}
       {...rotateProps}
     >
@@ -79,11 +79,11 @@ const MemoryLetter = ({ letterContent }) => {
           />
         )}
       {letterContent.audioUrl ? (
-        <>
+        <React.Fragment>
           <br />
           <ReactAudioPlayer src={letterContent.audioUrl} controls />
           <br />
-        </>
+        </React.Fragment>
       ) : null}
       <br />
       <div className="body textMain" style={{ textAlign: "right" }}>
