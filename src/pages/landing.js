@@ -25,9 +25,7 @@ const Landing = () => {
       dispatch(SET_VAL("isLoading", true));
       sendAmplitudeData("Visited home page");
 
-      // await fetchUserInfo();
-
-      // fetch list of all students
+      // fetch list of all students in same org
       if (stateVal.auth && stateVal.studentList.length < 2) {
         let studentList = await fetchStudents();
         dispatch(SET_VAL("studentList", studentList));

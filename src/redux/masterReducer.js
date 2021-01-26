@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { groupReducer } from "./groupReducer";
 
 // general purpose action
 const SET_VAL = (field, payload) => {
@@ -51,7 +52,6 @@ const state = (
       groups: [],
       email: "",
     },
-    groupInfo: null,
   },
   action
 ) => {
@@ -88,6 +88,6 @@ const state = (
   }
 };
 
-const MasterReducer = combineReducers({ state });
+const MasterReducer = combineReducers({ state, groupReducer });
 
 export { SET_VAL, SET_USER_INFO, SET_USERID, SET_FETCHED_CARDS, MasterReducer };

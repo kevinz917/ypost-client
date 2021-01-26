@@ -19,10 +19,20 @@ if (cookies.get("ypostUser") !== undefined) {
   };
 }
 
+// fetch all groups
 const fetchGroups = async () => {
   try {
     let fetchedGroups = await axios.get(`${Base}/group/all`);
     if (fetchedGroups) return fetchedGroups.data.data.groups;
+  } catch (err) {
+    console.log(err);
+    return;
+  }
+};
+
+// fetch all members in a group
+const fetchMembers = async (groupId) => {
+  try {
   } catch (err) {
     console.log(err);
     return;

@@ -7,6 +7,7 @@ import {
   SET_USERID,
   SET_FETCHED_CARDS,
 } from "../redux/masterReducer";
+import { SET_GROUPID } from "../redux/groupReducer";
 import { store } from "../index";
 
 const cookies = new Cookies();
@@ -53,6 +54,7 @@ const validateCookie = async (val) => {
 
     if (res.data.status === "success") {
       store.dispatch(SET_USERID(res.data.userId));
+      store.dispatch(SET_GROUPID(res.data.groupId));
       return true;
     }
   } catch {
