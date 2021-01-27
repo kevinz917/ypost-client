@@ -19,9 +19,6 @@ const Navigation = () => {
           <Link to="/" className="link">
             <div className="nav-item-left body textMain">home</div>
           </Link>
-          <a href="mailto:kevin.zhang@yale.edu" target="_blank">
-            <div className="nav-item-left body textMain">contact</div>
-          </a>
         </div>
         {auth === 1 ? (
           <Link to="/me" className="link">
@@ -40,3 +37,7 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
+// <a href="mailto:kevin.zhang@yale.edu" target="_blank" rel="noreferrer">
+//   <div className="nav-item-left body textMain">contact</div>
+// </a>;

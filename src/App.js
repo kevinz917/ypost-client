@@ -54,7 +54,7 @@ function App() {
           <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/about" component={About} />
-            <Route exact path="/user/:id" component={Memories} />
+            <PrivateRoute exact path="/user/:id" component={Memories} />
             <PrivateRoute exact path="/feedback" component={Feedback} />
             <PrivateRoute exact path="/me" component={Profile} />
             <PrivateRoute exact path="/write" component={Write} />

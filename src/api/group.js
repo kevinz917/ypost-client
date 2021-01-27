@@ -33,7 +33,6 @@ const fetchGroups = async () => {
 // fetch all members in a group
 const fetchMembers = async (groupId) => {
   try {
-    console.log(groupId);
     let fetchedMembers = await axios.post(`${Base}/group/members`, { groupId });
     return fetchedMembers.data.data.users;
   } catch (err) {
