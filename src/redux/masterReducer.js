@@ -51,6 +51,7 @@ const state = (
       receivedCards: [],
       groups: [],
       email: "",
+      role: "",
     },
   },
   action
@@ -68,10 +69,9 @@ const state = (
         ...state,
         userInfo: {
           ...state.userInfo,
-          // sentCards: action.payload.sentCards,
-          // receivedCards: action.payload.receivedCards,
           groups: action.payload.groups,
           email: action.payload.email,
+          role: action.payload.role,
         },
       };
     case "SET_FETCHED_CARDS":

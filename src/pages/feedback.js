@@ -2,7 +2,7 @@ import { useState } from "react";
 import { addFeedback } from "../api/feedback";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { toast, Slide } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Feedback = () => {
@@ -27,13 +27,13 @@ const Feedback = () => {
   return (
     <div className="paperCardContainer fade-in">
       <div className="paperCard">
-        <div className="header2">Feedback page</div>
-        <div className="textMain body">Write anonymous feedback here </div>
+        <div className="header2">Feedback</div>
+        <div className="textMain body">Share anything anonymously </div>
         <br />
         <textarea
           style={{ minHeight: "100px" }}
           className="inputMain"
-          placeholder="anonymous feedback"
+          placeholder="I feel that ..."
           value={writtenFeedback}
           onChange={(e) => setWrittenFeedback(e.target.value)}
         />

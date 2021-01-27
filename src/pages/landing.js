@@ -73,7 +73,7 @@ const Landing = () => {
           <img src={Hero} style={{ width: "90%", height: "auto" }} alt="hero" />
         </div>
         <hr />
-        <div className="h2 textMain">YPost</div>
+        <div className="header2 textMain">YPost</div>
         <br />
         <div className="body textMain">
           Send simple and delightful cards to your teammates. Show your
