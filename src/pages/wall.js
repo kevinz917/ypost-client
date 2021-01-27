@@ -1,32 +1,30 @@
+import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
-import { Base } from "../util/base";
 import { fetchPublicPosts } from "../api/group";
 import { useSelector } from "react-redux";
 import MemoryLetter from "../components/memoryLetter";
 
 // trying out useQuery
 const Wall = () => {
+  const [fetchedCards, setFetchedCards] = useState([]);
   const groupVal = useSelector((state) => state.groupReducer);
 
-  const { isLoading, isError, data, error } = useQuery(
-    "publicPosts",
-    fetchPublicPosts(groupVal.groupId)
-  );
-
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
-
-  if (isError) {
-    return <span>Error: {error.message}</span>;
-  }
-
-  if (error) return "An error has occurred: " + error.message;
+  useEffect(() => {
+    const onMount = async () => {
+      const fetchedCards = await fetchPublicPosts(groupVal.groupId);
+      setFetchedCards(fetchedCards);
+    };
+    onMount();
+  }, []);
 
   return (
-    <div>
-      {data.map((letter) => (
-        <MemoryLetter letterContent={letter} />
+    <div className="paperCardContainer fade-in">
+      <br />
+      <div className="header2">Wall of gratitude</div>
+      <div style={{ width: "500px" }} />
+      <br />
+      {fetchedCards.map((card) => (
+        <MemoryLetter letterContent={card} key={card._id} />
       ))}
     </div>
   );

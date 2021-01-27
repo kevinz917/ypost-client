@@ -7,7 +7,7 @@ import Cookies from "universal-cookie";
 import { ToastContainer, Slide } from "react-toastify";
 import PrivateRoute from "./components/routing/privateRoute";
 import Navigation from "./components/nav/navigation";
-import { QueryClient, QueryClientProvider } from "react-query";
+// import { QueryClient, QueryClientProvider } from "react-query";
 // import Footer from "./components/footer";
 
 // pages
@@ -27,7 +27,7 @@ import Wall from "./pages/wall";
 import "./styles/layout.css";
 
 const cookies = new Cookies();
-const queryClient = new QueryClient();
+// const queryClient = new QueryClient();
 
 function App() {
   const dispatch = useDispatch();
@@ -53,34 +53,32 @@ function App() {
   }, [dispatch]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <div className="backgroundLayout">
-        {isLoading ? null : (
-          <Router>
-            <Navigation />
-            <Switch>
-              <PrivateRoute exact path="/user/:id" component={Memories} />
-              <PrivateRoute exact path="/feedback" component={Feedback} />
-              <PrivateRoute exact path="/me" component={Profile} />
-              <PrivateRoute exact path="/write" component={Write} />
-              <PrivateRoute exact path="/done" component={Done} />
-              <PrivateRoute exact path="/letter/:id" component={Open} />
-              <PrivateRoute exact path="/wall" component={Wall} />
-              <Route exact path="/inbox" component={Inbox} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/about" component={About} />
-              <Route exact path="/" component={Landing} />
-              <Route exact={false} component={Notfound} />
-            </Switch>
-            <ToastContainer
-              transition={Slide}
-              autoClose={2000}
-              hideProgressBar={true}
-            />
-          </Router>
-        )}
-      </div>
-    </QueryClientProvider>
+    <div className="backgroundLayout">
+      {isLoading ? null : (
+        <Router>
+          <Navigation />
+          <Switch>
+            <PrivateRoute exact path="/user/:id" component={Memories} />
+            <PrivateRoute exact path="/feedback" component={Feedback} />
+            <PrivateRoute exact path="/me" component={Profile} />
+            <PrivateRoute exact path="/write" component={Write} />
+            <PrivateRoute exact path="/done" component={Done} />
+            <PrivateRoute exact path="/letter/:id" component={Open} />
+            <PrivateRoute exact path="/wall" component={Wall} />
+            <Route exact path="/inbox" component={Inbox} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/" component={Landing} />
+            <Route exact={false} component={Notfound} />
+          </Switch>
+          <ToastContainer
+            transition={Slide}
+            autoClose={2000}
+            hideProgressBar={true}
+          />
+        </Router>
+      )}
+    </div>
   );
 }
 

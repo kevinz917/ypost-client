@@ -18,14 +18,14 @@ const Navigation = () => {
           <Link to="/" className="link">
             <div className="nav-item-left textMain header2">YPost</div>
           </Link>
+          <Link to="/wall" className="link">
+            <div className="nav-item-left body textMain">wall</div>
+          </Link>
           {role === "admin" ? (
             <Link to="/inbox" className="link">
               <div className="nav-item-left body textMain">inbox</div>
             </Link>
           ) : null}
-          <Link to="/wall" className="link">
-            <div className="nav-item-left body textMain">wall</div>
-          </Link>
         </div>
         {auth === 1 ? (
           <Link to="/me" className="link">
