@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_VAL, SET_USERID } from "./redux/masterReducer";
+import { SET_VAL } from "./redux/masterReducer";
 import { validateCookie } from "./api/user";
 import Cookies from "universal-cookie";
+import { ToastContainer, Slide } from "react-toastify";
 import PrivateRoute from "./components/routing/privateRoute";
-// footer + nav
-// import Footer from "./components/footer";
 import Navigation from "./components/nav/navigation";
+// import Footer from "./components/footer";
 
 // pages
 import Landing from "./pages/landing";
@@ -63,6 +63,11 @@ function App() {
             <Route exact path="/" component={Landing} />
             <Route exact={false} component={Notfound} />
           </Switch>
+          <ToastContainer
+            transition={Slide}
+            autoClose={2000}
+            hideProgressBar={true}
+          />
         </Router>
       )}
     </div>
