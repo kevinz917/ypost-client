@@ -22,20 +22,10 @@ const Done = (props) => {
   };
   return (
     <div className="paperCardContainer">
-      {lastLetterId ? (
-        <div className="paperCard" style={{ maxWidth: 450 }}>
-          <div className="body textMain">Open your last letter! </div>
-          <Link to={`/letter/${lastLetterId}`} className="link">
-            <button className="buttonMain buttonPrimary">
-              <div>Open YPost</div>
-            </button>
-          </Link>
-        </div>
-      ) : null}
       <br />
       <div className="paperCard" style={{ maxWidth: 450 }}>
         <div className="horizontalInbetween">
-          <div className="h1 textMain">You're all set! </div>
+          <div className="header2 textMain">You're all set! </div>
         </div>
         <br />
         <div className="body textMain">
@@ -54,3 +44,14 @@ const Done = (props) => {
 };
 
 export default Done;
+
+// {lastLetterId ? (
+//   <div className="paperCard" style={{ maxWidth: 450 }}>
+//     <div className="body textMain">Open your last letter! </div>
+//     <Link to={`/letter/${lastLetterId}`} className="link">
+//       <button className="buttonMain buttonPrimary">
+//         <div>Open YPost</div>
+//       </button>
+//     </Link>
+//   </div>
+// ) : null}

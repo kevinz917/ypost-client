@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { fetchAllFeedback } from "../api/feedback";
 
 const Inbox = () => {

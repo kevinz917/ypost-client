@@ -112,12 +112,12 @@ const Landing = () => {
                   : null
               }
             />
-            <Link to="/write">
+            <Link to="/write" className="link">
               <button className="buttonMain buttonPrimary">
                 <div>Send a note</div>
               </button>
             </Link>
-            <Link to={`/user/${stateVal.userInfo.userId}`}>
+            <Link to={`/user/${stateVal.userInfo.userId}`} className="link">
               <button className="buttonMain buttonSecondary">
                 <div>View your cards </div>
               </button>
