@@ -74,6 +74,7 @@ const fetchUserInfo = async () => {
       store.dispatch(
         SET_USER_INFO({
           email: userInfo.email,
+          role: userInfo.role,
         })
       );
       return;

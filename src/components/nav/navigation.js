@@ -9,19 +9,23 @@ import "../../styles/color.css";
 
 const Navigation = () => {
   const auth = useSelector((state) => state.state.auth);
+  const role = useSelector((state) => state.state.userInfo.role);
+
   return (
-    <div className="nav-master">
+    <div className="nav-master fade-in">
       <div className="nav-container justify-content-between">
         <div className="d-flex flex-row align-items-center">
           <Link to="/" className="link">
-            <div className="nav-item-left textMain h2">YPost</div>
+            <div className="nav-item-left textMain header2">YPost</div>
           </Link>
           <Link to="/" className="link">
             <div className="nav-item-left body textMain">home</div>
           </Link>
-          <a href="mailto:kevin.zhang@yale.edu" target="_blank">
-            <div className="nav-item-left body textMain">contact</div>
-          </a>
+          {role === "admin" ? (
+            <Link to="/inbox" className="link">
+              <div className="nav-item-left body textMain">inbox</div>
+            </Link>
+          ) : null}
         </div>
         {auth === 1 ? (
           <Link to="/me" className="link">
@@ -40,3 +44,7 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
+// <a href="mailto:kevin.zhang@yale.edu" target="_blank" rel="noreferrer">
+//   <div className="nav-item-left body textMain">contact</div>
+// </a>;

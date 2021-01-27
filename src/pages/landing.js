@@ -57,13 +57,13 @@ const Landing = () => {
   };
 
   return stateVal.isLoading === 0 ? null : (
-    <div className="paperCardContainer">
+    <div className="paperCardContainer fade-in">
       {stateVal.auth === 1 ? (
         <Link to="/feedback" className="link">
           <div className="paperCard">
             <div className="header3 textMain">Share your thoughts →</div>
             <div className="textMain body">
-              File a complaint or say anonymously directly to your manager
+              speak up and share feedback anonymously to your lead
             </div>
           </div>
         </Link>
@@ -73,7 +73,7 @@ const Landing = () => {
           <img src={Hero} style={{ width: "90%", height: "auto" }} alt="hero" />
         </div>
         <hr />
-        <div className="h2 textMain">YPost</div>
+        <div className="header2 textMain">YPost</div>
         <br />
         <div className="body textMain">
           Send simple and delightful cards to your teammates. Show your

@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
-*,
+/* *,
 html,
 body {
   font-family: "Zilla Slab", serif;
-}
+} */
 
 hr {
   margin: 4px 0 4px 0;
@@ -13,25 +13,28 @@ hr {
 
 .body {
   font-size: 17px;
-  font-weight: normal;
+  font-weight: 300;
   line-height: 140%;
 }
 
 .h1 {
+  font-family: "Zilla Slab", serif;
   font-size: 27px;
   font-weight: 600;
   margin-bottom: 4px;
 }
 
 .header2 {
+  font-family: "Zilla Slab", serif;
   font-size: 23px;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 4px;
 }
 
 .header3 {
+  font-family: "Zilla Slab", serif;
   font-size: 21px;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 4px;
 }
 
