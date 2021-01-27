@@ -73,7 +73,7 @@ const Landing = () => {
           <img src={Hero} style={{ width: "90%", height: "auto" }} alt="hero" />
         </div>
         <hr />
-        <div className="header2 textMain">YPost</div>
+        <div className="header2 textMain">YPost 📬 </div>
         <br />
         <div className="body textMain">
           Send simple and delightful cards to your teammates. Show your
@@ -112,12 +112,12 @@ const Landing = () => {
                   : null
               }
             />
-            <Link to="/write">
+            <Link to="/write" className="link">
               <button className="buttonMain buttonPrimary">
                 <div>Send a note</div>
               </button>
             </Link>
-            <Link to={`/user/${stateVal.userInfo.userId}`}>
+            <Link to={`/user/${stateVal.userInfo.userId}`} className="link">
               <button className="buttonMain buttonSecondary">
                 <div>View your cards </div>
               </button>

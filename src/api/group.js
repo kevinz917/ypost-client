@@ -41,4 +41,24 @@ const fetchMembers = async (groupId) => {
   }
 };
 
-export { fetchGroups, fetchMembers };
+// fetch public posts
+const fetchPublicPosts = async (groupId) => {
+  try {
+    let fetchedPublicPosts = await axios.get(
+      `${Base}/card/fetchpublic/${groupId}`
+    );
+    if (fetchedPublicPosts) {
+      return fetchedPublicPosts.data.data.cards;
+    }
+  } catch (err) {
+    return err;
+  }
+};
+
+// const fetchPublicPosts = (groupId) => {
+//   return fetch(`${Base}/card/fetchpublic/${groupId}`).then((res) => {
+//     res.json();
+//   });
+// };
+
+export { fetchGroups, fetchMembers, fetchPublicPosts };

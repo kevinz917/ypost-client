@@ -41,29 +41,28 @@
   border: none;
   font-size: 16px;
   font-weight: 500;
-  transition: 0.3s;
+  transition: 0.2s;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
-.textareaMain {
-  font-size: 16px;
-  font-family: inherit;
-  resize: vertical;
-}
-
-/* buttons */
 .buttonMain:hover {
   text-decoration: none;
-  transition: 0.3s;
+  transition: 0.2s;
   cursor: pointer;
 }
 
 .buttonMain:focus {
   text-decoration: none;
   outline: none;
+}
+
+.textareaMain {
+  font-size: 16px;
+  font-family: inherit;
+  resize: vertical;
 }
 
 /* button variants */
@@ -74,6 +73,15 @@
 
 .buttonPrimary:hover {
   background-color: rgb(226, 99, 99);
+}
+
+.buttonSecondary {
+  color: black;
+  background-color: #f0f0f0;
+}
+
+.buttonSecondary:hover {
+  background-color: rgb(223, 223, 223);
 }
 
 .buttonRecord {

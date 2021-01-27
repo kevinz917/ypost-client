@@ -22,6 +22,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
   let history = useHistory();
   const dispatch = useDispatch();
   const stateVal = useSelector((state) => state.state);
+  const groupVal = useSelector((state) => state.groupReducer);
 
   const drawing_ref = useRef(null);
   const [width, setWidth] = useState(-1);
@@ -40,7 +41,8 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       letterContent.drawing,
       letterContent.netId,
       stateVal.frame,
-      visibilityCheck
+      visibilityCheck,
+      groupVal.groupId
     );
 
     if (JSON.parse(localStorage.getItem("sent")) === 0) {
