@@ -24,11 +24,16 @@ const Inbox = () => {
 
   return (
     <div className="paperCardContainer fade-in">
+      <br />
       <div className="header2">Feedback inbox</div>
+      <div className="body textMain">
+        Feedback collected anonymously from your team
+      </div>
+      <br />
       <div style={{ width: "500px" }} />
       {fetchedLetters.map((letter) => {
         return (
-          <div className="paperCard" key={letter._id}>
+          <div className="paperCard fade-in" key={letter._id}>
             {letter.content}
           </div>
         );

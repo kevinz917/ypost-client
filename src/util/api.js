@@ -14,7 +14,8 @@ const createCard = async (
   drawing,
   netId,
   frame,
-  visibility
+  visibility,
+  groupId
 ) => {
   const data = new FormData();
   data.append("userId", userId);
@@ -30,6 +31,7 @@ const createCard = async (
   data.append("drawing", drawing);
   data.append("frame", frame);
   data.append("visibility", visibility);
+  data.append("groupId", groupId);
 
   if (audioFile) {
     data.append("file", audioFile, "sample");
