@@ -152,7 +152,7 @@ const Write = (props) => {
       <textarea
         className="inputMain textareaMain"
         placeholder="Write here"
-        rows="4"
+        rows="3"
         value={stateVal.message}
         style={{ maxWidth: "100%" }}
         onChange={(e) => dispatch(SET_VAL("message", e.target.value))}

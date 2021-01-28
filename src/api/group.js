@@ -51,7 +51,7 @@ const fetchPublicPosts = async (groupId) => {
     );
     if (fetchedPublicPosts) {
       store.dispatch(SET_GROUPCARDS(fetchedPublicPosts.data.data.cards));
-      return fetchedPublicPosts.data.data.cards;
+      return fetchedPublicPosts.data.data.cards.reverse();
     }
   } catch (err) {
     return err;
