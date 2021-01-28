@@ -15,13 +15,15 @@ const Profile = (props) => {
   };
 
   return (
-    <div className="profile-container">
+    <div className="profile-container fade-in">
       <div className="header2">My profile</div>
       <br />
       <div className="textMain body">Group ID: {groupVal.groupId}</div>
       <div className="textMain body">Role: {stateVal.userInfo.role}</div>
       <br />
-      <Button onClick={logOut}>Logout</Button>
+      <Button onClick={logOut} style={{ color: "white" }}>
+        Logout
+      </Button>
     </div>
   );
 };

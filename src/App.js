@@ -7,8 +7,11 @@ import Cookies from "universal-cookie";
 import { ToastContainer, Slide } from "react-toastify";
 import PrivateRoute from "./components/routing/privateRoute";
 import Navigation from "./components/nav/navigation";
+import Help from "./components/help/help";
 // import { QueryClient, QueryClientProvider } from "react-query";
-// import Footer from "./components/footer";
+
+import "./styles/layout.css";
+import "react-toastify/dist/ReactToastify.css";
 
 // pages
 import Landing from "./pages/landing";
@@ -23,8 +26,6 @@ import Login from "./pages/public/login";
 import Feedback from "./pages/feedback";
 import Inbox from "./pages/inbox";
 import Wall from "./pages/wall";
-
-import "./styles/layout.css";
 
 const cookies = new Cookies();
 // const queryClient = new QueryClient();
@@ -46,7 +47,6 @@ function App() {
       } else {
         dispatch(SET_VAL("auth", -1));
       }
-
       dispatch(SET_VAL("isLoading", false));
     };
     onMount();
@@ -58,7 +58,6 @@ function App() {
         <Router>
           <Navigation />
           <Switch>
-            <PrivateRoute exact path="/user/:id" component={Memories} />
             <PrivateRoute exact path="/feedback" component={Feedback} />
             <PrivateRoute exact path="/me" component={Profile} />
             <PrivateRoute exact path="/write" component={Write} />
@@ -78,8 +77,11 @@ function App() {
           />
         </Router>
       )}
+      <Help />
     </div>
   );
 }
+
+// <PrivateRoute exact path="/user/:id" component={Memories} />
 
 export default App;

@@ -1,0 +1,9 @@
+.help-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+  border-radius: 4px;
+  color: rgb(167, 167, 167);
+  cursor: pointer;
+}

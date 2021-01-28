@@ -89,6 +89,10 @@
   background-color: #82bafc;
 }
 
+.btnPrimary {
+  color: white;
+}
+
 .buttonRecord:hover {
   background-color: #588fcf;
 }
@@ -120,4 +124,18 @@
 
 .link:hover {
   text-decoration: none;
+}
+
+/* switch colors */
+.switch-btn {
+  background: #fff;
+  color: red;
+  border: 2px solid red;
+  border-radius: 3px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+}
+
+.test {
+  color: red;
 }

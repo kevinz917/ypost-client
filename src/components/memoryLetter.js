@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactAudioPlayer from "react-audio-player";
+import { useSelector } from "react-redux";
 
 import "../styles/color.css";
 import "../styles/layout.css";
@@ -37,8 +38,10 @@ const useRotate = () => {
   return { rotateStyle, onMouseEnter, onMouseLeave };
 };
 
-const MemoryLetter = ({ letterContent }) => {
+const MemoryLetter = ({ letterContent, status }) => {
   const { rotateStyle, ...rotateProps } = useRotate();
+  const userVal = useSelector((state) => state.state.userInfo);
+
   const drawing_ref = useRef(null);
   const [width, setWidth] = useState(-1);
   const ref = useRef(null);
@@ -60,8 +63,23 @@ const MemoryLetter = ({ letterContent }) => {
       style={width > 500 ? rotateStyle : {}}
       {...rotateProps}
     >
-      <div className="body textMain">
-        Dear {letterContent.recipient.split(" ")[0]},
+      <div className="w-100 d-flex flex-row justify-content-between">
+        <div className="body textMain">
+          Dear {letterContent.recipient.split(" ")[0]},
+        </div>
+        {status === "public" && (
+          <React.Fragment>
+            {userVal.receivedCards.some(
+              (card) => card["_id"] === letterContent._id
+            ) ? (
+              <div className={styles.statusFor}>For me</div>
+            ) : userVal.sentCards.some(
+                (card) => card["_id"] === letterContent._id
+              ) ? (
+              <div className={styles.statusFrom}>From me</div>
+            ) : null}
+          </React.Fragment>
+        )}
       </div>
       <br />
       <div className="body textMain">{letterContent.message}</div>
@@ -87,7 +105,6 @@ const MemoryLetter = ({ letterContent }) => {
       ) : null}
       <br />
       <div className="body textMain" style={{ textAlign: "right" }}>
-        Sincerely, <br />{" "}
         {letterContent.author ? letterContent.author : "Anonymous :)"}
       </div>
       <br />

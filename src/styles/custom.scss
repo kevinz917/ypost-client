@@ -1,0 +1,11 @@
+$theme-colors: (
+  "primary": #eb7f7f,
+  "secondary": hsl(39, 45%, 91%),
+  "test": hsl(33, 7%, 25%),
+);
+
+// bootstrap not installed. using default
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+// @import "node_modules/bootstrap/scss/bootstrap";
+// @import "~bootstrap/scss/bootstrap.scss";

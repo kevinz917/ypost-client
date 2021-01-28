@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   background: rgb(255, 252, 246);
+  margin-bottom: 40px;
 }
 
 .paperCardContainer {
@@ -70,7 +71,7 @@
   width: 80vw;
   position: relative;
   max-width: 500px;
-  margin: 10px 0 10px 0;
+  margin: 20px 0 20px 0;
   transition: 0.3s;
 }
 
@@ -108,7 +109,14 @@
   color: black;
 }
 
+.frame-container-parent {
+  width: 100%;
+  overflow: hidden;
+}
+
 .frame-container-box {
+  width: 100%;
+  overflow-x: scroll;
   display: flex;
   flex-direction: row;
 }

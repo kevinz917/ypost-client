@@ -17,6 +17,7 @@ import canvas_styles from "../pages/write.module.css";
 import { SET_VAL } from "../redux/masterReducer";
 import { useDispatch, useSelector } from "react-redux";
 import Switch from "react-switch";
+import { toast } from "react-toastify";
 
 const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
   let history = useHistory();
@@ -29,6 +30,14 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
   const ref = useRef(null);
   const [visibilityCheck, setVisibilityCheck] = useState(false);
 
+  // if recipient is team, auto check visibility
+  useEffect(() => {
+    if (stateVal.email === "none") {
+      setVisibilityCheck(true);
+    }
+  }, [stateVal.email]);
+
+  // send letter api
   const sendLetter = async () => {
     await createCard(
       stateVal.userInfo.userId,
@@ -45,14 +54,19 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       groupVal.groupId
     );
 
-    if (JSON.parse(localStorage.getItem("sent")) === 0) {
-      sendAmplitudeData("Unlocked");
-    }
-    localStorage.setItem("sent", 1);
+    dispatch(SET_VAL("message", ""));
+    dispatch(SET_VAL("selectedStudent", null));
+    dispatch(SET_VAL("frame", null));
+    dispatch(SET_VAL("email", null));
+    dispatch(SET_VAL("audioFile", null));
+    dispatch(SET_VAL("author", null));
+
     sendAmplitudeData("Sent letter");
+    toast.success("Letter sent");
     history.push("/done");
   };
 
+  // drawing ref
   useEffect(() => {
     if (drawing_ref && drawing_ref.current && letterContent.drawing) {
       drawing_ref.current.loadSaveData(letterContent.drawing);
@@ -62,19 +76,23 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
     }
   }, [letterContent]);
 
+  // rng generator
   const randNum = (a, b) => {
     return Math.random() * (b - a) + a;
   };
 
+  // frames
   const frames = [
     "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
     "https://i2.wp.com/digital-photography-school.com/wp-content/uploads/2019/05/joseph-barrientos-49318-unsplash-e1558728034701.jpg?resize=1500%2C1000&ssl=1",
     "https://images.unsplash.com/photo-1611420379241-d5246020832c?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1537934365627-0699a7e2e362?ixid=MXwxMjA3fDB8MHx0b3BpYy1mZWVkfDQ3fDZzTVZqVExTa2VRfHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1611776701631-8b57e06f1948?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
   ];
 
   if (!letterContent) return <div />;
   return (
-    <div className="paperCardContainer">
+    <div className="paperCardContainer fade-in">
       {setIsPreview && (
         <div className="paperCard">
           <div className="link">
@@ -165,7 +183,6 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
           ) : null}
           <br />
           <div className="body textMain" style={{ textAlign: "right" }}>
-            Sincerely, <br />{" "}
             {letterContent.author ? letterContent.author : "Anonymous"}
           </div>
           <br />
@@ -190,7 +207,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
           )}
         </div>
       </PaperCard>
-      <div className="paperCard">
+      <div className="paperCard fade-in">
         {setIsPreview ? (
           <button className="buttonMain buttonPrimary" onClick={sendLetter}>
             <div>Send a note →</div>
