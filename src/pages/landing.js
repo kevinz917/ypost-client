@@ -152,7 +152,7 @@ const Landing = () => {
           ) : radioValue === "2" ? (
             <React.Fragment>
               {stateVal.userInfo.sentCards.map((card) => (
-                <MemoryLetter letterContent={card} status={"public"} />
+                <MemoryLetter letterContent={card} />
               ))}
             </React.Fragment>
           ) : radioValue === "3" ? (
