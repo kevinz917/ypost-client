@@ -21,7 +21,9 @@ const Profile = (props) => {
       <div className="textMain body">Group ID: {groupVal.groupId}</div>
       <div className="textMain body">Role: {stateVal.userInfo.role}</div>
       <br />
-      <Button onClick={logOut}>Logout</Button>
+      <Button onClick={logOut} style={{ color: "white" }}>
+        Logout
+      </Button>
     </div>
   );
 };

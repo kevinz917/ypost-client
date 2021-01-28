@@ -7,16 +7,14 @@ import MemoryLetter from "../components/memoryLetter";
 
 // trying out useQuery
 const Wall = () => {
-  const [fetchedCards, setFetchedCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const groupVal = useSelector((state) => state.groupReducer);
 
   useEffect(() => {
     const onMount = async () => {
       setIsLoading(true);
-      const fetchedCards = await fetchPublicPosts(groupVal.groupId);
+      await fetchPublicPosts(groupVal.groupId);
       await fetchAllCards();
-      setFetchedCards(fetchedCards);
       setIsLoading(false);
     };
     onMount();
@@ -32,7 +30,7 @@ const Wall = () => {
         <div>Loading ... </div>
       ) : (
         <div>
-          {fetchedCards.map((card) => (
+          {groupVal.cards.map((card) => (
             <MemoryLetter
               letterContent={card}
               key={card._id}

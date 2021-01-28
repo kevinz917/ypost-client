@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { ButtonGroup, ToggleButton, Button } from "react-bootstrap";
+import { ButtonGroup, ToggleButton, Button, Dropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCount } from "../util/api";
 import { SET_VAL } from "../redux/masterReducer";
 import { Link } from "react-router-dom";
 import Select from "react-select";
 import { sendAmplitudeData } from "../util/amplitude";
-import { fetchMembers } from "../api/group";
+import { fetchMembers, fetchPublicPosts } from "../api/group";
 import { fetchAllCards } from "../api/user";
 import MemoryLetter from "../components/memoryLetter";
 
@@ -25,10 +25,7 @@ const Landing = () => {
 
   const [radioValue, setRadioValue] = useState("1");
 
-  const radios = [
-    { name: "Sent", value: "1" },
-    { name: "Received", value: "2" },
-  ];
+  const radios = { 1: "For me", 2: "From me", 3: "Public cards" };
 
   // on mount
   useEffect(() => {
@@ -49,6 +46,7 @@ const Landing = () => {
         setIsLoading(false);
       }
       await fetchAllCards();
+      await fetchPublicPosts(groupVal.groupId);
 
       if (stateVal.letterCount === null) {
         const letterCount = await fetchCount();
@@ -89,7 +87,7 @@ const Landing = () => {
             </div>
           </div>
         </div>
-        <hr />
+        <br />
         {stateVal.auth !== -1 && (
           <React.Fragment>
             <Select
@@ -108,39 +106,38 @@ const Landing = () => {
               }
             />
             <Link to="/write" className="link">
-              <button className="buttonMain buttonPrimary">
-                <div>Send a note</div>
-              </button>
+              <button className="buttonMain buttonPrimary">Send a note</button>
             </Link>
           </React.Fragment>
         )}
         {stateVal.auth === -1 ? (
           <Link to="/login" className="link">
-            <button className="buttonMain buttonRecord">Log in here</button>
+            <button className="buttonMain buttonPrimary">Log in here</button>
           </Link>
         ) : null}
       </div>
+      <div style={{ height: "10px" }} />
       {stateVal.auth === 1 ? (
         <div className="paperCardContainer fade-in">
           <br />
-          <div className="header2 textMain">Your cards</div>
-          <ButtonGroup toggle style={{ width: "100%" }}>
-            {radios.map((radio, idx) => (
-              <ToggleButton
-                key={idx}
-                type="radio"
-                name="radio"
-                variant="outline-secondary"
-                value={radio.value}
-                checked={radioValue === radio.value}
-                onChange={(e) => setRadioValue(e.currentTarget.value)}
-              >
-                {radio.name}
-              </ToggleButton>
-            ))}
-          </ButtonGroup>
-          <br />
-          <br />
+          <div className="d-flex flex-row justify-content-between w-100 s">
+            <div className="header2 textMain">Your cards</div>
+            <Dropdown>
+              <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                {radios[radioValue]}
+              </Dropdown.Toggle>
+              <Dropdown.Menu variant="secondary">
+                {Object.keys(radios).map((selection) => (
+                  <Dropdown.Item
+                    onSelect={() => setRadioValue(`${selection}`)}
+                    variant="secondary"
+                  >
+                    {radios[selection]}
+                  </Dropdown.Item>
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
           {isLoading ? (
             <div className="w-100 d-flex flex-row justify-content-center">
               <br />
@@ -148,23 +145,21 @@ const Landing = () => {
             </div>
           ) : radioValue === "1" ? (
             <React.Fragment>
-              {stateVal.userInfo.sentCards.length > 0 ? (
-                <div>
-                  {stateVal.userInfo.sentCards.map((card) => (
-                    <MemoryLetter letterContent={card} />
-                  ))}
-                </div>
-              ) : null}
+              {stateVal.userInfo.receivedCards.map((card) => (
+                <MemoryLetter letterContent={card} />
+              ))}
             </React.Fragment>
           ) : radioValue === "2" ? (
             <React.Fragment>
-              {stateVal.userInfo.receivedCards.length > 0 ? (
-                <div>
-                  {stateVal.userInfo.receivedCards.map((card) => (
-                    <MemoryLetter letterContent={card} />
-                  ))}
-                </div>
-              ) : null}
+              {stateVal.userInfo.sentCards.map((card) => (
+                <MemoryLetter letterContent={card} status={"public"} />
+              ))}
+            </React.Fragment>
+          ) : radioValue === "3" ? (
+            <React.Fragment>
+              {groupVal.cards.map((card) => (
+                <MemoryLetter letterContent={card} status={"public"} />
+              ))}
             </React.Fragment>
           ) : null}
         </div>
@@ -174,6 +169,22 @@ const Landing = () => {
 };
 
 export default Landing;
+
+// <ButtonGroup toggle style={{ width: "100%" }}>
+//   {radios.map((radio, idx) => (
+//     <ToggleButton
+//       key={idx}
+//       type="radio"
+//       name="radio"
+//       variant="outline-secondary"
+//       value={radio.value}
+//       checked={radioValue === radio.value}
+//       onChange={(e) => setRadioValue(e.currentTarget.value)}
+//     >
+//       {radio.name}
+//     </ToggleButton>
+//   ))}
+// </ButtonGroup>;
 
 // {stateVal.auth === 1 ? (
 //   <Link to="/feedback" className="link">

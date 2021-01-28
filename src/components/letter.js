@@ -183,7 +183,6 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
           ) : null}
           <br />
           <div className="body textMain" style={{ textAlign: "right" }}>
-            Sincerely, <br />{" "}
             {letterContent.author ? letterContent.author : "Anonymous"}
           </div>
           <br />

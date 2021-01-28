@@ -46,10 +46,6 @@ const Navigation = () => {
 
 export default Navigation;
 
-// <Link to="/" className="link">
-// <div className="nav-item-left body textMain">home</div>
-// </Link>
-
 // <a href="mailto:kevin.zhang@yale.edu" target="_blank" rel="noreferrer">
 //   <div className="nav-item-left body textMain">contact</div>
 // </a>;

@@ -105,7 +105,6 @@ const MemoryLetter = ({ letterContent, status }) => {
       ) : null}
       <br />
       <div className="body textMain" style={{ textAlign: "right" }}>
-        Sincerely, <br />{" "}
         {letterContent.author ? letterContent.author : "Anonymous :)"}
       </div>
       <br />

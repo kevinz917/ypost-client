@@ -89,6 +89,10 @@
   background-color: #82bafc;
 }
 
+.btnPrimary {
+  color: white;
+}
+
 .buttonRecord:hover {
   background-color: #588fcf;
 }

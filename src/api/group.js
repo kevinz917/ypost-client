@@ -7,7 +7,9 @@ import {
   SET_USERID,
   SET_FETCHED_CARDS,
 } from "../redux/masterReducer";
+import { SET_GROUPCARDS } from "../redux/groupReducer";
 import { store } from "../index";
+import { dispatch } from "react-redux";
 
 const cookies = new Cookies();
 
@@ -48,6 +50,7 @@ const fetchPublicPosts = async (groupId) => {
       `${Base}/card/fetchpublic/${groupId}`
     );
     if (fetchedPublicPosts) {
+      store.dispatch(SET_GROUPCARDS(fetchedPublicPosts.data.data.cards));
       return fetchedPublicPosts.data.data.cards;
     }
   } catch (err) {
