@@ -7,12 +7,15 @@ import MemoryLetter from "../components/memoryLetter";
 // trying out useQuery
 const Wall = () => {
   const [fetchedCards, setFetchedCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const groupVal = useSelector((state) => state.groupReducer);
 
   useEffect(() => {
     const onMount = async () => {
+      setIsLoading(true);
       const fetchedCards = await fetchPublicPosts(groupVal.groupId);
       setFetchedCards(fetchedCards);
+      setIsLoading(false);
     };
     onMount();
   }, []);
@@ -23,9 +26,15 @@ const Wall = () => {
       <div className="header2">Wall of gratitude</div>
       <div style={{ width: "500px" }} />
       <br />
-      {fetchedCards.map((card) => (
-        <MemoryLetter letterContent={card} key={card._id} />
-      ))}
+      {isLoading ? (
+        <div>Loading ... </div>
+      ) : (
+        <div>
+          {fetchedCards.map((card) => (
+            <MemoryLetter letterContent={card} key={card._id} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

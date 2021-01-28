@@ -9,14 +9,17 @@ const Inbox = () => {
   const groupInfo = useSelector((state) => state.groupReducer);
 
   const [fetchedLetters, setFetchedLetters] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const onMount = async () => {
       if (userInfo.role !== "admin") {
         history.push("/");
       } else {
+        setIsLoading(true);
         let fetchedFeedback = await fetchAllFeedback(groupInfo.groupId);
         setFetchedLetters(fetchedFeedback.data.data.feedback);
+        setIsLoading(false);
       }
     };
     onMount();
@@ -31,13 +34,19 @@ const Inbox = () => {
       </div>
       <br />
       <div style={{ width: "500px" }} />
-      {fetchedLetters.map((letter) => {
-        return (
-          <div className="paperCard fade-in" key={letter._id}>
-            {letter.content}
-          </div>
-        );
-      })}
+      {isLoading ? (
+        <div>Loading ... </div>
+      ) : (
+        <div>
+          {fetchedLetters.map((letter) => {
+            return (
+              <div className="paperCard fade-in" key={letter._id}>
+                {letter.content}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

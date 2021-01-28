@@ -41,10 +41,6 @@ const Memories = (props) => {
   return stateVal.isLoading === true ? null : (
     <div className="paperCardContainer fade-in">
       <div style={{ height: "40px", width: "500px" }} />
-      <div className="link" onClick={(e) => props.history.push("/")}>
-        <span className="navigation body">← Back</span>
-      </div>
-      <hr />
       <div className="header2 textMain">💌 Your cards</div>
       <ButtonGroup toggle style={{ width: "100%" }}>
         {radios.map((radio, idx) => (
@@ -93,3 +89,7 @@ const Memories = (props) => {
 };
 
 export default Memories;
+
+// <div className="link" onClick={(e) => props.history.push("/")}>
+//   <span className="navigation body">← Back</span>
+// </div>;
