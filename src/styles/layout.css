@@ -108,7 +108,14 @@
   color: black;
 }
 
+.frame-container-parent {
+  width: 100%;
+  overflow: hidden;
+}
+
 .frame-container-box {
+  width: 100%;
+  overflow-x: scroll;
   display: flex;
   flex-direction: row;
 }

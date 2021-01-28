@@ -134,7 +134,7 @@ const Write = (props) => {
   return isPreview ? (
     <Letter letterContent={letterContent} setIsPreview={setIsPreview} />
   ) : (
-    <div className="paperCard paperCardContainer">
+    <div className="paperCard paperCardContainer fade-in">
       <Link to="/" className="link">
         <span className="navigation body">← Back</span>
       </Link>

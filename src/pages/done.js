@@ -9,7 +9,7 @@ import { sendAmplitudeData } from "../util/amplitude";
 const Done = (props) => {
   const [lastLetterId, setLastLetterId] = useState(null);
 
-  // On mount
+  // on mount
   useEffect(() => {
     let letters = JSON.parse(localStorage.getItem("letters"));
     if (letters.length > 0) {
@@ -17,9 +17,6 @@ const Done = (props) => {
     }
   }, []);
 
-  const navigate = (e) => {
-    props.history.push("/");
-  };
   return (
     <div className="paperCardContainer">
       <br />
@@ -35,7 +32,7 @@ const Done = (props) => {
         <br />
         <Link to="/" className="link">
           <button className="buttonMain buttonPrimary">
-            <div>Send another YPost</div>
+            <div>Send another note</div>
           </button>
         </Link>
       </div>
@@ -44,14 +41,3 @@ const Done = (props) => {
 };
 
 export default Done;
-
-// {lastLetterId ? (
-//   <div className="paperCard" style={{ maxWidth: 450 }}>
-//     <div className="body textMain">Open your last letter! </div>
-//     <Link to={`/letter/${lastLetterId}`} className="link">
-//       <button className="buttonMain buttonPrimary">
-//         <div>Open YPost</div>
-//       </button>
-//     </Link>
-//   </div>
-// ) : null}

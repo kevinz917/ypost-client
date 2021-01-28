@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 import { fetchPublicPosts } from "../api/group";
 import { useSelector } from "react-redux";
 import MemoryLetter from "../components/memoryLetter";
