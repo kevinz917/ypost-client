@@ -2,11 +2,6 @@ import React, { useState, useEffect } from "react";
 import { sendAmplitudeData } from "../util/amplitude";
 import MemoryLetter from "../components/memoryLetter";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  SET_VAL,
-  SET_USER_INFO,
-  SET_FETCHED_CARDS,
-} from "../redux/masterReducer";
 import { fetchAllCards } from "../api/user";
 import { ButtonGroup, ToggleButton } from "react-bootstrap";
 

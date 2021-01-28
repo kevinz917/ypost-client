@@ -54,6 +54,13 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
       groupVal.groupId
     );
 
+    dispatch(SET_VAL("message", ""));
+    dispatch(SET_VAL("selectedStudent", null));
+    dispatch(SET_VAL("frame", null));
+    dispatch(SET_VAL("email", null));
+    dispatch(SET_VAL("audioFile", null));
+    dispatch(SET_VAL("author", null));
+
     sendAmplitudeData("Sent letter");
     toast.success("Letter sent");
     history.push("/done");

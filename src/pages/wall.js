@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 // import { useQuery } from "react-query";
 import { fetchPublicPosts } from "../api/group";
+import { fetchAllCards } from "../api/user";
 import { useSelector } from "react-redux";
 import MemoryLetter from "../components/memoryLetter";
 
@@ -14,6 +15,7 @@ const Wall = () => {
     const onMount = async () => {
       setIsLoading(true);
       const fetchedCards = await fetchPublicPosts(groupVal.groupId);
+      await fetchAllCards();
       setFetchedCards(fetchedCards);
       setIsLoading(false);
     };
@@ -31,7 +33,11 @@ const Wall = () => {
       ) : (
         <div>
           {fetchedCards.map((card) => (
-            <MemoryLetter letterContent={card} key={card._id} />
+            <MemoryLetter
+              letterContent={card}
+              key={card._id}
+              status={"public"}
+            />
           ))}
         </div>
       )}

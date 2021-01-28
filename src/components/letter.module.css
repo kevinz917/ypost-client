@@ -2,3 +2,22 @@
   padding: 10px;
   border-radius: 20px;
 }
+
+/* source of letter */
+.statusFrom {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #ffe9e9;
+  color: #cc5959;
+}
+
+.statusFor {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #e9f4ff;
+  color: #2f6aa5;
+}

@@ -3,7 +3,6 @@ import { addFeedback } from "../api/feedback";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Feedback = () => {
   let history = useHistory();
