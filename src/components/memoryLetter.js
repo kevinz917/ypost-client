@@ -47,7 +47,6 @@ const MemoryLetter = ({ letterContent, status }) => {
   const ref = useRef(null);
 
   useEffect(() => {
-    console.log(letterContent);
     if (drawing_ref && drawing_ref.current && letterContent.drawing) {
       drawing_ref.current.loadSaveData(letterContent.drawing);
     }
