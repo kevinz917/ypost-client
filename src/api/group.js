@@ -48,7 +48,7 @@ const fetchPublicPosts = async (groupId) => {
       `${Base}/card/fetchpublic/${groupId}`
     );
     if (fetchedPublicPosts) {
-      return fetchedPublicPosts.data.data.cards.reverse();
+      return fetchedPublicPosts.data.data.cards;
     }
   } catch (err) {
     return err;

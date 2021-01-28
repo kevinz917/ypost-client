@@ -93,8 +93,6 @@ const fetchAllCards = async () => {
 
     store.dispatch(SET_FETCHED_CARDS(res.data.data));
 
-    // console.log(res.data.data);
-
     return res;
   } catch (err) {
     return;

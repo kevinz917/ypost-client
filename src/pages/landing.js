@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ButtonGroup, ToggleButton } from "react-bootstrap";
+import { ButtonGroup, ToggleButton, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCount } from "../util/api";
 import { SET_VAL } from "../redux/masterReducer";
@@ -10,11 +10,12 @@ import { fetchMembers } from "../api/group";
 import { fetchAllCards } from "../api/user";
 import MemoryLetter from "../components/memoryLetter";
 
+import Hero from "../assets/hero.png";
 import "../styles/color.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
 import "../styles/animation.css";
-import Hero from "../assets/hero.png";
+import "../styles/custom.scss";
 
 const Landing = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,6 @@ const Landing = () => {
   // on mount
   useEffect(() => {
     const onMount = async () => {
-      setIsLoading(true);
       sendAmplitudeData("Visited home page");
 
       // fetch students in same group
@@ -41,6 +41,13 @@ const Landing = () => {
         dispatch(SET_VAL("studentList", userList));
       }
 
+      setIsLoading(true);
+      if (
+        stateVal.userInfo.sentCards.length > 0 ||
+        stateVal.userInfo.sentCards.length > 0
+      ) {
+        setIsLoading(false);
+      }
       await fetchAllCards();
 
       if (stateVal.letterCount === null) {
@@ -122,8 +129,8 @@ const Landing = () => {
               <ToggleButton
                 key={idx}
                 type="radio"
-                variant="outline-secondary"
                 name="radio"
+                variant="outline-secondary"
                 value={radio.value}
                 checked={radioValue === radio.value}
                 onChange={(e) => setRadioValue(e.currentTarget.value)}
@@ -132,6 +139,8 @@ const Landing = () => {
               </ToggleButton>
             ))}
           </ButtonGroup>
+          <br />
+          <br />
           {isLoading ? (
             <div className="w-100 d-flex flex-row justify-content-center">
               <br />

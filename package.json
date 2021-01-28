@@ -10,6 +10,7 @@
     "axios": "^0.21.0",
     "dotenv": "^8.2.0",
     "mic-recorder-to-mp3": "^2.2.2",
+    "node-sass": "4.14.1",
     "react": "^17.0.1",
     "react-audio-player": "^0.14.0",
     "react-bootstrap": "^1.4.3",

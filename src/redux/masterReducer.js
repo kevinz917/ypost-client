@@ -79,8 +79,8 @@ const state = (
         ...state,
         userInfo: {
           ...state.userInfo,
-          sentCards: action.payload.sentCards,
-          receivedCards: action.payload.receivedCards,
+          sentCards: action.payload.sentCards.reverse(),
+          receivedCards: action.payload.receivedCards.reverse(),
         },
       };
     default:

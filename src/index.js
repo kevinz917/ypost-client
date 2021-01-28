@@ -12,7 +12,9 @@ import { PROD } from "./util/base";
 
 import { initAmplitude } from "./util/amplitude";
 
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/custom.scss";
+
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 const queryClient = new QueryClient();

@@ -58,7 +58,6 @@ function App() {
         <Router>
           <Navigation />
           <Switch>
-            <PrivateRoute exact path="/user/:id" component={Memories} />
             <PrivateRoute exact path="/feedback" component={Feedback} />
             <PrivateRoute exact path="/me" component={Profile} />
             <PrivateRoute exact path="/write" component={Write} />
@@ -82,5 +81,7 @@ function App() {
     </div>
   );
 }
+
+// <PrivateRoute exact path="/user/:id" component={Memories} />
 
 export default App;
