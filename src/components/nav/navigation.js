@@ -19,7 +19,7 @@ const Navigation = () => {
             <div className="nav-item-left textMain header2">YPost</div>
           </Link>
           <Link to="/wall" className="link">
-            <div className="nav-item-left body textMain">wall</div>
+            <div className="nav-item-left body textMain">team wall</div>
           </Link>
           {role === "admin" ? (
             <Link to="/inbox" className="link">

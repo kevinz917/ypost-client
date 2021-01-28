@@ -9,6 +9,7 @@ import PrivateRoute from "./components/routing/privateRoute";
 import Navigation from "./components/nav/navigation";
 // import { QueryClient, QueryClientProvider } from "react-query";
 // import Footer from "./components/footer";
+import Help from "./components/help/help";
 
 // pages
 import Landing from "./pages/landing";
@@ -78,6 +79,7 @@ function App() {
           />
         </Router>
       )}
+      <Help />
     </div>
   );
 }

@@ -11,10 +11,10 @@ import { MasterReducer } from "./redux/masterReducer";
 import { PROD } from "./util/base";
 
 import { initAmplitude } from "./util/amplitude";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { QueryClient, QueryClientProvider } from "react-query";
-
 const queryClient = new QueryClient();
 
 initAmplitude();
