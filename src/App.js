@@ -26,6 +26,7 @@ import Login from "./pages/public/login";
 import Feedback from "./pages/feedback";
 import Inbox from "./pages/inbox";
 import Wall from "./pages/wall";
+import Test from "./pages/test";
 
 const cookies = new Cookies();
 // const queryClient = new QueryClient();
@@ -68,6 +69,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/about" component={About} />
             <Route exact path="/" component={Landing} />
+            <Route exact path="/test" component={Test} />
             <Route exact={false} component={Notfound} />
           </Switch>
           <ToastContainer

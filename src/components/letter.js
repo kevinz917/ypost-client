@@ -63,7 +63,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
 
     sendAmplitudeData("Sent letter");
     toast.success("Letter sent");
-    history.push("/done");
+    history.push("/");
   };
 
   // drawing ref

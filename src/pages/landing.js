@@ -9,6 +9,7 @@ import { sendAmplitudeData } from "../util/amplitude";
 import { fetchMembers, fetchPublicPosts } from "../api/group";
 import { fetchAllCards } from "../api/user";
 import MemoryLetter from "../components/memoryLetter";
+import api from "../api/index";
 
 import Hero from "../assets/hero.png";
 import "../styles/color.css";
@@ -68,6 +69,16 @@ const Landing = () => {
 
   return isLoading === 0 ? null : (
     <div className="paperCardContainer fade-in">
+      {stateVal.auth === 1 ? (
+        <Link to="/feedback" className="link">
+          <div className="paperCard">
+            <div className="header3 textMain">Share your thoughts →</div>
+            <div className="textMain body">
+              speak up and share feedback anonymously to your lead
+            </div>
+          </div>
+        </Link>
+      ) : null}
       <div className="paperCard">
         <div className="d-flex flex-row align-items-center">
           <div>
