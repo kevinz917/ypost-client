@@ -9,21 +9,22 @@ import {
 } from "../redux/masterReducer";
 import { SET_GROUPID } from "../redux/groupReducer";
 import { store } from "../index";
+import api from "./index";
 
 const cookies = new Cookies();
 
-let headers = {};
-if (cookies.get("ypostUser") !== undefined) {
-  // console.log(headers);
-  headers = {
-    "access-token": cookies.get("ypostUser").accessToken,
-  };
-}
+// let headers = {};
+// if (cookies.get("ypostUser") !== undefined) {
+//   // console.log(headers);
+//   headers = {
+//     "access-token": cookies.get("ypostUser").accessToken,
+//   };
+// }
 
 // sign up api
 const onSignup = async (userObj) => {
   try {
-    let res = await axios.post(`${Base}/user/signup`, userObj);
+    let res = await axios.post("/user/signup", userObj);
     if (res) {
       return res;
     }
@@ -36,6 +37,7 @@ const onSignup = async (userObj) => {
 const onLogin = async (userObj) => {
   try {
     let res = await axios.post(`${Base}/user/login`, userObj);
+    console.log(res.data);
     return res.data;
   } catch (err) {
     return err;
@@ -43,14 +45,9 @@ const onLogin = async (userObj) => {
 };
 
 // validate cookie
-const validateCookie = async (val) => {
+const validateCookie = async () => {
   try {
-    const headers = {
-      "access-token": val,
-    };
-    let res = await axios.post(`${Base}/user/validate`, null, {
-      headers: headers,
-    });
+    let res = await api.post("/user/validate");
 
     if (res.data.status === "success") {
       store.dispatch(SET_USERID(res.data.userId));
@@ -65,9 +62,7 @@ const validateCookie = async (val) => {
 // fetch info
 const fetchUserInfo = async () => {
   try {
-    const res = await axios.post(`${Base}/user/fetchInfo`, null, {
-      headers: headers,
-    });
+    const res = await api.post("/user/fetchInfo");
 
     if (res) {
       const userInfo = res.data.data;
@@ -87,9 +82,7 @@ const fetchUserInfo = async () => {
 // fetch all cards
 const fetchAllCards = async () => {
   try {
-    const res = await axios.post(`${Base}/user/fetchall`, null, {
-      headers: headers,
-    });
+    const res = await api.post("/user/fetchall");
 
     store.dispatch(SET_FETCHED_CARDS(res.data.data));
 

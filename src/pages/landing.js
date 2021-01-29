@@ -31,6 +31,7 @@ const Landing = () => {
   // on mount
   useEffect(() => {
     const onMount = async () => {
+      console.log("data");
       sendAmplitudeData("Visited home page");
 
       // fetch students in same group
@@ -59,7 +60,7 @@ const Landing = () => {
     if (stateVal.auth === 1) {
       onMount();
     }
-  }, []);
+  }, [groupVal.groupId]);
 
   // input change for async select
   const onInputChange = (e) => {
