@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { SET_VAL } from "./redux/masterReducer";
 import { validateCookie, fetchUserInfo } from "./api/user";
-import Cookies from "universal-cookie";
+// import Cookies from "universal-cookie";
 import { ToastContainer, Slide } from "react-toastify";
 import PrivateRoute from "./components/routing/privateRoute";
 import Navigation from "./components/nav/navigation";
@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 // pages
 // import Memories from "./pages/memories";
 import Landing from "./pages/landing";
-import Write from "./pages/write";
+import Write from "./pages/write/write";
 import Done from "./pages/done";
 import Open from "./pages/open";
 import About from "./pages/about";

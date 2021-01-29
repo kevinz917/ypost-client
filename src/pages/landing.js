@@ -9,7 +9,6 @@ import { sendAmplitudeData } from "../util/amplitude";
 import { fetchMembers, fetchPublicPosts } from "../api/group";
 import { fetchAllCards } from "../api/user";
 import MemoryLetter from "../components/memoryLetter";
-import api from "../api/index";
 
 import Hero from "../assets/hero.png";
 import "../styles/color.css";
@@ -22,16 +21,14 @@ const Landing = () => {
   const dispatch = useDispatch();
   const stateVal = useSelector((state) => state.state);
   const groupVal = useSelector((state) => state.groupReducer);
+
   const [isLoading, setIsLoading] = useState(false);
-
   const [radioValue, setRadioValue] = useState("1");
-
   const radios = { 1: "For me", 2: "From me", 3: "Public cards" };
 
   // on mount
   useEffect(() => {
     const onMount = async () => {
-      console.log("data");
       sendAmplitudeData("Visited home page");
 
       // fetch students in same group
@@ -181,89 +178,3 @@ const Landing = () => {
 };
 
 export default Landing;
-
-// <ButtonGroup toggle style={{ width: "100%" }}>
-//   {radios.map((radio, idx) => (
-//     <ToggleButton
-//       key={idx}
-//       type="radio"
-//       name="radio"
-//       variant="outline-secondary"
-//       value={radio.value}
-//       checked={radioValue === radio.value}
-//       onChange={(e) => setRadioValue(e.currentTarget.value)}
-//     >
-//       {radio.name}
-//     </ToggleButton>
-//   ))}
-// </ButtonGroup>;
-
-// {stateVal.auth === 1 ? (
-//   <Link to="/feedback" className="link">
-//     <div className="paperCard">
-//       <div className="header3 textMain">Share your thoughts →</div>
-//       <div className="textMain body">
-//         speak up and share feedback anonymously to your lead
-//       </div>
-//     </div>
-//   </Link>
-// ) : null}
-
-// <div className="paperCard">
-//   <div className="w-100 d-flex flex-column align-items-center">
-//     <img src={Hero} style={{ width: "90%", height: "auto" }} alt="hero" />
-//   </div>
-//   <hr />
-//   <div className="header2 textMain">YPost 📬 </div>
-//   <br />
-//   <div className="body textMain">
-//     Send simple and delightful cards to your teammates. Show your gratitude and
-//     build a better team, together ~
-//   </div>
-//   <br />
-//   <div className={styles.letter_cnt_container + " body textMain fade-in"}>
-//     {stateVal.letterCount === null ? (
-//       <span className={styles.letter_cnt_label}>Loading...</span>
-//     ) : (
-//       <div className="fade-in">
-//         <span className={styles.letter_cnt_label}>total notes sent: </span>
-//         <span className={styles.letter_cnt_val}>{stateVal.letterCount}</span>
-//       </div>
-//     )}
-//   </div>
-//   <br />
-//   {stateVal.auth !== -1 && (
-//     <React.Fragment>
-//       <Select
-//         options={stateVal.studentList}
-//         placeholder="Type in recipient name"
-//         autoFocus
-//         onChange={onInputChange}
-//         isClearable={true}
-//         value={
-//           stateVal.email
-//             ? {
-//                 value: stateVal.email,
-//                 label: stateVal.selectedStudent,
-//               }
-//             : null
-//         }
-//       />
-//       <Link to="/write" className="link">
-//         <button className="buttonMain buttonPrimary">
-//           <div>Send a note</div>
-//         </button>
-//       </Link>
-//       <Link to={`/user/${stateVal.userInfo.userId}`} className="link">
-//         <button className="buttonMain buttonSecondary">
-//           <div>View your cards </div>
-//         </button>
-//       </Link>
-//     </React.Fragment>
-//   )}
-//   {stateVal.auth === -1 ? (
-//     <Link to="/login" className="link">
-//       <button className="buttonMain buttonRecord">Log in here</button>
-//     </Link>
-//   ) : null}
-// </div>;

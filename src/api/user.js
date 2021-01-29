@@ -1,17 +1,16 @@
 import axios from "axios";
 import { Base } from "../util/base";
-import Cookies from "universal-cookie";
 import {
   SET_VAL,
   SET_USER_INFO,
   SET_USERID,
   SET_FETCHED_CARDS,
+  RESET_STATE,
 } from "../redux/masterReducer";
+import { RESET_GROUPSTATE } from "../redux/groupReducer";
 import { SET_GROUPID } from "../redux/groupReducer";
 import { store } from "../index";
 import api from "./index";
-
-const cookies = new Cookies();
 
 // let headers = {};
 // if (cookies.get("ypostUser") !== undefined) {
@@ -37,7 +36,6 @@ const onSignup = async (userObj) => {
 const onLogin = async (userObj) => {
   try {
     let res = await axios.post(`${Base}/user/login`, userObj);
-    console.log(res.data);
     return res.data;
   } catch (err) {
     return err;
@@ -94,8 +92,9 @@ const fetchAllCards = async () => {
 
 // log out
 const logout = async () => {
-  console.log("logging out");
-  cookies.remove("ypostUser");
+  localStorage.removeItem("ypostUser");
+  store.dispatch(RESET_GROUPSTATE());
+  store.dispatch(RESET_STATE());
   store.dispatch(SET_VAL("auth", -1));
 };
 
