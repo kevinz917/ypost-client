@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { InputGroup, FormControl, Button, Alert } from "react-bootstrap";
 import Cookies from "universal-cookie";
-import { onSignup, onLogin } from "../../api/user";
+import { onSignup, onLogin, validateCookie } from "../../api/user";
 import { SET_VAL } from "../../redux/masterReducer";
 import { useDispatch } from "react-redux";
 import Select from "react-select";
@@ -68,6 +68,7 @@ const Login = (props) => {
       setMessage(res.error);
     } else {
       cookies.set("ypostUser", res);
+      await validateCookie();
       dispatch(SET_VAL("auth", 1));
       props.history.push("/"); // change to dashboard route
     }
@@ -88,7 +89,7 @@ const Login = (props) => {
     <div>
       <div
         style={{ width: "350px" }}
-        className="shadow p-3 rounded ml-auto mr-auto mt-4 bg-white"
+        className="shadow p-3 rounded ml-auto mr-auto mt-4 bg-white fade-in"
       >
         <div>
           {message.length === 0 ? null : (
@@ -151,7 +152,7 @@ const Login = (props) => {
             </div>
           </div>
         ) : (
-          <div>
+          <div className="fade-in">
             <div className="h4 font-weight-bold mb-4">Log in</div>
             <InputGroup className="mb-2">
               <FormControl

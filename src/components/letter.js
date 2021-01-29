@@ -13,7 +13,7 @@ import BlurredObject from "../assets/blurredObject.png";
 import { createCard } from "../util/api";
 import { sendAmplitudeData } from "../util/amplitude";
 import CanvasDraw from "react-canvas-draw";
-import canvas_styles from "../pages/write.module.css";
+import canvas_styles from "../pages/write/write.module.css";
 import { SET_VAL } from "../redux/masterReducer";
 import { useDispatch, useSelector } from "react-redux";
 import Switch from "react-switch";
@@ -63,7 +63,7 @@ const Letter = ({ letterContent, sent = 0, setIsPreview = null }) => {
 
     sendAmplitudeData("Sent letter");
     toast.success("Letter sent");
-    history.push("/done");
+    history.push("/");
   };
 
   // drawing ref

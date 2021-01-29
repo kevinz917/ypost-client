@@ -32,30 +32,35 @@ const SET_FETCHED_CARDS = (payload) => {
   };
 };
 
-const state = (
-  state = {
-    isLoading: false,
-    letterCount: null,
-    studentList: [],
-    studentId: "none",
-    selectedStudent: null,
-    frame: null,
+const RESET_STATE = () => {
+  return {
+    type: "RESET_STATE",
+  };
+};
+
+const defaultState = {
+  isLoading: false,
+  letterCount: null,
+  studentList: [],
+  studentId: "none",
+  selectedStudent: null,
+  frame: null,
+  email: "",
+  message: "",
+  author: "",
+  audioFile: null,
+  auth: 0,
+  userInfo: {
+    userId: "",
+    sentCards: [],
+    receivedCards: [],
+    groups: [],
     email: "",
-    message: "",
-    author: "",
-    audioFile: null,
-    auth: 0,
-    userInfo: {
-      userId: "",
-      sentCards: [],
-      receivedCards: [],
-      groups: [],
-      email: "",
-      role: "",
-    },
+    role: "",
   },
-  action
-) => {
+};
+
+const state = (state = defaultState, action) => {
   switch (action.type) {
     case "SET_VAL":
       return { ...state, [action.field]: action.payload };
@@ -83,6 +88,8 @@ const state = (
           receivedCards: action.payload.receivedCards.reverse(),
         },
       };
+    case "RESET_STATE":
+      return defaultState;
     default:
       return state;
   }
@@ -90,4 +97,11 @@ const state = (
 
 const MasterReducer = combineReducers({ state, groupReducer });
 
-export { SET_VAL, SET_USER_INFO, SET_USERID, SET_FETCHED_CARDS, MasterReducer };
+export {
+  SET_VAL,
+  SET_USER_INFO,
+  SET_USERID,
+  SET_FETCHED_CARDS,
+  RESET_STATE,
+  MasterReducer,
+};

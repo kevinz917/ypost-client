@@ -2,22 +2,22 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./write.module.css";
 import { Link } from "react-router-dom";
 import ScrollMenu from "react-horizontal-scrolling-menu";
-import "../styles/color.css";
-import "../styles/layout.css";
-import "../styles/typography.css";
-import "../styles/animation.css";
-import Mic from "../assets/mic.svg";
+import "../../styles/color.css";
+import "../../styles/layout.css";
+import "../../styles/typography.css";
+import "../../styles/animation.css";
+import Mic from "../../assets/mic.svg";
 import ReactAudioPlayer from "react-audio-player";
-import Sticker from "../components/sticker";
+import Sticker from "../../components/sticker";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FiX, FiRotateCcw } from "react-icons/fi";
-import { sendAmplitudeData } from "../util/amplitude";
+import { sendAmplitudeData } from "../../util/amplitude";
 import CanvasDraw from "react-canvas-draw";
 
 // Redux
-import { SET_VAL } from "../redux/masterReducer";
+import { SET_VAL } from "../../redux/masterReducer";
 import { useSelector, useDispatch } from "react-redux";
-import Letter from "../components/letter";
+import Letter from "../../components/letter";
 
 const MicRecorder = require("mic-recorder-to-mp3");
 const recorder = new MicRecorder({

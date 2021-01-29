@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import styles from "./letter.module.css";
 import CanvasDraw from "react-canvas-draw";
-import canvas_styles from "../pages/write.module.css";
+import canvas_styles from "../pages/write/write.module.css";
 
 const Drawing = ({ letterContent }) => {
   useEffect(() => {

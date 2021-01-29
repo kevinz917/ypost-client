@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { SET_VAL } from "./redux/masterReducer";
 import { validateCookie, fetchUserInfo } from "./api/user";
-import Cookies from "universal-cookie";
+// import Cookies from "universal-cookie";
 import { ToastContainer, Slide } from "react-toastify";
 import PrivateRoute from "./components/routing/privateRoute";
 import Navigation from "./components/nav/navigation";
@@ -14,40 +14,39 @@ import "./styles/layout.css";
 import "react-toastify/dist/ReactToastify.css";
 
 // pages
+// import Memories from "./pages/memories";
 import Landing from "./pages/landing";
-import Write from "./pages/write";
+import Write from "./pages/write/write";
 import Done from "./pages/done";
 import Open from "./pages/open";
 import About from "./pages/about";
-import Memories from "./pages/memories";
-import Notfound from "./pages/notfound";
+import Notfound from "./pages/public/notfound";
 import Profile from "./pages/profile/profile";
 import Login from "./pages/public/login";
 import Feedback from "./pages/feedback";
 import Inbox from "./pages/inbox";
 import Wall from "./pages/wall";
-
-const cookies = new Cookies();
-// const queryClient = new QueryClient();
+import Test from "./pages/test";
 
 function App() {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.state.isLoading);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const onMount = async () => {
-      dispatch(SET_VAL("isLoading", true));
+      setIsLoading(true);
 
       if (document.cookie.indexOf("ypostUser") !== -1) {
-        let res = await validateCookie(cookies.get("ypostUser").accessToken);
+        let res = await validateCookie();
+
         if (res) {
           dispatch(SET_VAL("auth", 1));
-          fetchUserInfo();
+          await fetchUserInfo();
         }
       } else {
         dispatch(SET_VAL("auth", -1));
       }
-      dispatch(SET_VAL("isLoading", false));
+      setIsLoading(false);
     };
     onMount();
   }, [dispatch]);
@@ -68,6 +67,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/about" component={About} />
             <Route exact path="/" component={Landing} />
+            <Route exact path="/test" component={Test} />
             <Route exact={false} component={Notfound} />
           </Switch>
           <ToastContainer
