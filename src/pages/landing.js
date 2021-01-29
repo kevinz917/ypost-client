@@ -7,9 +7,10 @@ import { Link } from "react-router-dom";
 import Select from "react-select";
 import { sendAmplitudeData } from "../util/amplitude";
 import { fetchMembers, fetchPublicPosts } from "../api/group";
-import { fetchAllCards } from "../api/user";
+import { fetchAllCards, fetchUserInfo } from "../api/user";
 import MemoryLetter from "../components/memoryLetter";
 
+import { Spinner } from "../components/other/LoadingSpinner";
 import Hero from "../assets/hero.png";
 import "../styles/color.css";
 import "../styles/layout.css";
@@ -30,26 +31,25 @@ const Landing = () => {
   useEffect(() => {
     const onMount = async () => {
       sendAmplitudeData("Visited home page");
+      setIsLoading(true);
 
-      // fetch students in same group
-      if (stateVal.auth && stateVal.studentList.length < 2) {
-        let userList = await fetchMembers(groupVal.groupId);
-        dispatch(SET_VAL("studentList", userList));
+      await fetchUserInfo();
+
+      if (stateVal.studentList.length === 0) {
+        await fetchMembers(groupVal.groupId);
       }
 
-      setIsLoading(true);
       if (
         stateVal.userInfo.sentCards.length > 0 ||
-        stateVal.userInfo.sentCards.length > 0
+        stateVal.userInfo.receivedCards.length > 0
       ) {
         setIsLoading(false);
       }
-      await fetchAllCards();
-      await fetchPublicPosts(groupVal.groupId);
+      await fetchAllCards(); // your cards
+      await fetchPublicPosts(); // group cards
 
       if (stateVal.letterCount === null) {
-        const letterCount = await fetchCount();
-        dispatch(SET_VAL("letterCount", letterCount.data.count));
+        await fetchCount();
       }
       setIsLoading(false);
     };
@@ -70,7 +70,7 @@ const Landing = () => {
       {stateVal.auth === 1 ? (
         <Link to="/feedback" className="link">
           <div className="paperCard">
-            <div className="header3 textMain">Share your thoughts →</div>
+            <div className="header3 textMain">Share thoughts anonymously →</div>
             <div className="textMain body">
               speak up and share feedback anonymously to your lead
             </div>
@@ -150,7 +150,7 @@ const Landing = () => {
           {isLoading ? (
             <div className="w-100 d-flex flex-row justify-content-center">
               <br />
-              Loading letters ...
+              <Spinner />
             </div>
           ) : radioValue === "1" ? (
             <React.Fragment>

@@ -11,6 +11,9 @@ import { RESET_GROUPSTATE } from "../redux/groupReducer";
 import { SET_GROUPID } from "../redux/groupReducer";
 import { store } from "../index";
 import api from "./index";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 // let headers = {};
 // if (cookies.get("ypostUser") !== undefined) {
@@ -93,6 +96,7 @@ const fetchAllCards = async () => {
 // log out
 const logout = async () => {
   localStorage.removeItem("ypostUser");
+  cookies.remove("ypostUser");
   store.dispatch(RESET_GROUPSTATE());
   store.dispatch(RESET_STATE());
   store.dispatch(SET_VAL("auth", -1));

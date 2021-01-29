@@ -36,6 +36,14 @@
   animation: rotation 4s infinite linear;
 }
 
+.rotate-fast {
+  animation: rotation 1.3s infinite linear;
+}
+
+.spinner {
+  opacity: 0.1;
+}
+
 @keyframes rotation {
   from {
     transform: rotate(0deg);

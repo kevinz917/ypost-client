@@ -20,7 +20,7 @@ import Write from "./pages/write/write";
 import Done from "./pages/done";
 import Open from "./pages/open";
 import About from "./pages/about";
-import Notfound from "./pages/notfound";
+import Notfound from "./pages/public/notfound";
 import Profile from "./pages/profile/profile";
 import Login from "./pages/public/login";
 import Feedback from "./pages/feedback";
@@ -39,10 +39,9 @@ function App() {
       if (document.cookie.indexOf("ypostUser") !== -1) {
         let res = await validateCookie();
 
-        // let res = await validateCookie(cookies.get("ypostUser").accessToken);
         if (res) {
           dispatch(SET_VAL("auth", 1));
-          fetchUserInfo();
+          await fetchUserInfo();
         }
       } else {
         dispatch(SET_VAL("auth", -1));

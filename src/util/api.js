@@ -1,6 +1,8 @@
-// import axios from "axios";
 import { sendAmplitudeData } from "../util/amplitude";
 import api from "../api/index";
+import { SET_VAL } from "../redux/masterReducer";
+import { store } from "../index";
+// import { dispatch } from "react-redux";
 
 // create card
 const createCard = async (
@@ -63,6 +65,7 @@ const setOpened = async (id) => {
 // get number of letters
 const fetchCount = async () => {
   let fetchedCount = await api.get("/card/count");
+  store.dispatch(SET_VAL("letterCount", fetchedCount));
 
   if (fetchedCount) {
     return fetchedCount;

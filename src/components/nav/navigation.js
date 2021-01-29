@@ -18,7 +18,7 @@ const Navigation = () => {
           <Link to="/" className="link">
             <div className="nav-item-left textMain header2">YPost</div>
           </Link>
-          {role === "admin" ? (
+          {auth === 1 && role === "admin" ? (
             <Link to="/inbox" className="link">
               <div className="nav-item-left body textMain">inbox</div>
             </Link>
@@ -39,10 +39,6 @@ const Navigation = () => {
     </div>
   );
 };
-
-// <Link to="/wall" className="link">
-//             <div className="nav-item-left body textMain">team wall</div>
-//           </Link>
 
 export default Navigation;
 
