@@ -28,9 +28,6 @@ import Inbox from "./pages/inbox";
 import Wall from "./pages/wall";
 import Test from "./pages/test";
 
-// const cookies = new Cookies();
-// const queryClient = new QueryClient();
-
 function App() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
@@ -41,6 +38,7 @@ function App() {
 
       if (document.cookie.indexOf("ypostUser") !== -1) {
         let res = await validateCookie();
+
         // let res = await validateCookie(cookies.get("ypostUser").accessToken);
         if (res) {
           dispatch(SET_VAL("auth", 1));

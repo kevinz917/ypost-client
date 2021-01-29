@@ -1,6 +1,6 @@
-import axios from "axios";
-import { Base } from "./base";
+// import axios from "axios";
 import { sendAmplitudeData } from "../util/amplitude";
+import api from "../api/index";
 
 // create card
 const createCard = async (
@@ -42,12 +42,12 @@ const createCard = async (
   });
   data.append("netId", netId);
 
-  axios.post(`${Base}/card/new`, data);
+  await api.post("/card/new", data);
 };
 
 //  fetch single card
 const fetchCard = async (id) => {
-  let fetchedCard = await axios.get(`${Base}/card/single/${id}`);
+  let fetchedCard = await api.get(`/card/single/${id}`);
 
   if (fetchedCard) {
     return fetchedCard.data.data;
@@ -55,53 +55,27 @@ const fetchCard = async (id) => {
   return null;
 };
 
-// fetch all students
-const fetchStudents = async () => {
-  let fetchedStudentList = await axios.get(`${Base}/card/allstudents`);
-
-  if (fetchedStudentList) {
-    return fetchedStudentList.data.data;
-  }
-};
-
 // set letter to "sent" status
 const setOpened = async (id) => {
-  await axios.post(`${Base}/card/opened`, { _id: id });
+  await api.post("/card/opened", { _id: id });
 };
 
 // get number of letters
 const fetchCount = async () => {
-  let fetchedCount = await axios.get(`${Base}/card/count`);
+  let fetchedCount = await api.get("/card/count");
 
   if (fetchedCount) {
     return fetchedCount;
   }
 };
 
-// check cas login
-const casCheck = async () => {
-  let auth = await axios.get(`${Base}/auth/check`);
-
-  if (auth) {
-    return auth;
-  }
-};
-
 // fetch all cards from users
 const fetchUserCards = async (id) => {
-  let fetchedCards = await axios.get(`${Base}/card/user/${id}`);
+  let fetchedCards = await api.get(`/card/user/${id}`);
   if (fetchedCards) {
     return fetchedCards.data.cards;
   }
   return "invalid user :(";
 };
 
-export {
-  createCard,
-  fetchCard,
-  fetchStudents,
-  setOpened,
-  fetchCount,
-  casCheck,
-  fetchUserCards,
-};
+export { createCard, fetchCard, setOpened, fetchCount, fetchUserCards };

@@ -1,13 +1,10 @@
-import axios from "axios";
-import { Base } from "../util/base";
-import Cookies from "universal-cookie";
-import { store } from "../index";
-const cookies = new Cookies();
+// import { store } from "../index";
+import api from "./index";
 
 // add feedback
 const addFeedback = async (feedbackObj) => {
   try {
-    let addedFeedback = await axios.post(`${Base}/feedback/add`, feedbackObj);
+    let addedFeedback = await api.post("/feedback/add", feedbackObj);
 
     // toastify?
     if (addedFeedback) {
@@ -17,10 +14,10 @@ const addFeedback = async (feedbackObj) => {
   } catch {}
 };
 
-// fetch all
+// fetch all feedback
 const fetchAllFeedback = async (groupId) => {
   try {
-    let fetchedFeedback = await axios.post(`${Base}/feedback/fetchall`, {
+    let fetchedFeedback = await api.post("feedback/fetchall", {
       groupId,
     });
     return fetchedFeedback;
