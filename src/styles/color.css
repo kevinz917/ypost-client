@@ -8,7 +8,7 @@
   --blue100: #0a3474;
   --blue200: #052657;
   --coral: #fc777b;
-  --primary1: #ff8c12;
+  --primary1: #ffa13d;
 }
 
 .textMain {
@@ -67,7 +67,6 @@
 }
 
 /* primary button */
-
 .buttonPrimary {
   color: white;
   background-color: var(--primary1);

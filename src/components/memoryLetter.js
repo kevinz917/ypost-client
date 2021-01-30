@@ -11,36 +11,11 @@ import styles from "./letter.module.css";
 import CanvasDraw from "react-canvas-draw";
 import canvas_styles from "../pages/write/write.module.css";
 
-// Rotate ref
-const useRotate = () => {
-  const [rotate, setRotate] = useState(false);
-
-  const randNum = (a, b) => {
-    return Math.random() * (b - a) + a;
-  };
-
-  const onMouseEnter = () => {
-    // console.log(true);
-    setRotate(true);
-  };
-
-  const onMouseLeave = () => {
-    setRotate(false);
-  };
-
-  const rotateStyle = !rotate
-    ? {
-        opacity: 1,
-      }
-    : {
-        transform: `rotate(${randNum(-4, 4)}deg) scale(1.02)`,
-      };
-
-  return { rotateStyle, onMouseEnter, onMouseLeave };
+const randNum = (a, b) => {
+  return Math.random() * (b - a) + a;
 };
 
 const MemoryLetter = ({ letterContent, status }) => {
-  const { rotateStyle, ...rotateProps } = useRotate();
   const userVal = useSelector((state) => state.state.userInfo);
 
   const [reactions, setReactions] = useState(null); // total reactions
@@ -81,14 +56,11 @@ const MemoryLetter = ({ letterContent, status }) => {
     }
   };
 
-  if (!letterContent) return <div />;
+  // style={width > 500 ? rotateStyle : {}}
+
+  if (!letterContent) return null;
   return (
-    <div
-      ref={ref}
-      className="memoryCard fade-in"
-      style={width > 500 ? rotateStyle : {}}
-      {...rotateProps}
-    >
+    <div ref={ref} className="memoryCard fade-in">
       <div className="w-100 d-flex flex-row justify-content-between">
         <div className="body textMain">
           Dear {letterContent.recipient.split(" ")[0]},
