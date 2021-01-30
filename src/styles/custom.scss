@@ -1,13 +1,9 @@
 $theme-colors: (
-  "primary": #eb7f7f,
+  "primary": #ff9524,
   "secondary": hsl(39, 37%, 93%),
   "test": hsl(33, 7%, 25%),
 );
 
-// bootstrap not installed. using default
-// @import "../../node_modules/bootstrap/scss/bootstrap";
-
 @import "bootstrap";
 
-// @import "node_modules/bootstrap/scss/bootstrap";
-// @import "~bootstrap/scss/bootstrap.scss";
+// eb7f7f -> airbnb red color

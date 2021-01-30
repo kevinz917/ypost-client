@@ -142,7 +142,10 @@ const MemoryLetter = ({ letterContent, status }) => {
             }`}
             onClick={() => reactionControl()}
           >
-            {reactions} 🧡
+            {reactions === 0 ? null : (
+              <React.Fragment>{reactions}</React.Fragment>
+            )}
+            <span style={{ opacity: reactions === 0 ? 0.7 : 1 }}>🧡</span>
           </div>
         </div>
       )}
