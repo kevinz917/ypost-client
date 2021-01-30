@@ -57,6 +57,7 @@ const defaultState = {
     groups: [],
     email: "",
     role: "",
+    reactions: [],
   },
 };
 
@@ -77,6 +78,7 @@ const state = (state = defaultState, action) => {
           groups: action.payload.groups,
           email: action.payload.email,
           role: action.payload.role,
+          reactions: action.payload.reactions,
         },
       };
     case "SET_FETCHED_CARDS":

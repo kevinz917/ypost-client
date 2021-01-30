@@ -126,6 +126,7 @@ const Login = (props) => {
                 onChange={setChange("password")}
               />
             </InputGroup>
+            <br />
             <div>Select group</div>
             <Select
               options={orgOptions}

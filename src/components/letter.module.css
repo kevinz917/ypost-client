@@ -21,3 +21,32 @@
   background-color: #e9f4ff;
   color: #2f6aa5;
 }
+
+.reactionWrapper {
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 10px;
+  transition: 0.1s;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+.reactionTrue {
+  background-color: #ffdfd0;
+}
+
+.reactionFalse {
+  background-color: #f7f7f7;
+}
+
+.reactionWrapper:hover {
+  background-color: #ececec;
+  transition: 0.1s;
+}
+
+.reactionWrapper:active {
+  background-color: #d6d6d6;
+}

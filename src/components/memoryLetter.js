@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import { useSelector } from "react-redux";
+import { toggleReaction } from "../api/card";
 
 import "../styles/color.css";
 import "../styles/layout.css";
@@ -42,6 +43,9 @@ const MemoryLetter = ({ letterContent, status }) => {
   const { rotateStyle, ...rotateProps } = useRotate();
   const userVal = useSelector((state) => state.state.userInfo);
 
+  const [reactions, setReactions] = useState(null); // total reactions
+  const [reactionToggle, setReactionToggle] = useState(false); // whether user has voted
+
   const drawing_ref = useRef(null);
   const [width, setWidth] = useState(-1);
   const ref = useRef(null);
@@ -53,7 +57,29 @@ const MemoryLetter = ({ letterContent, status }) => {
     if (ref.current) {
       setWidth(ref.current.offsetWidth);
     }
-  }, [letterContent]);
+
+    if (status === "public") {
+      setReactions(letterContent.reactions);
+      if (userVal.reactions.includes(letterContent._id)) {
+        setReactionToggle(true);
+      }
+    }
+  }, [letterContent, userVal]);
+
+  // reaction toggler
+  const reactionControl = async () => {
+    if (reactionToggle === true) {
+      // already voted
+      setReactions(reactions - 1);
+      setReactionToggle(false);
+      await toggleReaction(letterContent._id, -1);
+    } else {
+      // increase
+      setReactions(reactions + 1);
+      setReactionToggle(true);
+      await toggleReaction(letterContent._id, 1);
+    }
+  };
 
   if (!letterContent) return <div />;
   return (
@@ -107,7 +133,19 @@ const MemoryLetter = ({ letterContent, status }) => {
       <div className="body textMain" style={{ textAlign: "right" }}>
         {letterContent.author ? letterContent.author : "Anonymous :)"}
       </div>
-      <br />
+      {status === "public" && (
+        <div className="w-100 d-flex flex-row justify-content-between mt-1">
+          <div />
+          <div
+            className={`body textMain ${styles.reactionWrapper} ${
+              reactionToggle ? styles.reactionTrue : styles.reactionFalse
+            }`}
+            onClick={() => reactionControl()}
+          >
+            {reactions} 🧡
+          </div>
+        </div>
+      )}
       {letterContent.sticker && (
         <div style={{ display: "flex" }}>
           {letterContent.sticker.map((sticker) => (
