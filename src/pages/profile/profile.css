@@ -13,8 +13,10 @@
 
 .deleteMarker {
   cursor: pointer;
-  opacity: 0.2;
+  opacity: 0.1;
+  transition: 0.1s;
 }
 .deleteMarker:hover {
   opacity: 1;
+  transition: 0.1s;
 }

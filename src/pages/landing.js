@@ -152,10 +152,7 @@ const Landing = () => {
             </Dropdown>
           </div>
           {isLoading ? (
-            <div className="w-100 d-flex flex-row justify-content-center">
-              <br />
-              <Spinner />
-            </div>
+            <Spinner />
           ) : radioValue === "1" ? (
             <React.Fragment>
               {stateVal.userInfo.receivedCards.map((card) => (
