@@ -75,7 +75,7 @@ const Login = (props) => {
     setSubmitState(false);
   };
 
-  const submitSignUp = async (event) => {
+  const submitSignUp = async () => {
     let res = await onSignup(userData);
 
     if (res.error) {

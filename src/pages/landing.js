@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ButtonGroup, ToggleButton, Button, Dropdown } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCount } from "../util/api";
 import { SET_VAL } from "../redux/masterReducer";
@@ -38,7 +38,7 @@ const Landing = () => {
       await fetchUserInfo();
 
       if (stateVal.studentList.length === 0) {
-        await fetchMembers(groupVal.groupId);
+        await fetchMembers();
       }
 
       if (
@@ -152,10 +152,7 @@ const Landing = () => {
             </Dropdown>
           </div>
           {isLoading ? (
-            <div className="w-100 d-flex flex-row justify-content-center">
-              <br />
-              <Spinner />
-            </div>
+            <Spinner />
           ) : radioValue === "1" ? (
             <React.Fragment>
               {stateVal.userInfo.receivedCards.map((card) => (

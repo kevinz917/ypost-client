@@ -4,11 +4,13 @@ import "../../styles/animation.css";
 
 const Spinner = () => {
   return (
-    <img
-      src={SpinnerImg}
-      className="rotate-fast spinner"
-      alt="loading spinner"
-    />
+    <div className="w-100 d-flex flex-row justify-content-center">
+      <img
+        src={SpinnerImg}
+        className="rotate-fast spinner mt-4"
+        alt="loading spinner"
+      />
+    </div>
   );
 };
 

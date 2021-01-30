@@ -19,14 +19,12 @@ import Landing from "./pages/landing";
 import Write from "./pages/write/write";
 import Done from "./pages/done";
 import Open from "./pages/open";
-import About from "./pages/about";
 import Notfound from "./pages/public/notfound";
 import Profile from "./pages/profile/profile";
 import Login from "./pages/public/login";
 import Feedback from "./pages/feedback";
 import Inbox from "./pages/inbox";
 import Wall from "./pages/wall";
-import Test from "./pages/test";
 
 function App() {
   const dispatch = useDispatch();
@@ -63,11 +61,9 @@ function App() {
             <PrivateRoute exact path="/done" component={Done} />
             <PrivateRoute exact path="/letter/:id" component={Open} />
             <PrivateRoute exact path="/wall" component={Wall} />
-            <Route exact path="/inbox" component={Inbox} />
+            <PrivateRoute exact path="/inbox" component={Inbox} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/about" component={About} />
             <Route exact path="/" component={Landing} />
-            <Route exact path="/test" component={Test} />
             <Route exact={false} component={Notfound} />
           </Switch>
           <ToastContainer

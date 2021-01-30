@@ -18,7 +18,8 @@ const cookies = new Cookies();
 // sign up api
 const onSignup = async (userObj) => {
   try {
-    let res = await axios.post("/user/signup", userObj);
+    console.log("signing up");
+    let res = await axios.post(`${Base}/user/signup`, userObj);
     if (res) {
       return res;
     }

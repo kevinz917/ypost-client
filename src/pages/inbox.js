@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { fetchAllFeedback } from "../api/feedback";
+import { fetchAllFeedback, removeFeedback } from "../api/feedback";
+import { Spinner } from "../components/other/LoadingSpinner";
+import { Button, Modal } from "react-bootstrap";
 
 const Inbox = () => {
   const history = useHistory();
   const userInfo = useSelector((state) => state.state.userInfo);
   const groupInfo = useSelector((state) => state.groupReducer);
+
+  const [show, setShow] = useState(false);
+  const [selectedFeedback, setSelectedFeedback] = useState(null);
 
   const [fetchedLetters, setFetchedLetters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +28,17 @@ const Inbox = () => {
       }
     };
     onMount();
-  }, [userInfo]);
+  }, []);
+
+  // const selectRemove = (email) => {
+  //   setSelectedEmail(email);
+  //   setShow(true);
+  // };
+
+  // const confirmRemove = async () => {
+  //   setShow(false);
+  //   await removeFeedback(selectedFeedback);
+  // };
 
   return (
     <div className="paperCardContainer fade-in">
@@ -35,14 +50,21 @@ const Inbox = () => {
       <br />
       <div style={{ width: "500px" }} />
       {isLoading ? (
-        <div>Loading ... </div>
+        <Spinner />
       ) : (
-        <div>
+        <div className="paperCard fade-in">
           {fetchedLetters.map((letter) => {
             return (
-              <div className="paperCard fade-in" key={letter._id}>
-                {letter.content}
-              </div>
+              <>
+                <div
+                  key={letter._id}
+                  className="w-100 d-flex flex-row justify-content-between"
+                >
+                  <div>{letter.content}</div>
+                  <div class="float-right deleteMarker">✖️</div>
+                </div>
+                <hr />
+              </>
             );
           })}
         </div>
@@ -52,3 +74,22 @@ const Inbox = () => {
 };
 
 export default Inbox;
+
+// <Modal show={show} onHide={handleClose}>
+//   <Modal.Header closeButton>
+//     <Modal.Title>Remove member</Modal.Title>
+//   </Modal.Header>
+//   <Modal.Body>Are you sure you want to remove this member?</Modal.Body>
+//   <Modal.Footer>
+//     <Button variant="secondary" onClick={() => setShow(false)}>
+//       Close
+//     </Button>
+//     <Button
+//       variant="primary"
+//       onClick={async () => confirmRemove()}
+//       style={{ color: "white" }}
+//     >
+//       Remove member
+//     </Button>
+//   </Modal.Footer>
+// </Modal>;

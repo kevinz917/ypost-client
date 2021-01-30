@@ -26,4 +26,14 @@ const fetchAllFeedback = async (groupId) => {
   }
 };
 
-export { addFeedback, fetchAllFeedback };
+// remove feedback
+const removeFeedback = async (feedbackId) => {
+  try {
+    await api.post("/feedback/delete", { feedbackId });
+    return;
+  } catch (err) {
+    return;
+  }
+};
+
+export { addFeedback, fetchAllFeedback, removeFeedback };

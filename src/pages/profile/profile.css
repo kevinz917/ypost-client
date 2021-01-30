@@ -2,3 +2,21 @@
   width: 900px;
   margin: 40px auto 0 auto;
 }
+
+.ellipses {
+  white-space: nowrap;
+  width: 12em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid #000000;
+}
+
+.deleteMarker {
+  cursor: pointer;
+  opacity: 0.1;
+  transition: 0.1s;
+}
+.deleteMarker:hover {
+  opacity: 1;
+  transition: 0.1s;
+}
