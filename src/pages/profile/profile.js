@@ -79,7 +79,7 @@ const Profile = (props) => {
           </Button>
           <Button
             variant="primary"
-            onClick={() => confirmRemove()}
+            onClick={async () => confirmRemove()}
             style={{ color: "white" }}
           >
             Remove member

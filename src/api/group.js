@@ -49,6 +49,7 @@ const fetchPublicPosts = async () => {
 const removeMember = async (email) => {
   try {
     await api.post("/group/removeMember", { email });
+    return;
   } catch (err) {
     return err;
   }
