@@ -34,11 +34,11 @@
 
 .buttonMain {
   text-decoration: none;
-  margin: 10px 0 10px 0;
+  margin: 10px 0;
   width: 100%;
   display: inline-block;
   border-radius: 12px;
-  padding: 10px 0 10px 0;
+  padding: 10px 14px;
   border: none;
   font-size: 16px;
   font-weight: 500;
