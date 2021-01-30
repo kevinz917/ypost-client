@@ -1,3 +1,5 @@
+import axios from "axios";
+import { Base } from "../util/base";
 import api from "./index";
 import {
   SET_VAL,
@@ -11,7 +13,7 @@ import { store } from "../index";
 // fetch all groups
 const fetchGroups = async () => {
   try {
-    let fetchedGroups = await api.get("/group/all");
+    let fetchedGroups = await axios.get(`${Base}/group/all`);
     if (fetchedGroups) return fetchedGroups.data.data.groups;
   } catch (err) {
     console.log(err);

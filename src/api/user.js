@@ -15,14 +15,6 @@ import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
-// let headers = {};
-// if (cookies.get("ypostUser") !== undefined) {
-//   // console.log(headers);
-//   headers = {
-//     "access-token": cookies.get("ypostUser").accessToken,
-//   };
-// }
-
 // sign up api
 const onSignup = async (userObj) => {
   try {
@@ -71,6 +63,7 @@ const fetchUserInfo = async () => {
         SET_USER_INFO({
           email: userInfo.email,
           role: userInfo.role,
+          reactions: userInfo.reactions,
         })
       );
       return;
