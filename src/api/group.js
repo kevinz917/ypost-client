@@ -22,9 +22,9 @@ const fetchGroups = async () => {
 };
 
 // fetch all members in a group
-const fetchMembers = async (groupId) => {
+const fetchMembers = async () => {
   try {
-    let fetchedMembers = await api.post("/group/members", { groupId });
+    let fetchedMembers = await api.post("/group/members");
     store.dispatch(SET_VAL("studentList", fetchedMembers.data.data.users));
     return fetchedMembers.data.data.users;
   } catch (err) {
@@ -46,4 +46,12 @@ const fetchPublicPosts = async () => {
   }
 };
 
-export { fetchGroups, fetchMembers, fetchPublicPosts };
+const removeMember = async (email) => {
+  try {
+    await api.post("/group/removeMember", { email });
+  } catch (err) {
+    return err;
+  }
+};
+
+export { fetchGroups, fetchMembers, fetchPublicPosts, removeMember };

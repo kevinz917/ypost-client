@@ -23,7 +23,7 @@ const Inbox = () => {
       }
     };
     onMount();
-  }, [userInfo]);
+  }, []);
 
   return (
     <div className="paperCardContainer fade-in">
