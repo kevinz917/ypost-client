@@ -18,6 +18,8 @@ import "../styles/typography.css";
 import "../styles/animation.css";
 import "../styles/custom.scss";
 
+import Splash from "./public/splash";
+
 const Landing = () => {
   const dispatch = useDispatch();
   const stateVal = useSelector((state) => state.state);
@@ -65,9 +67,13 @@ const Landing = () => {
     dispatch(SET_VAL("selectedStudent", e ? e.label : ""));
   };
 
+  if (stateVal.auth !== 1) {
+    return <Splash />;
+  }
+
   return isLoading === 0 ? null : (
     <div className="paperCardContainer fade-in">
-      {stateVal.auth === 1 ? (
+      {stateVal.auth === 1 && (
         <Link to="/feedback" className="link">
           <div className="paperCard">
             <div className="header3 textMain">Share thoughts anonymously →</div>
@@ -76,7 +82,7 @@ const Landing = () => {
             </div>
           </div>
         </Link>
-      ) : null}
+      )}
       <div className="paperCard">
         <div className="d-flex flex-row align-items-center">
           <div>
@@ -106,12 +112,10 @@ const Landing = () => {
               onChange={onInputChange}
               isClearable={true}
               value={
-                stateVal.email
-                  ? {
-                      value: stateVal.email,
-                      label: stateVal.selectedStudent,
-                    }
-                  : null
+                stateVal.email && {
+                  value: stateVal.email,
+                  label: stateVal.selectedStudent,
+                }
               }
             />
             <Link to="/write" className="link">

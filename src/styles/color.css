@@ -8,6 +8,7 @@
   --blue100: #0a3474;
   --blue200: #052657;
   --coral: #fc777b;
+  --primary1: #ffa13d;
 }
 
 .textMain {
@@ -33,11 +34,11 @@
 
 .buttonMain {
   text-decoration: none;
-  margin: 10px 0 10px 0;
+  margin: 10px 0;
   width: 100%;
   display: inline-block;
   border-radius: 12px;
-  padding: 10px 0 10px 0;
+  padding: 10px 14px;
   border: none;
   font-size: 16px;
   font-weight: 500;
@@ -65,14 +66,14 @@
   resize: vertical;
 }
 
-/* button variants */
+/* primary button */
 .buttonPrimary {
   color: white;
-  background-color: var(--coral);
+  background-color: var(--primary1);
 }
 
 .buttonPrimary:hover {
-  background-color: rgb(226, 99, 99);
+  background-color: #d88934;
 }
 
 .buttonSecondary {
@@ -126,16 +127,6 @@
   text-decoration: none;
 }
 
-/* switch colors */
-.switch-btn {
-  background: #fff;
-  color: red;
-  border: 2px solid red;
-  border-radius: 3px;
-  padding: 5px 10px;
-  text-transform: uppercase;
-}
-
-.test {
-  color: red;
+.btn-white-color {
+  color: white;
 }

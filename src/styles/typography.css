@@ -17,6 +17,20 @@ hr {
   line-height: 140%;
 }
 
+.headerxl {
+  font-family: "Zilla Slab", serif;
+  font-size: 46px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.header1 {
+  font-family: "Zilla Slab", serif;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
 .h1 {
   font-family: "Zilla Slab", serif;
   font-size: 27px;
@@ -41,7 +55,7 @@ hr {
 .buttonMain {
   font-family: inherit;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  /* letter-spacing: 0.05em; */
 }
 
 .italic {
@@ -115,4 +129,13 @@ a {
   font-size: 14px;
   margin-bottom: 12px;
   line-height: 135%;
+}
+
+@media (max-width: 600px) {
+  .headerxl {
+    font-family: "Zilla Slab", serif;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
 }

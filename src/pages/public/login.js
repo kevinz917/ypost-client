@@ -142,14 +142,13 @@ const Login = (props) => {
               Already signed up? Log in here
             </div>
             <div className="mt-4">
-              <Button
-                variant="primary"
-                className="w-100"
+              <button
+                className="buttonMain buttonPrimary"
                 onClick={submitSignUp}
                 disabled={submitState ? true : false}
               >
                 Sign up
-              </Button>
+              </button>
             </div>
           </div>
         ) : (
@@ -179,14 +178,13 @@ const Login = (props) => {
               Don't have an account? Sign up here
             </div>
             <div className="mt-4">
-              <Button
-                variant="primary"
-                className="w-100"
+              <button
+                className="buttonMain buttonPrimary"
                 onClick={submitLogin}
                 disabled={submitState ? true : false}
               >
                 Log in
-              </Button>
+              </button>
             </div>
           </div>
         )}
