@@ -21,7 +21,7 @@ const onSignup = async (userObj) => {
     console.log("signing up");
     let res = await axios.post(`${Base}/user/signup`, userObj);
     if (res) {
-      return res;
+      return res.data;
     }
   } catch (err) {
     return err;
