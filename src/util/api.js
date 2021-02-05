@@ -32,12 +32,12 @@ const createCard = async (
     data.append("sticker", x);
   });
   data.append("netId", netId);
-  axios.post(`${Base}/card/new`, data);
+  axios.post(`${Base}/legacy/new`, data);
 };
 
 //  Fetch single card
 const fetchCard = async (id) => {
-  let fetchedCard = await axios.get(`${Base}/card/single/${id}`);
+  let fetchedCard = await axios.get(`${Base}/legacy/single/${id}`);
 
   if (fetchedCard) {
     return fetchedCard.data.data;
@@ -47,7 +47,7 @@ const fetchCard = async (id) => {
 
 // Fetch all students
 const fetchStudents = async () => {
-  let fetchedStudentList = await axios.get(`${Base}/card/allstudents`);
+  let fetchedStudentList = await axios.get(`${Base}/legacy/allstudents`);
 
   if (fetchedStudentList) {
     return fetchedStudentList.data.data;
@@ -56,12 +56,12 @@ const fetchStudents = async () => {
 
 // Set letter to "sent" status
 const setOpened = async (id) => {
-  await axios.post(`${Base}/card/opened`, { _id: id });
+  await axios.post(`${Base}/legacy/opened`, { _id: id });
 };
 
 // Get number of letters
 const fetchCount = async () => {
-  let fetchedCount = await axios.get(`${Base}/card/count`);
+  let fetchedCount = await axios.get(`${Base}/legacy/count`);
 
   if (fetchedCount) {
     return fetchedCount;
@@ -77,7 +77,7 @@ const casCheck = async () => {
 };
 
 const fetchUserCards = async (id) => {
-  let fetchedCards = await axios.get(`${Base}/card/user/${id}`);
+  let fetchedCards = await axios.get(`${Base}/legacy/user/${id}`);
   if (fetchedCards) {
     return fetchedCards.data.cards;
   }
