@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { sendAmplitudeData } from "../util/amplitude";
 import { fetchUserCards } from "../util/api";
 import MemoryLetter from "../components/memoryLetter";
-import Flake from "../assets/flake.svg";
+import Flake from "../assets/arrow_heart.png";
 
 import "../styles/color.css";
 import "../styles/layout.css";
@@ -48,7 +48,7 @@ const Memories = (props) => {
       </div>
       <hr />
       <br />
-      <div className="h1 textMain">💌 Memory Lane</div>
+      <div className="h1 textMain">💭 Memory Lane</div>
       <div className="body" style={{ opacity: "0.7" }}>
         {userCards.length} postcards
       </div>

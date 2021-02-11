@@ -7,7 +7,7 @@
   --gray200: #6e6e6e;
   --blue100: #0a3474;
   --blue200: #052657;
-  --coral: #fc777b;
+  --coral: rgb(17, 97, 168);
 }
 
 .textMain {
@@ -70,7 +70,7 @@
 }
 
 .buttonPrimary:hover {
-  background-color: rgb(226, 99, 99);
+  background-color: #044ba1;
 }
 
 .buttonRecord {

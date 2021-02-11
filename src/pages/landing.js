@@ -4,8 +4,9 @@ import { fetchStudents, fetchCount } from "../util/api";
 import { SET_VAL } from "../redux/masterReducer";
 import { Link } from "react-router-dom";
 import Stamp from "../assets/stamp.svg";
+import YCC from "../assets/ycc_logo.png";
 import AsyncSelect from "react-select/async";
-import Flake from "../assets/flake.svg";
+import Flake from "../assets/arrow_heart.png";
 import { sendAmplitudeData } from "../util/amplitude";
 import styles from "./landing.module.css";
 import { Base } from "../util/base";
@@ -117,7 +118,7 @@ const Landing = (props) => {
                 transition: "color 0.3s",
               }}
             >
-              💌 &nbsp; Visit Memory Lane →
+              💭 &nbsp; Visit Memory Lane →
             </div>
 
             <div
@@ -131,42 +132,59 @@ const Landing = (props) => {
       )}
       <div className="paperCard">
         <div className="horizontalInbetween">
-          <div className="h1 textMain">Hey Yalies!</div>
-          <img
-            src={Stamp}
-            alt="logo"
-            style={{ transform: "rotate(20deg)", width: "75px" }}
-          />
+          <div className="h1 textMain">Hey Class of '24!</div>
+          <div>
+            <img
+              src={YCC}
+              alt="ycc"
+              style={{ transform: "rotate(-20deg)", width: "75px" }}
+            />
+            <img
+              src={Stamp}
+              alt="logo"
+              style={{ transform: "rotate(20deg)", width: "65px" }}
+            />
+          </div>
         </div>
-        <br />
-        <div className="body textMain italic">Who do you miss the most?</div>
         <br />
         <div className="body textMain">
-          3 Yalies built YPost so you can send virtual postcards to friends with{" "}
-          <span style={{ fontWeight: "bold" }}>
-            drawings, gifs, and audio messages
-          </span>
-          ! Check it out below, and Happy Valentine's Day {"<3"}
+          We miss you all immensely and wish we could give you a hug in person
+          this Valentine’s! But no reason why we can’t share the love even
+          though we are apart!
+          <br />
+          <div style={{ marginTop: "10px" }}>
+            <strong>
+              We are so excited to work with the YPost team so that you can show
+              your friends across the globe that you are still thinking of them!
+            </strong>
+          </div>
+          <div style={{ textAlign: "right", marginTop: "10px" }}>
+            XOXO,
+            <br />
+            <strong>FCC</strong>
+          </div>
         </div>
         <br />
-        <div className="body textMain italic">
+        <div className="body textMain italic horizontalInbetween">
           <Link to="/about" className="hyperlink">
             About this project.
           </Link>
+          <div
+            className={styles.letter_cnt_container + " body textMain fade-in"}
+          >
+            {letter_count === -1 ? (
+              <span className={styles.letter_cnt_label}>Loading...</span>
+            ) : (
+              <div className="fade-in">
+                <span className={styles.letter_cnt_label}>
+                  Total YPosts Sent:{" "}
+                </span>
+                <span className={styles.letter_cnt_val}>{letter_count}</span>
+              </div>
+            )}
+          </div>
         </div>
-        <br />
-        <div className={styles.letter_cnt_container + " body textMain fade-in"}>
-          {letter_count === -1 ? (
-            <span className={styles.letter_cnt_label}>Loading...</span>
-          ) : (
-            <div className="fade-in">
-              <span className={styles.letter_cnt_label}>
-                Total YPosts Sent:{" "}
-              </span>
-              <span className={styles.letter_cnt_val}>{letter_count}</span>
-            </div>
-          )}
-        </div>
+
         <br />
         {stateVal.auth ? (
           <AsyncSelect
@@ -209,7 +227,7 @@ const Landing = (props) => {
         ) : null}
       </div>
       <br />
-      <div className="report-container">
+      <div className="report-container" style={{ marginBottom: "20px" }}>
         To report a problem or share a thought, talk to us{" "}
         <a
           href="mailto: founders@ypost.app"

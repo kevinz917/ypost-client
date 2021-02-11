@@ -64,7 +64,7 @@ function App() {
             return (
               !["/write", "/done", "/letter"].includes(location.pathname) && (
                 // <Snowfall snowflakeCount={100} />
-                <FallingEmojis emoji={"❤️"} />
+                <FallingEmojis emoji={"💘"} />
               )
             );
           }}
