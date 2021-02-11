@@ -32,7 +32,7 @@ const createCard = async (
     data.append("sticker", x);
   });
   data.append("netId", netId);
-  axios.post(`${Base}/card/new`, data);
+  axios.post(`${Base}/legacy/new`, data);
 };
 
 //  Fetch single card
