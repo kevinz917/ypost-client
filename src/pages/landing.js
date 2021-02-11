@@ -144,7 +144,7 @@ const Landing = (props) => {
           <span style={{ fontWeight: "bold" }}>
             drawings, gifs, and audio messages
           </span>
-          ! Check it out below, and Happy Holidays :)
+          ! Check it out below, and Happy Valentine's Day {"<3"}
         </div>
         <br />
         <div className="body textMain italic">
