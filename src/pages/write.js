@@ -44,24 +44,12 @@ const Write = (props) => {
 
   // sticker array
   const sources = [
-    "https://media.giphy.com/media/VKwspRV2pafJu/giphy.gif",
-    "https://media.giphy.com/media/PuKSVqbw0hEpq/giphy.gif",
-    "https://media.giphy.com/media/11YoNDzlP6VSSs/giphy.gif",
-    "https://media.giphy.com/media/R7AW255ijTdV6/giphy.gif",
-    "https://media.giphy.com/media/6eEWybJorTCvK/giphy.gif",
-    "https://media.giphy.com/media/l0HU9ZInhMHMO71Cw/giphy.gif",
-    "https://media.giphy.com/media/jnpF4fu32fhqE/giphy.gif",
-    "https://media.giphy.com/media/9JrvLb0fnrn7k1ZjhX/giphy.gif",
-    "https://media.giphy.com/media/3oz8xALpV1X2BPo7cI/giphy.gif",
-    "https://media.giphy.com/media/xTk9ZLRMhW9wrSUf4c/giphy.gif",
-    "https://media.giphy.com/media/l0HlNYLArnTIYvntm/giphy.gif",
-    "https://media.giphy.com/media/RdzzVrtvfqnM4/giphy.gif",
-    "https://media.giphy.com/media/hFIq9i5y2H10Q/giphy.gif",
-    "https://media.giphy.com/media/13lIFCT4YxJSes/giphy.gif",
-    "https://media.giphy.com/media/xz9j6yOIO2as0/giphy.gif",
-    "https://media.giphy.com/media/xUOxf7dQFhQ1NWnRBK/giphy.gif",
+    "https://i.ibb.co/kc6cNDY/bulldogvalentine-jpeg.jpg",
+    "https://i.ibb.co/NWsCnkd/Dan-Valentine.jpg",
+    "https://i.ibb.co/FYvNPzb/Pizza-Valentine.jpg",
+    "https://i.ibb.co/424QtZg/Sterling-Valentine-1.jpg",
+    "https://i.ibb.co/xjzKzyS/Sterling-Valentine.jpg",
   ];
-
   const validate = async (e) => {
     if (stateVal.message.length === 0 && audioFile === null) {
       setErrorMessage("Please type or record a message!");
