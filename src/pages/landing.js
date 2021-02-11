@@ -66,8 +66,10 @@ const Landing = (props) => {
   };
 
   const filterStudents = (inputValue) => {
-    return stateVal.studentList.filter((i) =>
-      i.label.toLowerCase().includes(inputValue.toLowerCase())
+    return stateVal.studentList.filter(
+      (i) =>
+        i.label.toLowerCase().includes(inputValue.toLowerCase()) &&
+        i.label.includes("24")
     );
   };
 
