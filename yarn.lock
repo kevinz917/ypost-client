@@ -4988,6 +4988,11 @@ extsprintf@^1.2.0:
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
 
+falling-emojis@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/falling-emojis/-/falling-emojis-1.0.9.tgz#1dc7df4a40f35840d05b61fb0a6ef3785638b5ff"
+  integrity sha512-ua48lu56g5QudmK5eefrw5CYjnHNe+Sfi4R2YnfXlsGVOb7/IpTy83ItkFQ8ynYE2PVItR6QcZx/3l+mbD3fbg==
+
 fast-deep-equal@^3.1.1:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"

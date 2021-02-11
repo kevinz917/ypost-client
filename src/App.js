@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Snowfall from "react-snowfall";
+import { FallingEmojis } from "falling-emojis";
 import { useSelector, useDispatch } from "react-redux";
 import { SET_VAL } from "./redux/masterReducer";
 import axios from "axios";
@@ -18,7 +18,6 @@ import About from "./pages/about";
 // import Test from "./pages/test";
 import { casCheck } from "./util/api";
 import Memories from "./pages/memories";
-import Ticker from "react-ticker";
 
 import "./styles/layout.css";
 
@@ -48,34 +47,6 @@ function App() {
 
   return (
     <div className="backgroundLayout">
-      {closed ? null : isLoading ? null : (
-        <div className="alert">
-          <span
-            className="closebtn"
-            onClick={() => {
-              setClosed(true);
-            }}
-          >
-            &times;
-          </span>
-          <Ticker height={26}>
-            {() => (
-              <div>
-                💌
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                New Feature: visit Memory Lane to view received YPosts!
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                💌
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Privacy Update:{" "}
-                <span style={{ fontWeight: "bold" }}>one-time</span>{" "}
-                authentication via Yale CAS!
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              </div>
-            )}
-          </Ticker>
-        </div>
-      )}
       <Router>
         <Switch>
           <Route path="/demo" component={Demo} />
@@ -92,7 +63,8 @@ function App() {
             // Render snowflakes if not on write or done page
             return (
               !["/write", "/done", "/letter"].includes(location.pathname) && (
-                <Snowfall snowflakeCount={100} />
+                // <Snowfall snowflakeCount={100} />
+                <FallingEmojis emoji={"❤️"} />
               )
             );
           }}

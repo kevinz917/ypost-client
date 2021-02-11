@@ -9,6 +9,7 @@
     "amplitude-js": "^7.3.3",
     "axios": "^0.21.0",
     "dotenv": "^8.2.0",
+    "falling-emojis": "^1.0.9",
     "mic-recorder-to-mp3": "^2.2.2",
     "react": "^17.0.1",
     "react-audio-player": "^0.14.0",
